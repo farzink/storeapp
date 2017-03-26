@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpHelper } from '../../service/http-helper';
 import { profilePath, loginPath } from '../../utility/link';
 import 'rxjs/add/operator/map';
+import { ObservableHelper } from '../../utility/observable-helper';
 
 
 
@@ -12,7 +13,7 @@ import 'rxjs/add/operator/map';
 })
 export class LoginComponent {
     private rememberMe=false;
-    constructor(private httpHelper: HttpHelper){
+    constructor(private httpHelper: HttpHelper, private observableHelper: ObservableHelper){
         //this.getProfile();
     }
 
@@ -25,14 +26,14 @@ export class LoginComponent {
             rememberMe: this.rememberMe
         });
         console.log(body);      
-        this.httpHelper.processObservable(this.httpHelper.post(loginPath, body), function(data){
+        this.observableHelper.processObservable(this.httpHelper.post(loginPath, body), function(data){
             localStorage.setItem("token", JSON.stringify(data.json()));            
         }, null, null);   
     }
 
     
     getProfile(){        
-        this.httpHelper.processObservable(this.httpHelper.get(profilePath), function(data){
+        this.observableHelper.processObservable(this.httpHelper.get(profilePath), function(data){
             console.log(data.json());
         }, null, null);       
     }

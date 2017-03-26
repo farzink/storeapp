@@ -14,24 +14,35 @@ import { LoginComponent } from '../feature/login/login.component';
 import { AppComponent } from './app.component';
 import { HttpHelper } from '../service/http-helper';
 import { AuthenticationService } from '../service/authentication.service';
+import { ProfileRepository } from '../repository/profile-repository';
+import { ProfileService } from '../service/profile-service';
+import { ICoreService } from '../service/icore-service';
+import { IRepository } from '../repository/irepository';
+import { ProfileComponent } from '../feature/profile/profile.component';
+import { ObservableHelper } from '../utility/observable-helper';
+
 
 @NgModule({
-  declarations: [
+  declarations: [    
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent  
   ],
-  imports: [
+  imports: [    
     BrowserModule,
     FormsModule,
-    HttpModule,    
+    HttpModule,           
     RouterModule.forRoot(routes, {     
     })
   ],
-  providers: [
+  providers: [    
     RouteAuth,
     HttpHelper,
-    AuthenticationService  
+    AuthenticationService,
+    ProfileRepository,
+    ProfileService,
+    ObservableHelper    
   ],
   bootstrap: [AppComponent]
 })

@@ -23,17 +23,7 @@ export class HttpHelper {
         {
             headers: this.authService.prepareHeaders()
         });
-    }
-
-    processObservable(source: Observable<any>, subscriber, error, completion){
-        source.subscribe(function(e){
-            subscriber(e);            
-        }, function(e){
-
-        }, function(){
-
-        });        
-    }
+    }    
 }
 
 
