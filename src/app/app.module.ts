@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Headers } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 
@@ -12,6 +12,8 @@ import { HomeComponent } from '../feature/home/home.component';
 import { LoginComponent } from '../feature/login/login.component';
 
 import { AppComponent } from './app.component';
+import { HttpHelper } from '../service/http-helper';
+import { AuthenticationService } from '../service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,14 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpModule,    
     RouterModule.forRoot(routes, {     
     })
   ],
   providers: [
-    RouteAuth
+    RouteAuth,
+    HttpHelper,
+    AuthenticationService  
   ],
   bootstrap: [AppComponent]
 })
