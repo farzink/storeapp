@@ -6,17 +6,13 @@
                 <label for="email">Email</label>
                 <input type="email" #email class="form-control" id="email" placeholder="example@doman.com">
             </div>
-            <div class="form-group" [ngClass]="{'akhtooli-error': (firstNameModel.touched || firstNameModel.dirty)
+            <div class="form-group" [ngClass]="{'has-error': (firstNameModel.touched || firstNameModel.dirty)
             && !firstNameModel.valid}">
                 <label for="password">Password</label>
-                <input class="form-control" type="password" id="password" placeholder="password" required minlength="8" [(ngModel)]=password name="passwordName" #firstNameModel="ngModel" />
+                <input class="form-control has-error" type="password" id="password" placeholder="password" required minlength="8" [(ngModel)]=password name="passwordName" #firstNameModel="ngModel" />
             </div>
             <button type="submit" class="btn btn-default">Register</button>
             <button type="button" value="login" (click)="login($event)">Login</button>
-
-
-
-
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control" required minlength="4" maxlength="24" forbiddenName="bob" name="name">
         </fieldset>
