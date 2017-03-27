@@ -20,6 +20,7 @@ import { ICoreService } from '../service/icore-service';
 import { IRepository } from '../repository/irepository';
 import { ProfileComponent } from '../feature/profile/profile.component';
 import { ObservableHelper } from '../utility/observable-helper';
+import { RegisterComponent } from '../feature/register/register.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ObservableHelper } from '../utility/observable-helper';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent  
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [    
     BrowserModule,

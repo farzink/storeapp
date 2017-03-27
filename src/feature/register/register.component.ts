@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from "@angular/forms";
 
 
 
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.css']
 })
-export class HomeComponent {
+export class RegisterComponent {    
+    rememberMe: Boolean;
     constructor(){
     }
 }
