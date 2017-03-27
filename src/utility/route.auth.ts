@@ -11,7 +11,7 @@ export class RouteAuth implements CanActivate {
     if (!this.authService.isTokenExpired()) {
       return true;
     }
-    this.router.navigate(['/login']);
+    this.router.navigate(['/authentication/login']);
     return true;
   }
 }

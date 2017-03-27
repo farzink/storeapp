@@ -12,29 +12,29 @@ import { ObservableHelper } from '../../utility/observable-helper';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    private rememberMe=false;
-    constructor(private httpHelper: HttpHelper, private observableHelper: ObservableHelper){
+    private rememberMe = false;
+    constructor(private httpHelper: HttpHelper, private observableHelper: ObservableHelper) {
         //this.getProfile();
     }
 
-    login(e){
+    login(e) {
         //e.preventDefault();        
         //let body = JSON.stringify({ username, password, });
         let body = JSON.stringify({
-            email: "farzin@ieisys.com",
-            password: "@farziN12",
+            email: "shahinm@gmail.com",
+            password: "Shaahin@1",
             rememberMe: this.rememberMe
         });
-        console.log(body);      
-        this.observableHelper.processObservable(this.httpHelper.post(loginPath, body), function(data){
-            localStorage.setItem("token", JSON.stringify(data.json()));            
-        }, null, null);   
+        console.log(body);
+        this.observableHelper.processObservable(this.httpHelper.post(loginPath, body), function (data) {
+            localStorage.setItem("token", JSON.stringify(data.json()));
+        }, null, null);
     }
 
-    
-    getProfile(){        
-        this.observableHelper.processObservable(this.httpHelper.get(profilePath), function(data){
+
+    getProfile() {
+        this.observableHelper.processObservable(this.httpHelper.get(profilePath), function (data) {
             console.log(data.json());
-        }, null, null);       
+        }, null, null);
     }
 }

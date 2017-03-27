@@ -5,9 +5,9 @@ import { HttpModule, Headers } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 
-import { RouteAuth } from '../utility/route.auth'
+import { RouteAuth } from '../utility/route.auth';
 
-//Component
+// Component
 import { HomeComponent } from '../feature/home/home.component';
 import { LoginComponent } from '../feature/login/login.component';
 
@@ -21,30 +21,34 @@ import { IRepository } from '../repository/irepository';
 import { ProfileComponent } from '../feature/profile/profile.component';
 import { ObservableHelper } from '../utility/observable-helper';
 import { RegisterComponent } from '../feature/register/register.component';
+import { FooterComponent } from '../feature/footer/footer.component';
+import { NavbarComponent } from '../feature/navbar/navbar.component';
+
 
 
 @NgModule({
-  declarations: [    
+  declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    FooterComponent
   ],
-  imports: [    
+  imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,           
-    RouterModule.forRoot(routes, {     
-    })
+    HttpModule,
+    RouterModule.forRoot(routes, {})
   ],
-  providers: [    
+  providers: [
     RouteAuth,
     HttpHelper,
     AuthenticationService,
     ProfileRepository,
     ProfileService,
-    ObservableHelper    
+    ObservableHelper
   ],
   bootstrap: [AppComponent]
 })
