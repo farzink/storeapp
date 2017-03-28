@@ -1,17 +1,23 @@
-<div class="login jumbotron center-block">
-    <h1>Login</h1>
-    <form role="form" (submit)="login($event, username.value, password.value)">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" #username class="form-control" id="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" #password class="form-control" id="password" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-        <a [routerLink]="['/signup']">Click here to Signup</a>
-        <button type="button" value="login" (click)="login($event)">Login</button>
-        <button type="button" value="login" (click)="getProfile()">getProgile</button>
-    </form>
+<div class="d-flex flex-column justify-content-center align-items-center py-5 my-5 login-form-container">  
+    <div class="row">
+      <h1 class="pb-2 ml-lg-2 mx-3"><a href="#"><i class="fa fa-envelope-o fa-lg mt-2" aria-hidden="true"></i></a></h1>
+    </div>
+    <form role="form" (submit)="login($event, username.value, password.value)" class="w-75">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" #username class="form-control" id="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" #password class="form-control" id="password" placeholder="Password">
+      </div>
+      <!--<button type="submit" class="btn btn-default">Submit</button>-->
+      <button type="button" value="login" class="btn btn-block btn-default" (click)="login($event)">Login</button>
+      <div class="form-group">
+        <small>new to Store?</small>
+      <a [routerLink]="['/signup']">Click here to Signup</a>  
+      </div>
+          
+      <!--<button type="button" value="login" (click)="getProfile()">getProgile</button>-->
+    </form>  
 </div>
