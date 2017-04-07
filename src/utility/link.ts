@@ -1,3 +1,5 @@
-export const basePath: String="https://localhost:44345/api/";
+export const basePath: String="http://localhost:54435/api/";
 export const profilePath: String = basePath +  "profiles";
-export const loginPath: String = basePath +  "auth/token";
+export const addressPath: String = basePath +  "addresses";
+export const loginPath: String = basePath +  "authentication/token";
+export const registerationPath: String = basePath +  "authentication/register";

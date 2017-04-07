@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { ProfileService } from '../../service/profile-service';
+import { Profile } from '../../model/profile';
+import { ProfileService } from '../../service/profile.service';
 
 
 
@@ -9,21 +10,25 @@ import { ProfileService } from '../../service/profile-service';
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {    
-    firstName: String;
-    constructor(private profileService: ProfileService){        
-    }    
-    getProfile(){               
+export class ProfileComponent implements OnInit {
+    ngOnInit(): void {
+        this.getProfile();
+    }
+
+    private profile: Profile;
+    constructor(private profileService: ProfileService) {
+    }
+    getProfile() {
         var result = {
             context: this,
-            success(e){
-                if(e.statusCode==200)
-                result.context.setProfile(e.item);
+            success(e) {
+                if (e.statusCode == 200)
+                    result.context.profile = e.item;                    
             }
-        };        
-        this.profileService.getById(1, result);        
+        };
+        this.profileService.get(result);
     }
-    setProfile(e){
-        this.firstName=e.firstName;
-    }
+    // setProfile(e){
+    //     this.firstName=e.firstName;
+    // }
 }

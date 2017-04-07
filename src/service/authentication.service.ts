@@ -11,6 +11,7 @@ export class AuthenticationService {
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
         var token = (JSON.parse(localStorage.getItem("token")) != null) ? JSON.parse(localStorage.getItem("token")).token : "";
+        if(token!="")
         headers.append('Authorization', 'Bearer ' + token);
         return headers;
     }

@@ -4,8 +4,9 @@ import { LoginComponent } from '../feature/login/login.component';
 import { ProfileComponent } from '../feature/profile/profile.component';
 import { RouteAuth } from '../utility/route.auth';
 import { RegisterComponent } from '../feature/register/register.component';
-import { NavbarComponent } from './../feature/navbar/navbar.component';
 import { FooterComponent } from './../feature/footer/footer.component';
+import { HeaderComponent } from '../feature/header/header.component';
+import { AddressComponent } from '../feature/address/address.component';
 // export const routes: Routes = [
 //   { path: '', component: LoginComponent },
 //   { path: 'login', component: LoginComponent },
@@ -25,8 +26,17 @@ export const routes: Routes = [
   {
     path: '', children: [
       { path: '', component: HomeComponent, canActivate: [RouteAuth] },
+      { path: 'home', component: ProfileComponent, canActivate: [RouteAuth] },
+      { path: 'home/address', component: AddressComponent, canActivate: [RouteAuth] },
       { path: '', component: FooterComponent, outlet: 'footer' },
-      { path: '', component: NavbarComponent, outlet: 'navbar' },
+      { path: '', component: HeaderComponent, outlet: 'header' },
     ]
-  }
+  }//,
+  // {
+  //   path: 'home', children: [      
+  //     { path: 'address', component: AddressComponent, canActivate: [RouteAuth] },
+  //     { path: '', component: FooterComponent, outlet: 'footer' },
+  //     { path: '', component: HeaderComponent, outlet: 'header' },
+  //   ]
+  // }
 ];

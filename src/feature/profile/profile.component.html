@@ -1,2 +1,91 @@
-<span>{{firstName}}</span>
-<button type="button" value="profile" (click)="getProfile()">getProfile</button>
+<h2 class="my-3 display-4">Account Management</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card my-2 mx-2">
+            <h3 class="card-header">Profile</h3>
+            <div class="card-block">
+                <fieldset>
+                    <div class="form-group row">
+                        <label class="col-form-label px-2">Firstname:</label>
+                        <div class=" ">
+                            <p class="form-control-static">{{profile?.firstName}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label px-2">Lastname:</label>
+                        <div class=" ">
+                            <p class="form-control-static">{{profile?.lastName}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label px-2">Email:</label>
+                        <div class=" ">
+                            <p class="form-control-static">{{profile?.email}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label px-2">Last Update:</label>
+                        <div class=" ">
+                            <p class="form-control-static">{{profile?.lastDateTime}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <a href="#" class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class=" card my-2 mx-2 ">
+            <h3 class="card-header ">Business</h3>
+            <div class="card-block ">
+                <h4 class="card-title ">Special title treatment</h4>
+                <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="# " class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card my-2 mx-2 ">
+            <h3 class="card-header ">Orders</h3>
+            <div class="card-block ">
+                <h4 class="card-title ">Special title treatment</h4>
+                <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="# " class="btn btn-outline-primary">View</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 ">
+        <div class="card my-2 mx-2 ">
+            <h3 class="card-header ">Addresses</h3>
+            <div class="card-block ">
+                <h4 class="card-title ">Special title treatment</h4>
+                <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="# " class="btn btn-outline-primary">View All</a>
+                <a routerLink="/home/address" class="btn btn-outline-primary">Add</a>
+                <a href="# " class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card my-2 mx-2 ">
+            <h3 class="card-header ">Items</h3>
+            <div class="card-block ">
+                <h4 class="card-title ">Special title treatment</h4>
+                <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="# " class="btn btn-outline-primary">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<button type="button " value="profile " (click)="getProfile() ">getProfile</button>-->
