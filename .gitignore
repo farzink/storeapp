@@ -1,0 +1,4 @@
+*.ini
+*.db
+
+/node_modules
