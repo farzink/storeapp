@@ -1,0 +1,229 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Create Item</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/profile/business/items">Item</a>
+          </li>
+          <li class="active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="page-header margin-bottom">
+      <h4>CREATE A NEW ITEM</h4>
+    </div>
+
+
+
+    <div id="contact-form-1">
+      <form id="contactForm" [formGroup]="itemForm" novalidate autocomplete="off" (ngSubmit)="add($event)">
+        <div class="row">
+          <wait-component [isActive]="isLoading" [message]="'Please Wait while we are creating your item.'"></wait-component>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Title</label>
+              <span *ngIf="title.invalid && (title.dirty || title.touched)" class="form-error">
+                <span *ngIf="title.errors.required">
+                    title is required.
+                </span>
+              <span *ngIf="title.errors.minlength">
+                    title must be at least 4 characters long.
+                </span>
+              </span>
+              <input formControlName="title" class="form-control" type="text" placeholder="Title" required/>
+            </div>
+            <div class="form-group">
+              <label for="">Name</label>
+              <span *ngIf="name.invalid && (name.dirty || name.touched)" class="form-error">
+                <span *ngIf="name.errors.required">
+                    name is required.
+                </span>
+              <span *ngIf="name.errors.minlength">
+                    name must be at least 4 characters long.
+                </span>
+              </span>
+              <input formControlName="name" class="form-control" type="text" placeholder="name" />
+            </div>
+            <div class="form-group">
+              <label for="">Price</label>
+              <span *ngIf="price.invalid && (price.dirty || price.touched)" class="form-error">
+                <span *ngIf="price.errors.required">
+                    price is required.
+                </span>
+              <span *ngIf="price.errors.pattern">
+                    Price must be a number and must be higher than 0
+                </span>
+              </span>
+              <input formControlName="price" class="form-control" type="text" placeholder="price" />
+            </div>
+            <div class="form-group">
+              <label for="">Manufacturer</label>
+              <span *ngIf="manufacturer.invalid && (manufacturer.dirty || manufacturer.touched)" class="form-error">
+                <span *ngIf="manufacturer.errors.required">
+                    manufacturer is required.
+                </span>
+              <span *ngIf="manufacturer.errors.minlength">
+                    manufacturer must be at least 2 characters long.
+                </span>
+              </span>
+              <input formControlName="manufacturer" class="form-control" type="text" placeholder="Manufacturer" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- right column-->
+
+            <div class="form-group">
+              <label for="">Manufacturering Type</label>
+              <div class="dropGeneral grayBg">
+                <select name="guiest_id1" id="manufactureType" class="select-drop manufactureType" style="display: none;">
+                      <option selected="true" value="0">HandMade</option>
+                      <option value="1">FactoryMade</option>
+                </select>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Quantity</label>
+              <span *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="form-error">
+                  <span *ngIf="quantity.errors.required">
+                      quantity is required.
+                  </span>
+              <span *ngIf="quantity.errors.pattern">
+                      quantity must be a number and must be higher than 0
+                  </span>
+              </span>
+              <input formControlName="quantity" class="form-control" type="text" placeholder="Quanitity of the Item" />
+            </div>
+            <div class="form-group">
+              <label for="">Category</label>
+              <div class="dropGeneral grayBg">
+                <select id="categorySelect" class="select-drop categorySelect" style="display: none;">                      
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <!-- <textarea id="message" class="form-control" rows="5" placeholder="Message" required=""></textarea> -->
+              <label for="">Description</label>
+              <textarea formControlName="description" class="form-control" type="text" placeholder="Description" rows="5" required></textarea>
+            </div>
+            <button [disabled]="!itemForm.valid" type="button" (click)="add($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+            <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+<h1>Item Creation</h1>
+<div class="card my-5">
+  <div class="card-header bg-inverse text-white">
+    Item Information
+  </div>
+  <div class="card-block px-5">
+    <form class="form-horizontal" [formGroup]="itemForm" novalidate autocomplete="off" (ngSubmit)="add($event)">
+      <fieldset>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Title</label>
+              <div class=" ">
+                <input formControlName="title" class="form-control" type="text" placeholder="Title" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <div class=" ">
+                <input formControlName="name" class="form-control" type="text" placeholder="name" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Price</label>
+              <div class=" ">
+                <input formControlName="price" class="form-control" type="text" placeholder="price" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Manufacturer</label>
+              <div class=" ">
+                <input formControlName="manufacturer" class="form-control" type="text" placeholder="manufacturer" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Description</label>
+              <div class=" ">
+                <textarea formControlName="description" class="form-control" type="text" placeholder="manufacturer" rows="8" cols="50"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Manufacturing Type</label>
+              <div class="form-contorl">
+                <select formControlName="manufacturingType" class="custom-select">
+                                    <option selected value="0">HandMade</option>
+                                    <option value="1">FactoryMade</option>
+                                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <a class="btn btn-outline-danger form-control" routerLink="/home/business/manage">Cancel</a>
+          </div>
+          <div class="col-md-6">
+            <a class="btn form-control btn-outline-success" (click)="add($event)">Add</a>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div> -->

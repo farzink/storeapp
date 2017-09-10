@@ -1,0 +1,141 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>log in</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li class="active">log in</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix logIn">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+        <wait-component [isActive]="isWorking" [message]="'Please Wait ...'"></wait-component>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>log in</h3>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal" [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="login($event)" role="form">
+              <div class="form-group">
+                <label for="">Email</label>
+                <span *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error">
+                    <span *ngIf="email.errors.required">
+                        email is required.
+                    </span>                    
+                    <span *ngIf="email.errors.email">
+                        not a valid email    
+                    </span>
+                </span>
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email (required)" required>
+              </div>
+              <div class="form-group">
+                <label for="">Password</label>
+                <span *ngIf="password.invalid && (password.dirty || password.touched)" class="form-error">
+                    <span *ngIf="password.errors.required">
+                        password is required.
+                    </span>
+                    <span *ngIf="password.errors.minlength">
+                        password must be at least 8 characters long.
+                    </span>                    
+                </span>
+                <!-- <span [hidden]="password.valid" class="error">required</span>                 -->
+                <input formControlName="password" class="form-control " id="passwordId" type="password" placeholder="Password (required)" />
+              </div>
+              <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Remember Me
+                </label>
+              </div>
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block">log in</button>
+              <button class="btn btn-default pull-left"><i class="fa fa-facebook" aria-hidden="true"></i><span>log in with facebook</span></button>
+              <button class="btn btn-default pull-right"><i class="fa fa-google-plus" aria-hidden="true"></i><span>log in with G plus</span></button>
+              <button type="button" class="btn btn-link btn-block">Forgot Password?</button>
+              <button class="btn btn-link btn-block" routerLink="/authentication/register">Do not have an account yet? register here</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-0 col-sm-2 col-md-3 col-lg-3"></div>
+    <div class="col-12 col-sm-8 col-md-6 col-lg-6">
+      <div class="card my-5">
+        <div class="card-header bg-inverse text-white">
+          Login
+        </div>
+        <div class="card-block px-5">
+          <form class="form-horizontal" [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="login($event)">
+            <fieldset>
+              <div class=" form-group ">
+                <label class="control-label " for="emailId ">Email</label>
+                <div class=" ">
+                  <input formControlName="email" class="form-control " id="emailId " type="text " placeholder="Email (required) " required
+                    minlength="3 " />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label " for="passwordId ">Password</label>
+
+                <div class=" ">
+                  <input formControlName="password" class="form-control " id="passwordId " type="text " placeholder="Password (required) "
+                    required minlength="8" />
+                </div>
+              </div>
+              <button class="btn form-control my-2 rounded bg-inverse text-white ">Login</button>
+              <button class="form-control my-2 rounded bg-inverse text-white" routerLink="/authentication/register">Have no account yet? register here</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-0 col-sm-2 col-md-3 col-lg-3 "></div>
+  </div> -->
+
+
+<!-- <div class="row ">
+    <div class=" "></div>
+    <div class="col-12 ">
+      <ul class="collapse navbar-collapse justify-content-center ">
+        <li class=" nav-item col-3 ">
+          <a class="nav-link active " href="# ">Conditions of Use </a>
+        </li>
+        <li class="nav-item col-3 ">
+          <a class="nav-link " href="# ">Privacy Notice </a>
+        </li>
+        <li class="nav-item col-3 ">
+          <a class="nav-link " href="# ">Help</a>
+        </li>
+        <li class="nav-item col-3 ">
+          <a class="nav-link disabled " href="# ">Legal Notice</a>
+        </li>
+      </ul>
+    </div>
+    <div class=" "></div>
+  </div>
+
+
+  <div class="row ">
+    <div class=" "></div>
+    <div class="col-12 text-center ">
+      © 2016-2017, localus.com, Inc.
+    </div>
+    <div class=" "></div>
+  </div>
+</div> -->

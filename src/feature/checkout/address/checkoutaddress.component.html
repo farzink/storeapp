@@ -1,0 +1,148 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>billing &amp; Shipping address</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/cart">Cart</a>
+          </li>
+          <li class="active">billing &amp; Shipping address</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix stepsWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="innerWrapper clearfix stepsPage">
+          <div class="row progress-wizard" style="border-bottom:0;">
+
+            <div class="col-xs-4 progress-wizard-step complete">
+              <div class="text-center progress-wizard-stepnum">Billing &amp; Shipping Address</div>
+              <div class="progress">
+                <div class="progress-bar"></div>
+              </div>
+              <a routerLink="../address" class="progress-wizard-dot"></a>
+            </div>
+
+            <!-- <div class="col-xs-3 progress-wizard-step disabled">
+                <div class="text-center progress-wizard-stepnum">Shipping Method</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a routerLink="../shipping" class="progress-wizard-dot"></a>
+              </div> -->
+
+            <div class="col-xs-4 progress-wizard-step disabled">
+              <div class="text-center progress-wizard-stepnum">Payment Method</div>
+              <div class="progress">
+                <div class="progress-bar"></div>
+              </div>
+              <a routerLink="../payment" class="progress-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-4 progress-wizard-step disabled">
+              <div class="text-center progress-wizard-stepnum">Review</div>
+              <div class="progress">
+                <div class="progress-bar"></div>
+              </div>
+              <a routerLink="../review" class="progress-wizard-dot"></a>
+            </div>
+          </div>
+
+          <form action="" class="row" method="POST" role="form">
+            <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+            <div class="col-xs-12">
+              <div class="page-header">
+                <h4>Billing Address</h4>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Zip Code</th>
+                      <th class="col-md-2 col-sm-3">Phone</th>
+                      <th>select</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of addresses; let i = index">
+                      <td>{{item?.addressLine1}}, {{item?.addressLine2}}</td>
+                      <td>{{item?.city}}</td>
+                      <td>{{item?.state}}</td>
+                      <td>{{item?.zipCode}}</td>
+                      <td>{{item?.phone}}</td>
+                      <td>
+                        <input type="radio" [id]="'billing-'+i" name="selectedBilling" [value]="item.id" [(ngModel)]="selectedAddress.selectedBillingAddress">
+                        <label [for]="'billing-'+i">&nbsp;</label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col-xs-12">
+              <div class="page-header">
+                <h4>Shipping information</h4>
+              </div>
+            </div>
+            <div class="col-xs-12 checkboxArea">
+              <input id="checkbox1" type="checkbox" name="checkbox" value="1" [(ngModel)]="sameAddress">
+              <label for="checkbox1"><span></span>Same as billing Information </label>
+            </div>
+
+            <div *ngIf="!sameAddress" class="col-xs-12">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Zip Code</th>
+                      <th class="col-md-2 col-sm-3">Phone</th>
+                      <th>select</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of addresses; let i = index">
+                      <td>{{item?.addressLine1}}, {{item?.addressLine2}}</td>
+                      <td>{{item?.city}}</td>
+                      <td>{{item?.state}}</td>
+                      <td>{{item?.zipCode}}</td>
+                      <td>{{item?.phone}}</td>
+                      <td>
+                        <input type="radio" [id]="'shipping-'+i" name="selectedShipping" [value]="item.id" [(ngModel)]="selectedAddress.selectedShippingAddress">
+                        <label [for]="'shipping-'+i">&nbsp;</label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col-xs-12">
+              <div class="well well-lg clearfix">
+                <ul class="pager">
+                  <li class="previous"><a href="#" class="hideContent">back</a></li>
+                  <li class="next"><a (click)="nextStep()">Continue</a></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

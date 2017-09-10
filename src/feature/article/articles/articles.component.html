@@ -1,0 +1,79 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Articles</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/">Home</a>
+          </li>
+          <li class="active">Articles</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix blogPage">
+  <div class="container" *ngIf="articles?.length > 0; else nores">
+    <div class="row">
+      <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+      <div class="col-xs-12" *ngFor="let article of articles">
+        <div class="thumbnail">
+          <img src="http://via.placeholder.com/500x500" alt="blog-image">
+          <div class="caption">
+            <div class="row">
+              <div class="col-md-2 col-md-push-10 col-sm-3 col-sm-push-9 col-xs-12">
+                <h5>Details</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>{{article?.fullName}}</a></li>
+                  <li><i class="fa fa-calendar" aria-hidden="true"></i>{{article?.updatedDateTime | date}}</li>
+                  <li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>Travel</a></li>
+                  <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>8 comments</a></li>
+                </ul>
+              </div>
+              <div class="col-md-10 col-md-pull-2 col-sm-9 col-sm-pull-3 col-xs-12">
+                <h3><a [routerLink]="['../articles', article.id]">{{article?.title}}</a> </h3>
+                <p>{{article?.description | truncate : 500}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" [ngClass]="{'hidden': (total < size)}">
+      <div class="col-xs-12 text-center">
+        <div class="text-center margin-bottom">
+          <ul class="pagination">
+            <li *ngIf="hasPrevious">
+              <a [routerLink]="['../articles']" [queryParams]="{ start: currentIndex - 1, size: size }" aria-label="Previous"> 
+                <span aria-hidden="true">«</span>
+             </a>
+            </li>
+            <li *ngFor="let i of numberOfPages" [ngClass]="{'active': (currentIndex + i) / (currentIndex + 1) == 1}"><a [routerLink]="['../articles']" [queryParams]="{ start: currentIndex + i - 1, size: size }">{{i + currentIndex}}</a></li>
+            <li *ngIf="hasNext">
+              <a [routerLink]="['../articles']" [queryParams]="{ start: currentIndex + 1, size: size }" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #nores class="container">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="row text-center">
+        <h1>no articles</h1>
+        <div class="row">
+          <a routerLink="/" class="btn btn-primary">Home</a>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+</section>

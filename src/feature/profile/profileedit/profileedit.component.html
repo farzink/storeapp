@@ -1,0 +1,97 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>PROFILE</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/">Home</a>
+          </li>
+          <li>
+            <a routerLink="/profile">Profile</a>
+          </li>
+          <li class="active">edit</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix userProfile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="btn-group" role="group" aria-label="...">
+          <a routerLink="/profile" class="btn btn-default"><i class="fa fa-th" aria-hidden="true"></i>Account Dashboard</a>
+          <a routerLink="/profile/edit" class="btn btn-default active"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+          <a routerLink="/profile/addresses" class="btn btn-default"><i class="fa fa-map-marker" aria-hidden="true"></i>My Address</a>
+          <a href="account-all-orders.html" class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a>
+          <a routerLink="/profile/wishlist" class="btn btn-default"><i class="fa fa-gift" aria-hidden="true"></i>Wishlist</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="innerWrapper profile">
+            <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+          <div class="orderBox">
+            <h4>profile</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-sm-3 col-xs-12">              
+              <div class="thumbnail">
+                <img src="http://via.placeholder.com/500x500" alt="profile-image">
+                <div class="caption">
+                  <a href="#" class="btn btn-primary btn-block" role="button">Change Avatar</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 col-sm-9 col-xs-12">
+              <form class="form-horizontal" [formGroup]="profileForm" novalidate autocomplete="off">
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-sm-3 control-label">First Name</label>
+                  <div class="col-md-10 col-sm-9">
+                    <input formControlName="firstName" class="form-control" type="text" placeholder="first name" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-sm-3 control-label">Last Name</label>
+                  <div class="col-md-10 col-sm-9">
+                    <input formControlName="lastName" class="form-control" type="text" placeholder="lastname" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-sm-3 control-label">Phone Number</label>
+                  <div class="col-md-10 col-sm-9">
+                    <input type="text" class="form-control" id="" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-sm-3 control-label">Email Address</label>
+                  <div class="col-md-10 col-sm-9">
+                    <input class="form-control" type="email" placeholder="email" readonly value="{{profile?.email}}" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-sm-3 control-label">Last Updated</label>
+                  <div class="col-md-10 col-sm-9">
+                    <input class="form-control" type="text" placeholder="Last Updated Date" readonly value="{{profile?.lastDateTime}}" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3">
+                    <button [disabled]="!profileForm.valid" (click)="update($event)" class="btn btn-primary btn-block">SAVE INFO</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

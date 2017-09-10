@@ -1,0 +1,22 @@
+.my-form-control {
+  border-radius: 0;
+  background-color: #f0f0f0;
+  border: none;
+  height: 50px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border-radius: 0;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  min-height: 50px;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+
+.input-container{
+    margin: 20px 0; 
+    width: 100%;
+}

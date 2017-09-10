@@ -1,0 +1,80 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>MY ADDRESS</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/">Home</a>
+          </li>
+          <li>
+            <a routerLink="/profile">Profile</a>
+          </li>
+          <li class="active">Addresses</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix userProfile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="btn-group" role="group" aria-label="...">
+          <a routerLink="/profile" class="btn btn-default"><i class="fa fa-th" aria-hidden="true"></i>Account Dashboard</a>
+          <a routerLink="/profile/edit" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+          <a routerLink="/profile/addresses" class="btn btn-default active"><i class="fa fa-map-marker" aria-hidden="true"></i>My Address</a>
+          <a class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a>
+          <a routerLink="/profile/wishlist" class="btn btn-default"><i class="fa fa-gift" aria-hidden="true"></i>Wishlist</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="innerWrapper">
+          <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+          <div class="orderBox myAddress">
+            <h4>
+              My Address
+              <button routerLink="/profile/address" type="button" class="btn-social btn-facebook-filled btn-circle pull-right"><i class="fa fa-plus"></i></button>
+            </h4>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th class="col-md-2 col-sm-3">Phone</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of addresses">
+                    <td>{{item?.addressLine1}}, {{item?.addressLine2}}</td>
+                    <td>{{item?.city}}</td>
+                    <td>{{item?.state}}</td>
+                    <td>{{item?.zipCode}}</td>
+                    <td>{{item?.phone}}</td>
+                    <td>
+                      <div class="btn-group" role="group">
+                        <button type="button" [routerLink]="['edit', item.id]" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button type="button" (click)="delete(item)" class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,118 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>BUSINESS DASHBOARD</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/profile">Home</a>
+          </li>
+          <li class="active">BUSINESS DASHBOARD</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix userProfile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="btn-group" role="group" aria-label="...">
+          <a routerLink="/profile/business/manage" class="btn btn-default active"><i class="fa fa-th" aria-hidden="true"></i>Business Dashboard</a>
+          <a routerLink="/profile/business/edit" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+          <a routerLink="/profile/business/address/edit" class="btn btn-default"><i class="fa fa-map-marker" aria-hidden="true"></i>Business Address</a>
+          <a href="" class="btn btn-default"><i class="fa fa-line-chart" aria-hidden="true"></i>Statistics</a>          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="innerWrapper">
+          <!-- <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Warning!</strong> You have one unpaid order.
+          </div> -->
+          <h3>Wellcome to<span> {{businessName}}</span></h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+          <ul class="list-inline">
+            <li><a routerLink="/profile/business/manage/items" class="btn btn-default btn-lg"><i class="fa fa-user" aria-hidden="true"></i>Items</a></li>
+            <li><a routerLink="/profile/business/manage/item/add" class="btn btn-default btn-lg"><i class="fa fa-plus-square-o" aria-hidden="true"></i>New Item</a></li>            
+          </ul>
+          <ul class="list-inline">
+            <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-tag" aria-hidden="true"></i>Categories</a></li>
+            <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-plus-square-o" aria-hidden="true"></i>New Category</a></li>            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<h2 class="my-3 display-4">Business Management</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <!--<wait-component [isActive]="isProfileBusy">please wait</wait-component>-->
+    <!-- <div class="card my-2 mx-2">
+      <h3 class="card-header">Items</h3>
+      <div class="card-block">
+        <p class="card-text">here you can manage your items</p>
+        <fieldset>
+          <a href="#" routerLink="/profile/business/manage/item/add" class="btn btn-outline-primary">Add new item</a>
+          <a href="#" routerLink="/profile/business/manage/items" class="btn btn-outline-primary">Current Items</a>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6"> -->
+    <!--<wait-component [isActive]="isProfileBusy">please wait</wait-component>-->
+    <!-- <div class="card my-2 mx-2">
+      <h3 class="card-header">Business</h3>
+      <div class="card-block">
+        <p class="card-text">here you can manage your items</p>
+        <fieldset>
+          <a href="#" routerLink="/profile/business/edit" class="btn btn-outline-primary">Edit Business Info</a>
+          <a href="#" routerLink="/profile/business/address/edit" class="btn btn-outline-primary">Edit Business Address</a>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6"> -->
+    <!--<wait-component [isActive]="isProfileBusy">please wait</wait-component>-->
+    <!-- <div class="card my-2 mx-2">
+      <h3 class="card-header">Categories</h3>
+      <div class="card-block">
+        <p class="card-text">here you can manage your items</p>
+        <fieldset>
+          <a href="#" routerLink="/profile/activatebusiness" class="btn btn-outline-primary">Add new Category</a>
+          <a href="#" routerLink="/profile/business/status" class="btn btn-outline-primary">Current Categories</a>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class=" card my-2 mx-2 ">
+      <h3 class="card-header ">Statistics</h3>
+      <div class="card-block ">
+        <h4 class="card-title "></h4>
+        <p class="card-text">Here you can activate your business or if you have already created it you may modify it</p>
+        <a href="#" routerLink="/home/activatebusiness" class="btn btn-outline-primary">Current Day</a>
+        <a href="#" routerLink="/home/business/status" class="btn btn-outline-primary">Last Week</a>
+        <a href="#" routerLink="/home/business/status" class="btn btn-outline-primary">Last Month</a>
+        <a href="#" routerLink="/home/business/status" class="btn btn-outline-primary">Custom</a>
+      </div>
+    </div>
+  </div>
+</div> -->

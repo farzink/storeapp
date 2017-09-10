@@ -1,0 +1,9 @@
+.navbar-nav .nav-link {
+    padding: 0 5px;
+}
+
+.dropdown-menu-right {
+    max-height: 450px;
+    overflow-y: auto;
+    width: 480px;
+}

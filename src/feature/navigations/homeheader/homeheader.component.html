@@ -1,0 +1,164 @@
+<div class="header clearfix headerV3">
+
+  <!-- TOPBAR -->
+  <div class="topBar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-5 hidden-xs">
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-sm-7 col-xs-12">
+          <ul class="list-inline pull-right top-right">
+            <li *ngIf="!isLoggedIn" class="account-login"><span><a routerLink="/authentication/login">Log in</a><small>or</small><a routerLink="authentication/register">Create an account</a></span></li>
+            <li *ngIf="isLoggedIn" class="account-login"><span><a routerLink="/profile">welcome {{profile?.email}}</a></span></li>
+            <li *ngIf="isLoggedIn" (click)="logout()" class="account-login"><span><a routerLink="/">log out</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV TOP -->
+  <div class="navTop text-center">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:void(0)"><img src="./../../assets/image/logo.png" alt="logo+"></a>
+      </div>
+      <div class="navTop-middle">
+        <div class="filterArea hidden-xs hidden-sm">
+          <select name="guiest_id1" id="categorySelect" class="select-drop categorySelect">
+                <!-- <option *ngFor="let cat of categories" value="0">{{cat.name}}</option>                 -->
+          </select>
+        </div>
+        <div class="searchBox">
+          <span class="input-group">
+            <input type="text" class="form-control" placeholder="Search Items…" aria-describedby="basic-addon2" auto-complete (keypress)="keypressed($event)" [(ngModel)]="selected" [source]="observableSource.bind(this)" [min-chars]="1" [no-match-found-text]="'nothing found'">
+            <button (click)="search()" class="input-group-addon"><i class="fa fa-search"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="dropdown cart-dropdown">
+        <a href="javascript:void(0);" class="dropdown-toggle shop-cart" data-toggle="dropdown">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="hidden-xs">
+              <span class="cart-total">Cart {{itemsInCart?.orderDetails?.length}}</span><br>
+              <span class="cart-price">$80.00</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li>Item(s) in your cart</li>
+          <li *ngFor="let item of itemsInCart?.orderDetails">
+            <a [routerLink]="['/item', item.id]">
+              <div class="media">
+                <div class="media-body">
+                  <h5 class="media-heading">{{item.name}} <br><span>${{item.price}} x {{item.quantity}}</span></h5>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-default" routerLink="/cart">Shopping Cart</button>
+              <button type="button" class="btn btn-default" routerLink="/checkout/address">Checkout</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-main navbar-default nav-V3" role="navigation">
+    <div class="container">
+      <div class="nav-category dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Catagory
+              <button type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </a>
+        <ul class="dropdown-menu dropdown-menu-left">
+          <li *ngFor="let cat of categories">
+            <a href="javascript:void(0)"><i class="lnr lnr-tablet" aria-hidden="true"></i>{{cat.name}}</a>
+          </li>
+
+          <!-- <li><a href="product-grid-left-sidebar.html"><img src="img/home/category/category-img1.jpg" alt="Image"></a></li> -->
+        </ul>
+      </div>
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown" routerLinkActive="active">
+            <a routerLink="/" class="dropdown-toggle" data-toggle="dropdown" role="button">Home</a>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Article & News</a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a routerLink="/articles">Articles</a></li>
+              <li><a routerLink="/news">News</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="active"><a routerLink="/profile">Dashboard</a></li>
+              <li><a routerLink="/profile/edit">Profile</a></li>
+              <li><a href="account-all-orders.html">All Orders</a></li>
+              <li><a routerLink="/profile/wishlist">Wishlist</a></li>
+              <li><a routerLink="/profile/addresses">Address</a></li>
+            </ul>
+          </li>
+          <li class="dropdown megaDropMenu">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true"
+              aria-expanded="false">Business</a>
+            <ul class="dropdown-menu row">
+              <li class="col-sm-6 col-xs-12">
+                <ul class="list-unstyled">
+                  <li>Business</li>
+                  <li><a routerLink="/profile/business/manage">Manage Business</a></li>
+                  <li><a routerLink="/profile/business/edit">Edit Business</a></li>
+                  <li><a routerLink="/profile/business/address/edit">Business Address</a></li>
+                </ul>
+              </li>
+              <li class="col-sm-6 col-xs-12">
+                <ul class="list-unstyled">
+                  <li>Items</li>
+                  <li><a routerLink="/profile/business/manage/items">Items</a></li>
+                  <li><a routerLink="/profile/business/manage/item/add">New Item</a></li>
+                  <li class="listHeading">Category</li>
+                  <li><a href="checkout-step-1.html">Categories</a></li>
+                  <li><a href="checkout-step-2.html">New Category</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a routerLink="/auctions" class="dropdown-toggle" data-toggle="dropdown" role="button">Auctions</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
+
+    </div>
+  </nav>
+
+</div>

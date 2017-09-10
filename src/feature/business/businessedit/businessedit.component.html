@@ -1,0 +1,119 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Edit Business</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/profile/business/manage">Bueisness</a>
+          </li>
+          <li class="active">Edit</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="page-header margin-bottom">
+      <h4>EDIT</h4>
+    </div>
+
+    <div id="contact-form-1">
+      <form id="contactForm" data-toggle="validator" [formGroup]="businessForm" novalidate autocomplete="off">
+        <div class="row">
+          <wait-component [isActive]="isLoading" [message]="'Please Wait while we are loading your items.'"></wait-component>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Business Name</label>
+              <span *ngIf="businessName.invalid && (businessName.dirty || businessName.touched)" class="form-error">
+                          <span *ngIf="businessName.errors.required">
+                              Business Name is required.
+                          </span>
+              <span *ngIf="businessName.errors.minlength">
+                    Business Name must be at least 4 characters long.
+                </span>
+              </span>
+              <input formControlName="businessName" class="form-control" type="text" placeholder="Business Name" required/>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Tax Identification Number</label>
+              <span *ngIf="taxIdentification.invalid && (taxIdentification.dirty || taxIdentification.touched)" class="form-error">
+                          <span *ngIf="taxIdentification.errors.required">
+                              Tax Identification Number is required.
+                          </span>
+              <span *ngIf="taxIdentification.errors.minlength">
+                                Tax Identification number must be at least 6 characters long.
+                            </span>
+              </span>
+
+              <input formControlName="taxIdentification" class="form-control" type="text" placeholder="Tax Identification Number" />
+            </div>
+            <button [disabled]="!businessForm.valid" type="button" (click)="update($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+            <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<h1>Business Activation</h1>
+<div class="card my-5">
+  <div class="card-header bg-inverse text-white">
+    Business Information
+  </div>
+  <div class="card-block px-5">
+    <form class="form-horizontal" [formGroup]="businessForm" novalidate autocomplete="off">
+      <fieldset>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <div class=" ">
+                <input formControlName="businessName" class="form-control" type="text" placeholder="name" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Tax Identification Number</label>
+              <div class=" ">
+                <input formControlName="taxIdentification" class="form-control" type="text" placeholder="tax identification number" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Certifications</label>
+              <div class=" ">
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <a class="btn btn-outline-danger form-control" routerLink="/home/business/manage">Cancel</a>
+          </div>
+          <div class="col-md-6">
+            <a class="btn form-control btn-outline-success" (click)="update($event)">Save</a>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div> -->

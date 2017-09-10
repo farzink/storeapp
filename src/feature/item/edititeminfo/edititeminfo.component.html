@@ -1,0 +1,347 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Edit</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/profile/business/manage">Item</a>
+          </li>
+          <li class="active">Edit</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="tab-section margin-bottom">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="tabCommon tab-style3">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#menu7">Edit</a></li>
+              <li><a data-toggle="tab" href="#menu8">Image</a></li>
+              <li><a data-toggle="tab" href="#menu9">Discounts</a></li>
+            </ul>
+            <div class="tab-bottom">
+            </div>
+            <div class="tab-content">
+              <div id="menu7" class="tab-pane fade in active">
+                <div class="tab-contentInner">
+                  <wait-component [isActive]="isLoadingInfo" [message]="'Please Wait ...'"></wait-component>
+                  <div id="contact-form-1">
+                    <form id="contactForm" [formGroup]="itemForm" novalidate autocomplete="off">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="">Title</label>
+                            <span *ngIf="title.invalid && (title.dirty || title.touched)" class="form-error">
+                                  <span *ngIf="title.errors.required">
+                                      title is required.
+                                  </span>
+                            <span *ngIf="title.errors.minlength">
+                                      title must be at least 4 characters long.
+                                  </span>
+                            </span>
+                            <input formControlName="title" class="form-control" type="text" placeholder="Title" required/>
+                          </div>
+                          <div class="form-group">
+                            <label for="">Name</label>
+                            <span *ngIf="name.invalid && (name.dirty || name.touched)" class="form-error">
+                                  <span *ngIf="name.errors.required">
+                                      name is required.
+                                  </span>
+                            <span *ngIf="name.errors.minlength">
+                                      name must be at least 4 characters long.
+                                  </span>
+                            </span>
+                            <input formControlName="name" class="form-control" type="text" placeholder="name" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Price</label>
+                            <span *ngIf="price.invalid && (price.dirty || price.touched)" class="form-error">
+                                  <span *ngIf="price.errors.required">
+                                      price is required.
+                                  </span>
+                            <span *ngIf="price.errors.pattern">
+                                      Price must be a number and must be higher than 0
+                                  </span>
+                            </span>
+                            <input formControlName="price" class="form-control" type="text" placeholder="price" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Manufacturer</label>
+                            <span *ngIf="manufacturer.invalid && (manufacturer.dirty || manufacturer.touched)" class="form-error">
+                                  <span *ngIf="manufacturer.errors.required">
+                                      manufacturer is required.
+                                  </span>
+                            <span *ngIf="manufacturer.errors.minlength">
+                                      manufacturer must be at least 2 characters long.
+                                  </span>
+                            </span>
+                            <input formControlName="manufacturer" class="form-control" type="text" placeholder="Manufacturer" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Manufacturering Type</label>
+                            <div class="form-contorl">
+                              <select formControlName="manufacturingType" class="my-dropdown" id="exampleSelect1">                  
+                                    <option selected="true" value="0">HandMade</option>
+                                    <option value="1">FactoryMade</option>
+                                  </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="">Quantity</label>
+                            <span *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="form-error">
+                                  <span *ngIf="quantity.errors.required">
+                                      quantity is required.
+                                  </span>
+                            <span *ngIf="quantity.errors.pattern">
+                                      quantity must be a number and must be higher than 0
+                                  </span>
+                            </span>
+                            <input formControlName="quantity" class="form-control" type="text" placeholder="Quanitity of the Item" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Material</label>
+                            <input formControlName="material" class="form-control" type="text" placeholder="Item Material" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Brand</label>
+                            <input formControlName="brand" class="form-control" type="text" placeholder="Item Material" />
+                          </div>
+                          <div class="form-group">
+                              <label for="">Location</label>
+                              <input formControlName="location" class="form-control" type="text" placeholder="Location" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <!-- right column-->
+                          <div class="form-group">
+                            <label for="">Height</label>
+                            <span *ngIf="height.invalid && (height.dirty || height.touched)" class="form-error">                
+                                  <span *ngIf="height.errors.pattern">
+                                        height must be a number and must be higher than 0
+                                  </span>
+                            </span>
+                            <input formControlName="height" class="form-control" type="text" placeholder="height of the Item in inches" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Width</label>
+                            <span *ngIf="width.invalid && (width.dirty || width.touched)" class="form-error">                
+                                    <span *ngIf="width.errors.pattern">
+                                          width must be a number and must be higher than 0
+                                    </span>
+                            </span>
+                            <input formControlName="width" class="form-control" type="text" placeholder="width of the Item in inches" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Features</label>
+                            <input formControlName="feature" class="form-control" type="text" placeholder="Item Features" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Detail</label>
+                            <input formControlName="detail" class="form-control" type="text" placeholder="Shpping Detail" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Processing Time</label>
+                            <input formControlName="processingTime" class="form-control" type="text" placeholder="Shipping Processing Time" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Cost</label>
+                            <span *ngIf="cost.invalid && (cost.dirty || cost.touched)" class="form-error">                  
+                                <span *ngIf="cost.errors.pattern">
+                                        cost must be a number and must be higher than 0
+                                    </span>
+                            </span>
+                            <input formControlName="cost" class="form-control" type="text" placeholder="Shipping Cost" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Carrier</label>
+                            <input formControlName="carrier" class="form-control" type="text" placeholder="Shipping Carrier" />
+                          </div>
+                          <div class="form-group">
+                            <div class="col-xs-12 checkboxArea">
+                              <input id="checkbox1" type="checkbox" name="checkbox" formControlName="hasFreeShipping">
+                              <label for="checkbox1"><span></span>Has Free Shipping </label>
+                              <input id="checkbox2" type="checkbox" name="checkbox" formControlName="hasLocalPickup">
+                              <label for="checkbox2"><span></span>Has Local Pickup </label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="">Description</label>
+                            <textarea formControlName="description" class="form-control" type="text" placeholder="Description" rows="5" required></textarea>
+                          </div>
+                          <button [disabled]="!itemForm.valid" type="button" (click)="add($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+                          <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div id="menu8" class="tab-pane fade">
+                <div class="tab-contentInner">
+                  <wait-component [isActive]="isLoadingImages" [message]="'Please Wait ...'"></wait-component>
+
+                  <button type="button" class="btn btn-info-filled btn-rounded" (click)="addImage($event)"><i class="fa fa-plus"></i><span>New Image</span></button>
+
+                  <section class="mainContent clearfix productsContent">
+                    <div class="container">
+                      <div class="row">
+                        <div *ngFor="let image of images" class="col-md-3 col-sm-4 col-xs-12">
+                          <image-component [choosable]="image.name==null" [image]=image [itemId]=itemId [ref]=images></image-component>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div id="menu9" class="tab-pane fade">
+                <div class="tab-contentInner">
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from
+                    a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
+                    undoubtable source.</p>
+                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                    in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                    are going to use a passage of Lorem </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-25">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#" routerLink="./">Info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" routerLink="./image">Image</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" routerLink="./discount">Discount</a>
+  </li>
+</ul>
+
+
+
+<div class="card my-5">
+  <div class="card-header bg-inverse text-white">
+    Item Information
+  </div>
+  <div class="card-block px-5">
+    <form class="form-horizontal" [formGroup]="itemForm" novalidate autocomplete="off">
+      <fieldset>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Title</label>
+              <div class=" ">
+                <input formControlName="title" class="form-control" type="text" placeholder="Title" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <div class=" ">
+                <input formControlName="name" class="form-control" type="text" placeholder="name" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Price</label>
+              <div class=" ">
+                <input formControlName="price" class="form-control" type="text" placeholder="price" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Manufacturer</label>
+              <div class=" ">
+                <input formControlName="manufacturer" class="form-control" type="text" placeholder="manufacturer" row=6 col=10/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Description</label>
+              <div class=" ">
+                <textarea formControlName="description" class="form-control" type="text" placeholder="manufacturer" rows="8" cols="50"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Manufacturing Type</label>
+              <div class="form-contorl">
+                <select formControlName="manufacturingType" class="custom-select">
+                                    <option selected value="0">HandMade</option>
+                                    <option value="1">FactoryMade</option>
+                                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <!--<a class="btn btn-outline-danger form-control" routerLink="/home/business/manage">Cancel</a>-->
+<!-- </div>
+          <div class="col-md-6">
+            <a class="btn form-control btn-outline-success" (click)="update($event)">Save changes</a>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications> -->

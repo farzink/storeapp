@@ -1,0 +1,202 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>{{item?.title | truncate: 30}}</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/">Home</a>
+          </li>
+          <li class="active">{{item?.title | truncate: 30}}</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="row singleProduct">
+      <div class="col-xs-12">
+        <div class="media">
+          <div class="media-left productSlider" *ngIf="item?.images.length > 0">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div *ngFor="let img of item?.images; let i = index" [ngClass]="{'active': i == 0}" class="item" [attr.data-thumb]="i">
+                  <img [src]="img.path">
+                </div>
+                <!-- (ngClass)="{'active': i == 0}" -->
+              </div>
+            </div>
+            <div class="clearfix">
+              <div id="thumbcarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                  <div *ngFor="let img of item?.images; let i = index" data-target="#carousel" [attr.data-slide-to]="i" class="thumb"><img [src]="img.path"></div>
+                </div>
+                <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+              </div>
+            </div>
+          </div>
+          <div class="media-body">
+            <ul class="list-inline">
+              <li><a href="index.html"><i class="fa fa-reply" aria-hidden="true"></i>Continue Shopping</a></li>
+              <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li>
+            </ul>
+            <h2>{{item?.title}}</h2>
+            <h3>${{item?.price}}</h3>
+            <p>{{item?.description}}</p>
+            <span class="quick-drop">
+                <select name="guiest_id3" id="guiest_id3" class="select-drop" sb="49326007" style="display: none;">
+                  <option value="0">Size</option>
+                  <option value="1">Small</option>
+                  <option value="2">Medium</option>
+                  <option value="3">Big</option>
+                </select>
+              </span>
+            <span class="quick-drop resizeWidth">
+                <select name="guiest_id4" id="guiest_id4" class="select-drop" sb="88625994" style="display: none;">
+                  <option value="0">Qty</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </span>
+            <div class="btn-area">
+              <a href="cart-page.html" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="tabArea">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#details" aria-expanded="false">details</a></li>
+                <li class=""><a data-toggle="tab" href="#about-business" aria-expanded="false">Business</a></li>
+                <li class=""><a data-toggle="tab" href="#sizing" aria-expanded="false">sizing</a></li>
+                <li class=""><a data-toggle="tab" href="#shipping" aria-expanded="true">shipping</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="details" class="tab-pane fade active in">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua.</p>
+                  <ul class="list-unstyled">
+                    <li>Black, Crew Neck</li>
+                    <li>75% Cotton, 25% Rayon</li>
+                    <li>Waterbased Ink</li>
+                    <li>Wash Cold, dry low</li>
+                  </ul>
+                </div>
+                <div id="about-business" class="tab-pane fade">
+                  <p>{{item?.businessName}}</p>
+                </div>
+                <div id="sizing" class="tab-pane fade">
+                  <p>
+                    {{item?.height}}x{{item?.weight}}
+                  </p>
+                  <p>weight: {{item?.weight}}lbs</p>
+                </div>
+                <div id="shipping" class="tab-pane fade">
+                  <p>
+                    {{item?.carrier}}, {{item?.location}}
+                  </p>
+                  <div *ngIf="item?.hasFreeShipping; else notfree">
+                   <p>This item ships freely</p>
+                  </div>
+                  <ng-template #notfree>
+                      <p>{{item?.cost}}</p>
+                  </ng-template>
+                  <p *ngIf="item?.hasLocalPickup">This item has local pickup</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row productsContent">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h4>Related Products</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="productBox">
+          <div class="productImage clearfix">
+            <img src="img/products/products-01.jpg" alt="products-img">
+            <div class="productMasking">
+              <ul class="list-inline btn-group" role="group">
+                <li><a data-toggle="modal" href=".login-modal" class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                <li><a href="cart-page.html" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a class="btn btn-default" data-toggle="modal" href=".quick-view"><i class="fa fa-eye"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="productCaption clearfix">
+            <h5>Nike Sportswear</h5>
+            <h3>$199</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="productBox">
+          <div class="productImage clearfix">
+            <img src="img/products/products-02.jpg" alt="products-img">
+            <div class="productMasking">
+              <ul class="list-inline btn-group" role="group">
+                <li><a data-toggle="modal" href=".login-modal" class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                <li><a href="cart-page.html" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a class="btn btn-default" data-toggle="modal" href=".quick-view"><i class="fa fa-eye"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="productCaption clearfix">
+            <h5>Dip Dyed Sweater</h5>
+            <h3>$249</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="productBox">
+          <div class="productImage clearfix">
+            <img src="img/products/products-03.jpg" alt="products-img">
+            <div class="productMasking">
+              <ul class="list-inline btn-group" role="group">
+                <li><a data-toggle="modal" href=".login-modal" class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                <li><a href="cart-page.html" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a class="btn btn-default" data-toggle="modal" href=".quick-view"><i class="fa fa-eye"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="productCaption clearfix">
+            <h5>Scarf Ring Corner</h5>
+            <h3>$179</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="productBox">
+          <div class="productImage clearfix">
+            <img src="img/products/products-04.jpg" alt="products-img">
+            <div class="productMasking">
+              <ul class="list-inline btn-group" role="group">
+                <li><a data-toggle="modal" href=".login-modal" class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                <li><a href="cart-page.html" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a class="btn btn-default" data-toggle="modal" href=".quick-view"><i class="fa fa-eye"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="productCaption clearfix">
+            <h5>Sun Buddies</h5>
+            <h3>$149</h3>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>

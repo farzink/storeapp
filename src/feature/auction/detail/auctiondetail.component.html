@@ -1,0 +1,128 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>{{auction?.title | truncate: 30}}</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/auctions">All Auctions</a>
+          </li>
+          <li class="active">{{auction?.title | truncate: 30}}</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix">
+  <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+  <div class="container">
+    <div class="row singleProduct">
+      <div class="col-xs-12">
+        <div class="media">
+          <div class="media-left productSlider" *ngIf="auction?.item.images?.length > 0; else noimage">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div *ngFor="let img of auction?.item.images; let i = index" [ngClass]="{'active': i == 0}" class="item" [attr.data-thumb]="i">
+                  <img [src]="img.name">
+                </div>
+              </div>
+            </div>
+            <div class="clearfix">
+              <div id="thumbcarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                  <div *ngFor="let img of auction?.item.images; let i = index" data-target="#carousel" [attr.data-slide-to]="i" class="thumb"><img [src]="img.path"></div>
+                </div>
+                <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+              </div>
+            </div>
+          </div>
+          <ng-template #noimage>
+            <div class="media-left productSlider">
+              <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="item active" data-thumb="0">
+                    <img [src]="placeholderImage">
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix">
+                <div id="thumbcarousel" class="carousel slide" data-interval="false">
+                  <div class="carousel-inner">
+                    <div data-target="#carousel" data-slide-to="0" class="thumb"><img [src]="placeholderImage"></div>
+                  </div>
+                  <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
+                                      <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                  <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next">
+                                      <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <div class="media-body">
+            <h2>{{auction?.item.title}}</h2>
+            <h4>{{auction?.currentPrice | currency}} Highest Bid</h4>
+            <p>{{auction?.description}}</p>
+            <div>
+              <h4>Ends in:</h4>
+              <app-countdown-component [endDate]="auction?.endDate" (expired)="handle($event)"></app-countdown-component>
+            </div>
+            <div *ngIf="canBid">
+                <div class="input-container">
+                    <input type="text" [(ngModel)]="bidAmount" class="my-form-control" placeholder="Minimum Amount to increase the bid is {{auction?.minimumIncrement | currency}}">
+                </div>                
+                <div class="btn-area">
+                    <button (click)="bid()" class="btn btn-primary btn-block">Bid<i class="fa fa-gavel" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="tabArea">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#details" aria-expanded="false">details</a></li>
+                <li class=""><a data-toggle="tab" href="#about-business" aria-expanded="false">Business</a></li>
+                <li class=""><a data-toggle="tab" href="#sizing" aria-expanded="false">sizing</a></li>
+                <li class=""><a data-toggle="tab" href="#shipping" aria-expanded="true">shipping</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="details" class="tab-pane fade active in">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua.</p>
+                  <ul class="list-unstyled">
+                    <li>Black, Crew Neck</li>
+                    <li>75% Cotton, 25% Rayon</li>
+                    <li>Waterbased Ink</li>
+                    <li>Wash Cold, dry low</li>
+                  </ul>
+                </div>
+                <div id="about-business" class="tab-pane fade">
+                  <p>{{auction?.item.businessName}}</p>
+                </div>
+                <div id="sizing" class="tab-pane fade">
+                  <p>Praesent dui felis, gravida a auctor at, facilisis commodo ipsum. Cras eu faucibus justo. Nullam varius
+                    cursus nisi, sed elementum sem sagittis at. Nulla tellus massa, vestibulum a commodo facilisis, pulvinar
+                    convallis nunc.</p>
+                </div>
+                <div id="shipping" class="tab-pane fade">
+                  <p>Mauris lobortis augue ex, ut faucibus nisi mollis ac. Sed volutpat scelerisque ex ut ullamcorper. Cras
+                    at velit quis sapien dapibus laoreet a id odio. Sed sit amet accumsan ante, eu congue metus. Aenean eros
+                    tortor, cursus quis feugiat sed, vestibulum vel purus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

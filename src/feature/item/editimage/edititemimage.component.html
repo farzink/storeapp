@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="../">Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="#" routerLink="./image">Image</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="../discount">Discount</a>
+    </li>
+</ul>
+
+
+
+<div class="card my-5">
+    <div class="card-header bg-inverse text-white">
+        <div class="row">
+            <a class="btn btn-warning col-md-1 btn-block mx-2" (click)="addImage($event)">Add</a>
+        </div>
+    </div>
+
+    <div class="row ">
+
+        <div *ngFor="let image of images" class="card-block px-5 col-md-4">
+            <image-component [choosable]="image.name==null" [image]=image [itemId]=itemId [defaultImage]=defaultImage [ref]=images></image-component>
+        </div>
+    </div>
+
+    <simple-notifications></simple-notifications>
+
+    <!--<fancy-image-uploader [options]="options" (onUpload)="onUpload($event)"></fancy-image-uploader>-->
+    <!--<ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
+</div>

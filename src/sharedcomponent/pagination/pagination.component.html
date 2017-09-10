@@ -1,0 +1,38 @@
+<div class="row" [ngClass]="{'hidden': (total < size)}">
+  <div class="col-xs-12 text-center">
+    <div class="text-center margin-bottom">
+      <ul class="pagination">
+        <li *ngIf="hasPrevious">
+          <a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex - 1, size: size }" aria-label="Previous"> 
+            <span aria-hidden="true">«</span>
+         </a>
+        </li>
+        <li *ngFor="let i of numberOfPages" [ngClass]="{'active': (currentIndex + i) / (currentIndex + 1) == 1}"><a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex + i - 1, size: size }">{{i + currentIndex}}</a></li>
+        <li *ngIf="hasNext">
+          <a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex + 1, size: size }" aria-label="Next">
+              <span aria-hidden="true">»</span>
+            </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- <ng-template #diff class="row" [ngClass]="{'hidden': (total < size)}">
+  <div class="col-xs-12 text-center">
+    <div class="text-center margin-bottom">
+      <ul class="pagination">
+        <li *ngIf="hasPrevious">
+          <a [routerLink]="['/articles']" [queryParams]="{ page: currentIndex - 1, size: size }" aria-label="Previous"> 
+                <span aria-hidden="true">«</span>
+             </a>
+        </li>
+        <li *ngFor="let i of numberOfPages" [ngClass]="{'active': (currentIndex + i) / (currentIndex + 1) == 1}"><a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex + i - 1, size: size }">{{i + currentIndex}}</a></li>
+        <li *ngIf="hasNext">
+          <a [routerLink]="['/articles']" [queryParams]="{ page: currentIndex + 1, size: size }" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template> -->

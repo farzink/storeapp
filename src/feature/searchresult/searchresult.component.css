@@ -1,0 +1,7 @@
+.my-dropdown {
+    border: 2px solid #47bac1;
+    border-radius: 0 !important;
+    background: transparent;
+    height: 40px;
+    font-size: 13px;
+}

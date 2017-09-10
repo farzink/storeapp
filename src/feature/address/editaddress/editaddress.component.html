@@ -1,0 +1,99 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Edit Address</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/profile/addresses">Address</a>
+          </li>
+          <li class="active">Edit</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="page-header margin-bottom">
+      <h4>EDIT</h4>
+    </div>
+
+    <div id="contact-form-1">
+      <form id="contactForm" data-toggle="validator" [formGroup]="addressForm" novalidate autocomplete="off">
+        <div class="row">
+          <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Address Line 1</label>
+              <span *ngIf="addressLine1.invalid && (addressLine1.dirty || addressLine1.touched)" class="form-error">
+                    <span *ngIf="addressLine1.errors.required">
+                        address Line 1 is required.
+                    </span>
+              <span *ngIf="addressLine1.errors.minlength">
+                        address Line 1 must be at least 4 characters long.
+                    </span>
+              </span>
+              <input formControlName="addressLine1" class="form-control" type="text" placeholder="Address Line 1" required/>
+            </div>
+            <div class="form-group">
+              <label for="">Address Line 2</label>
+              <input formControlName="addressLine2" class="form-control" type="text" placeholder="Address Line 2" />
+            </div>
+            <div class="form-group">
+              <label for="">City</label>
+              <span *ngIf="city.invalid && (city.dirty || city.touched)" class="form-error">
+                    <span *ngIf="city.errors.required">
+                        city is required.
+                    </span>
+              <span *ngIf="city.errors.minlength">
+                        city must be at least 3 characters long.
+                    </span>
+              </span>
+              <input formControlName="city" class="form-control" type="text" placeholder="City" required />
+            </div>
+            <div class="form-group">
+              <label for="">State</label>
+              <span *ngIf="state.invalid && (state.dirty || state.touched)" class="form-error">
+                    <span *ngIf="state.errors.required">
+                        state is required.
+                    </span>
+              <span *ngIf="state.errors.minlength">
+                        state must be at least 2 characters long.
+                    </span>
+              </span>
+              <input formControlName="state" class="form-control" type="text" placeholder="State" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Zip Code</label>
+              <span *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="form-error">
+                    <span *ngIf="zipCode.errors.required">
+                        zip code is required.
+                    </span>
+              </span>
+              <input formControlName="zipCode" class="form-control" type="text" placeholder="Zip Code" />
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <span *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="form-error">
+                    <span *ngIf="phone.errors.required">
+                        phone is required.
+                    </span>
+              </span>
+              <input formControlName="phone" class="form-control" type="text" placeholder="Phone line" />
+            </div>
+            <button [disabled]="!addressForm.valid" type="button" (click)="save($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+            <button type="button" class="btn btn-link btn-block" routerLink="/profile/addresses">Go Back</button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+<section class="mainContent clearfix productsContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <wait-component [isActive]="isLoading" [message]="'Please Wait while we are loading your items.'"></wait-component>
+        <div class="row filterArea">
+          <div class="col-xs-6">
+            <div class="btn-group" dropdown *ngIf="hasNext">
+              <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                  Sort <span class="caret"></span>
+                </button>
+              <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem" (click)="changeSort(0)"><a href="javascript:void(0)" class="dropdown-item">Relevance</a></li>
+                <li role="menuitem" (click)="changeSort(1)"><a href="javascript:void(0)" class="dropdown-item">Price: High to Low</a></li>
+                <li role="menuitem" (click)="changeSort(2)"><a href="javascript:void(0)" class="dropdown-item">Price: Low to High</a></li>
+                <li role="menuitem" (click)="changeSort(3)"><a href="javascript:void(0)" class="dropdown-item">User Reviews</a></li>
+                <li role="menuitem" (click)="changeSort(4)"><a href="javascript:void(0)" class="dropdown-item">Newest Arrival</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6" *ngIf="hasNext">
+            <!-- page size -->
+            <div class="form-group pull-right">
+              <select [(ngModel)]="size" (change)="changePerPage($event)" class="form-control my-dropdown" id="exampleSelect1">                  
+                  <option value="12">12</option>
+                  <option value="24">24</option>
+                  <option value="48">48</option>
+                  <option value="100">100</option>                  
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- search results -->
+        <div class="row" *ngIf="searchResult?.length > 0; else nores">
+          <div class="col-md-3 col-sm-4 col-xs-12" *ngFor="let res of searchResult">
+            <div class="productBox">
+              <div class="productImage clearfix">
+                <img [src]="res.defaultImage || placeholderImage" alt="products-img" style="min-height: 300px; max-height: 300px;">
+                <div class="productMasking">
+                  <ul class="list-inline btn-group" role="group">
+                    <li *ngIf="!res.isWishListedPourMoi" (click)="addToWishlist(res.id)"><a class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                    <li (click)="addToCart(res)"><a class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a class="btn btn-default" [routerLink]="['/item', res.id]"><i class="fa fa-eye"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="productCaption clearfix">
+                <a href="single-product.html">
+                  <h5>{{res?.name}}</h5>
+                </a>
+                <h3>${{res.price}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- pagination -->
+        <!-- <div class="row">
+          <div class="col-xs-12 text-center" [ngClass]="{'hidden': (total < size)}">            
+            <div class="text-center margin-bottom">
+              <ul class="pagination">
+                <li *ngIf="hasPrevious">
+                  <a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex - 1, size: size }" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                  </a>
+                </li>
+                <li class="" *ngFor="let i of numberOfPages" [ngClass]="{'active': (currentIndex + i) / (currentIndex + 1) == 1}"><a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex + i - 1, size: size }">{{i + currentIndex}}</a></li>
+                <li *ngIf="hasNext">
+                  <a [routerLink]="['/search']" [queryParams]="{q: selected, page: currentIndex + 1, size: size }" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <app-pagination-component [currentIndex]="currentIndex" [hasNext]="hasNext" [hasPrevious]="hasPrevious" [size]="size" [maxNumberOfPageButtons]="maxNumberOfPageButtons"
+          [total]="total" [numberOfPages]="numberOfPages" route="'search'" [selected]="selected"></app-pagination-component>
+        <ng-template #nores class="row">
+          <h3 style="text-align: center;">no results were found!</h3>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>

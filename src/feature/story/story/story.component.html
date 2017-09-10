@@ -1,0 +1,59 @@
+<section class="lightSection clearfix pageHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="page-title">
+            <h2>{{story?.title | truncate: 30}}</h2>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <ol class="breadcrumb pull-right">
+            <li>
+              <a routerLink="/news">News</a>
+            </li>
+            <li class="active">{{story?.title | truncate: 30}}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mainContent clearfix blogPage singleBlog">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="thumbnail">
+            <img src="http://via.placeholder.com/800x600" alt="blog-image">
+            <div class="caption">
+              <div class="row">
+                <div class="col-md-3 col-md-push-9 col-sm-4 col-sm-push-4 col-xs-12">
+                  <h5>Details</h5>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-user" aria-hidden="true"></i>{{story?.fullName}}</li>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{story?.updatedDateTime | date}}</li>
+                    <li><i class="fa fa-mail" aria-hidden="true"></i>{{story?.email}}</li>
+                    <li><i class="fa fa-envelope" aria-hidden="true"></i>8 comments</li>
+                  </ul>
+                  <h5>Share</h5>
+                  <ul class="list-inline">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="col-md-9 col-md-pull-3 col-sm-8 col-sm-pull-4 col-xs-12">
+                  <h3>{{story?.title}}</h3>
+                  <div [innerHtml]="story?.description"></div>
+                </div>
+              </div>
+            </div>
+            <ul class="pager">
+              <li (click)="checkForMore(false)" class="previous"><a href="javascript:void(0)" [ngClass]="{'hidden': !hasPrevious}">previous</a></li>
+              <li (click)="checkForMore(true)" class="next"><a href="javascript:void(0)" [ngClass]="{'hidden': !hasNext}">next</a></li>
+            </ul>          
+          </div>
+        </div>
+      </div>    
+    </div>
+  </section>
+  

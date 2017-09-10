@@ -1,0 +1,173 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Product List View</h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="#">shop</a>
+          </li>
+          <li class="active">Product List Left Sidebar</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent clearfix productsContent">
+  <div class="container">
+    <div class="row filterArea">
+      <div class="col-xs-6">
+        <select name="guiest_id1" id="guiest_id1" class="select-drop" sb="49082453" style="display: none;">
+                <option value="0">Default sorting</option>
+                <option value="1">Sort by popularity</option>
+                <option value="2">Sort by rating</option>
+                <option value="3">Sort by newness</option>
+                <option value="3">Sort by price</option>
+              </select>
+        <div id="sbHolder_49082453" class="sbHolder"><a id="sbToggle_49082453" href="#" class="sbToggle"></a><a id="sbSelector_49082453" href="#" class="sbSelector">Default sorting</a>
+          <ul id="sbOptions_49082453" class="sbOptions" style="display: none;">
+            <li><a href="#0" rel="0">Default sorting</a></li>
+            <li><a href="#1" rel="1">Sort by popularity</a></li>
+            <li><a href="#2" rel="2">Sort by rating</a></li>
+            <li><a href="#3" rel="3">Sort by newness</a></li>
+            <li><a href="#3" rel="3">Sort by price</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <!-- <div class="btn-group pull-right" role="group">
+          <button type="button" class="btn btn-default active"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
+          <button type="button" class="btn btn-default"><i class="fa fa-th-list" aria-hidden="true"></i><span>List</span></button>
+        </div> -->
+      </div>
+    </div>
+    <div class="row">
+      <wait-component [isActive]="isLoading" [message]="'Please Wait while we are loading your items.'"></wait-component>
+      <div class="col-sm-12 col-xs-12" *ngFor="let item of items">
+        <div class="row productListSingle">
+          <div class="col-xs-12">
+            <div class="media">
+              <div class="media-left" *ngIf="item?.defaultImage !== ''; else noimg">
+                <img class="media-object" [src]="item?.defaultImage" alt="Image">
+                <span class="maskingImage"><a [routerLink]="['/item', item.id]"class="btn viewBtn">View</a></span>
+              </div>
+              <ng-template #noimg>
+                <div class="media-left">
+                  <img class="media-object" [src]="placeholderImage" alt="Image">
+                  <span class="maskingImage"><a [routerLink]="['/item', item.id]" class="btn viewBtn">View</a></span>
+                </div>
+              </ng-template>
+              <div class="media-body">
+                <h4 class="media-heading"><a href="single-product.html">{{item?.title}}</a></h4>
+                <p>{{item?.description}}.</p>
+                <p>{{item?.manufacturer}}</p>
+                <p>{{item?.name}}</p>
+                <h3>${{item?.price}}</h3>
+                <div class="btn-group" role="group">
+                  <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target=".login-modal"><i class="fa fa-heart" aria-hidden="true"></i></button> -->
+                  <button type="button" class="btn btn-default" (click)="deactivate($event)"><i class="fa fa-stop-circle-o" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" [routerLink]="['/profile/business/manage/item/edit', item.id]"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- modal - not working -->
+<!-- <div class="modal fade quick-view" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="img/products/quick-view/quick-view-01.jpg" alt="Image">
+          </div>
+          <div class="media-body">
+            <h2>Old Skool Navy</h2>
+            <h3>$149</h3>
+            <p>Classic sneaker from Vans. Cotton canvas and suede upper. Textile lining with heel stabilizer and ankle support.
+              Contrasting laces. Sits on a classic waffle rubber sole.</p>
+            <span class="quick-drop">
+                    <select name="guiest_id3" id="guiest_id3" class="select-drop">
+                      <option value="0">Size</option>
+                      <option value="1">Size 1</option>
+                      <option value="2">Size 2</option>
+                      <option value="3">Size 3</option>
+                    </select>
+                  </span>
+            <span class="quick-drop resizeWidth">
+                    <select name="guiest_id4" id="guiest_id4" class="select-drop">
+                      <option value="0">Qty</option>
+                      <option value="1">Qty 1</option>
+                      <option value="2">Qty 2</option>
+                      <option value="3">Qty 3</option>
+                    </select>
+                  </span>
+            <div class="btn-area">
+              <a href="#" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<!--<div class="card my-5">
+    <div class="card-header bg-inverse text-white">
+        <div class="row">Items</div>
+    </div>-->
+
+<!-- <div class="card-block px-5 col-md-12" *ngFor="let item of items">
+    <div class="card my-5">
+        <div class="card-header bg-white text-inverse">
+            <h4>{{item.title}}</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <img class="rounded img-fluid mx-2 my-2" width="100%" height="120px" style="max-height: 1800px; min-height: 180px;" [src]="item.defaultImage">
+            </div>
+            <div class="col-sm-6 py-2">
+                <h5>{{item.name}}</h5>
+                <h6>by: {{item.manufacturer}}</h6>
+                {{item.description}}</div>
+
+            <div class="col-sm-1 py-2">{{item.price}}$</div>
+
+        </div>
+
+        <div class="row">
+            <div class="offset-sm-8">
+
+            </div>
+            <div class="col-sm-2 my-2">
+                <a class="btn btn-danger col-sm-8-offset" href="#" (click)="deactivate($event)">Deactivate</a>
+            </div>
+            <div class="col-sm-2 my-2">
+                <a class="btn btn-warning col-sm-8-offset" [routerLink]="['/home/business/manage/item/edit', item.id]" (click)="more($event)">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications [options]="options"></simple-notifications> -->
+<!-- <image-component [choosable]="image.name==null" [image]=image [itemId]=itemId [defaultImage]=defaultImage [ref]=images></image-component> -->
+<!-- <simple-notifications [options]="options"></simple-notifications> -->
+<!-- <fancy-image-uploader [options]="options" (onUpload)="onUpload($event)"></fancy-image-uploader> -->
+<!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
+<!--</div>-->
