@@ -16,6 +16,7 @@ export class AddItemComponent implements OnInit {
     itemForm: FormGroup;
     isLoading = false;
     categories = [];
+    selectedCategory;
     ngOnInit(): void {
         const interested = {
             context: this,
@@ -29,8 +30,9 @@ export class AddItemComponent implements OnInit {
                 $('.select-drop').selectbox('attach');
             }
         };
-
         this.categoryService.getAllItemCategories(interested);
+
+
         this.itemForm = this.formBuilder.group({
             title: ['', [Validators.required, Validators.minLength(4)]],
             name: ['', [Validators.required, Validators.minLength(4)]],
@@ -38,14 +40,22 @@ export class AddItemComponent implements OnInit {
             price: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
             manufacturer: ['', [Validators.required, Validators.minLength(4)]],
             manufacturingType: '',
-            quantity: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]]
+            quantity: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
+            itemCategoryId: '',
         });
     }
     constructor(private itemService: ItemService, private categoryService: CategoryService, private notification: NotificationsService,
         private router: Router, private formBuilder: FormBuilder) { }
     add(ev) {
         ev.preventDefault();
-        this.isLoading = true;
+        // this.isLoading = true;
+        const tempCategory: any = document.getElementsByClassName('categorySelect')[0];
+        const tempManufacturer: any = document.getElementsByClassName('manufactureType')[0];
+        this.selectedCategory = tempCategory.selectedIndex;
+        const selectedManufacturingType = tempManufacturer.selectedIndex;
+        this.itemForm.patchValue({ itemCategoryId: this.selectedCategory });
+        this.itemForm.patchValue({ manufacturingType: this.selectedCategory });
+        // console.log(this.itemForm.value);
         const result = {
             context: this,
             success(e) {
@@ -62,6 +72,8 @@ export class AddItemComponent implements OnInit {
             }
         };
         this.itemService.add(this.itemForm.value, result);
+
+
     }
 
     get title() { return this.itemForm.get('title'); }

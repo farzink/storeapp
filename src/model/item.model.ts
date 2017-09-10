@@ -23,7 +23,7 @@ export class Item {
     public feature: string;
     public detail: string;
     public processingTime: string;
-    public cost: string;
+    public shippingCost: string;
     public hasFreeShipping: boolean;
     public location: string;
     public hasLocalPickup: boolean;
@@ -53,7 +53,7 @@ export class Item {
         this.feature = data.feature;
         this.detail = data.detail;
         this.processingTime = data.processingTime;
-        this.cost = data.cost;
+        this.shippingCost = data.shippingCost;
         this.hasFreeShipping = data.hasFreeShipping;
         this.location = data.location;
         this.hasLocalPickup = data.hasLocalPickup;
