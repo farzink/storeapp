@@ -33,7 +33,7 @@
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>Item(s) in your cart</li>
                 <li *ngFor="let item of itemsInCart?.orderDetails">
-                  <a href="single-product.html">
+                  <a [routerLink]="['/item', item.id]">
                     <div class="media">
                       <img class="media-left media-object" src="" alt="cart-Image">
                       <div class="media-body">
@@ -45,7 +45,7 @@
                 <li>
                   <div class="btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-default" routerLink="/cart">Shopping Cart</button>
-                    <button type="button" class="btn btn-default" onclick="location.href='checkout-step-1.html';">Checkout</button>
+                    <button type="button" class="btn btn-default" routerLink="/checkout">Checkout</button>
                   </div>
                 </li>
               </ul>

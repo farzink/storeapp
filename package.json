@@ -25,6 +25,7 @@
     "@ngui/auto-complete": "^0.13.8",
     "@types/hammerjs": "^2.0.35",
     "@types/typescript": "^2.0.0",
+    "angular-star-rating": "^3.0.8",
     "angular2-busy": "^2.0.4",
     "angular2-notifications": "^0.7.7",
     "bootstrap": "^3.3.7",

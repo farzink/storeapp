@@ -56,4 +56,21 @@ export class CartComponent implements OnInit {
         }, result);
     }
 
+    removeItemFromCart(id) {
+        const result = {
+            context: this,
+            success(d) {
+                result.context.cartService.update();
+                result.context.notification.success(
+                    'Success',
+                    `item has been removed from your cart!`
+                );
+            }
+        };
+        // item.quantity = 1;
+        this.cartService.removeFromCart({
+            id: id
+        }, result);
+    }
+
 }

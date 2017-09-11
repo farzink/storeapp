@@ -48,7 +48,7 @@ export class CartService implements ICoreService<Order> {
             result.success, result.error, result.complete);
     }
 
-    removeFromCart(item: Item, result) {
+    removeFromCart(item: any, result) {
         const res = this.observableHelper.processObservable(this.orderRepository.removeFromCart(item),
             result.success, result.error, result.complete);
     }

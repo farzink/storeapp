@@ -40,6 +40,7 @@ import { RouteAuth } from '../utility/route.auth';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { StarRatingModule } from 'angular-star-rating';
 
 // Component
 import { HomeComponent } from '../feature/home/home.component';
@@ -156,7 +157,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     BsDropdownModule.forRoot(),
     NgxPaginationModule,
     DateTimePickerModule,
-    BootstrapModalModule
+    BootstrapModalModule,
+    StarRatingModule
   ],
   providers: [
     RouteAuth,

@@ -43,7 +43,7 @@ export class OrderRepository implements IRepository<Order> {
     }
 
     removeFromCart(model: any): Observable<WebCallResult<Order>> {
-        return this.httpHelper.delete(orderPath + '/removeFromCart/' + model.id)
+        return this.httpHelper.delete(`${orderPath}/removeFromCart/${model.id}`)
             .map(e => new WebCallResult<Order>(new Order(e.json()),
                 e.status,
                 e.statusText));

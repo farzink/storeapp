@@ -145,7 +145,7 @@
                             <label for="">Description</label>
                             <textarea formControlName="description" class="form-control" type="text" placeholder="Description" rows="5" required></textarea>
                           </div>
-                          <button [disabled]="!itemForm.valid" type="button" (click)="update($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+                          <button [disabled]="!itemForm.valid || itemForm.pristine" type="button" (click)="update($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
                           <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
                           <div class="clearfix"></div>
                         </div>
@@ -155,6 +155,7 @@
                 </div>
               </div>
               <div id="ShippingInfo" class="tab-pane fade">
+                  <wait-component [isActive]="isLoadingShipping" [message]="'Please Wait ...'"></wait-component>
                 <div class="tab-contentInner">
                   <div id="contact-form-2">
                     <form id="contactForm" [formGroup]="shippingForm" novalidate autocomplete="off">
@@ -218,6 +219,7 @@
                 </div>
               </div>
               <div id="SizeInfo" class="tab-pane fade">
+                  <wait-component [isActive]="isLoadingSize" [message]="'Please Wait ...'"></wait-component>
                 <div class="tab-contentInner">
                   <div id="contact-form-2">
                     <form id="contactForm" [formGroup]="sizeForm" novalidate autocomplete="off">

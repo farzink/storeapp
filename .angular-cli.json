@@ -28,7 +28,7 @@
         "assets/css/select_option1.css",
         "assets/css/settings.css",
         "assets/css/owl.carousel.css",
-        "styles.css",
+        "styles.scss",
         "assets/css/defualt.css",   
         "assets/css/optionswitch.css" 
       ],
@@ -75,7 +75,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {
     }
   }

@@ -58,8 +58,9 @@
           <form action="" class="row" method="POST" role="form">
             <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
             <div class="col-xs-12">
+                <button style="position: relative; top: -20px;" routerLink="/profile/address" type="button" class="btn-social btn-facebook-filled btn-circle pull-right"><i class="fa fa-plus"></i></button>
               <div class="page-header">
-                <h4>Billing Address</h4>
+                <h4>Billing Address</h4>                
               </div>
             </div>
             <div class="col-xs-12">
@@ -135,8 +136,8 @@
             <div class="col-xs-12">
               <div class="well well-lg clearfix">
                 <ul class="pager">
-                  <li class="previous"><a href="#" class="hideContent">back</a></li>
-                  <li class="next"><a (click)="nextStep()">Continue</a></li>
+                  <li class="previous"><a routerLink="/cart">Back to Cart</a></li>
+                  <li class="next"><a (click)="nextStep()" href="javascript:void(0)">Continue</a></li>
                 </ul>
               </div>
             </div>

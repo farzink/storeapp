@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemService } from '../../../service/item.service';
 import { NotificationsService } from 'angular2-notifications';
+import { OnClickEvent, OnRatingChangeEven, OnHoverRatingChangeEvent } from 'angular-star-rating/star-rating-struct';
+
 
 
 @Component({
@@ -13,6 +15,7 @@ export class ItemDetailComponent implements OnInit {
     item: any;
     isLoading = true;
     itemId;
+    onRatingChangeResult: OnRatingChangeEven;
     ngOnInit(): void {
 
     }
@@ -39,4 +42,9 @@ export class ItemDetailComponent implements OnInit {
         };
         this.itemService.getItemDetail(result.context.itemId, result);
     }
+
+    onRatingChange = ($event: OnRatingChangeEven) => {
+        console.log('onRatingUpdated $event: ', $event);
+        this.onRatingChangeResult = $event;
+    };
 }

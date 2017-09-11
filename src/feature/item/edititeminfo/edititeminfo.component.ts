@@ -24,6 +24,8 @@ export class EditItemInfoComponent implements OnInit {
     itemId: number;
     images: Array<Image>;
     isLoadingInfo = true;
+    isLoadingSize = false;
+    isLoadingShipping = false;
     isLoadingImages = true;
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
@@ -94,7 +96,7 @@ export class EditItemInfoComponent implements OnInit {
 
     updateShipping(e) {
         e.preventDefault();
-        this.isLoadingInfo = true;
+        this.isLoadingShipping = true;
 
         const result = {
             context: this,
@@ -108,11 +110,11 @@ export class EditItemInfoComponent implements OnInit {
             }
         };
         this.itemService.updateShippingInfo(this.shippingForm.value, result);
-        result.context.isLoadingInfo = false;
+        result.context.isLoadingShipping = false;
     }
     updateSize(e) {
         e.preventDefault();
-        this.isLoadingInfo = true;
+        this.isLoadingSize = true;
         console.log(this.isLoadingInfo);
         const result = {
             context: this,
@@ -126,7 +128,7 @@ export class EditItemInfoComponent implements OnInit {
             }
         };
         this.itemService.updateSize(this.sizeForm.value, result);
-        result.context.isLoadingInfo = false;
+        result.context.isLoadingSize = false;
     }
     getItem(id) {
         const result = {
@@ -157,8 +159,7 @@ export class EditItemInfoComponent implements OnInit {
                     result.context.shippingForm.patchValue({ hasFreeShipping: e.item.hasFreeShipping });
                     result.context.shippingForm.patchValue({ hasLocalPickup: e.item.hasLocalPickup });
                     result.context.shippingForm.patchValue({ location: e.item.location });
-                    result.context.isLoadingInfo = false;
-
+                    result.context.isLoadingInfo = false;                    
                     console.log(result.context.item);
                     const interested = {
                         context: this,
@@ -178,6 +179,8 @@ export class EditItemInfoComponent implements OnInit {
                         }
                     };
                     result.context.categoryService.getAllItemCategories(interested);
+
+
                 }
             }
         };
