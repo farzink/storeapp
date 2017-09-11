@@ -23,6 +23,21 @@ export class ItemService implements ICoreService<Item> {
         this.observableHelper.processObservable(this.itemRepository.update(model),
             result.success, result.error, result.complete);
     }
+    updateShippingInfo(model: any, result) {
+        const load = JSON.stringify(model);
+        this.observableHelper.processObservable(this.itemRepository.updateShipping(model),
+            result.success, result.error, result.complete);
+    }
+    updateStatus(model: any, result) {
+        const load = JSON.stringify(model);
+        this.observableHelper.processObservable(this.itemRepository.updateItemStatus(model),
+            result.success, result.error, result.complete);
+    }
+    updateSize(model: any, result) {
+        const load = JSON.stringify(model);
+        this.observableHelper.processObservable(this.itemRepository.updateSize(model),
+            result.success, result.error, result.complete);
+    }
     add(model: any, result) {
         const load = JSON.stringify(model);
         this.observableHelper.processObservable(this.itemRepository.insert(model),
@@ -39,8 +54,10 @@ export class ItemService implements ICoreService<Item> {
     }
 
     searchItems(model: any, result) {
-        this.observableHelper.processObservable(this.itemRepository.SearchByTerm('search/' +
-            model.term + '?sort=' + model.sort + '&page=' + model.page + '&size=' + model.size),
+        // this.observableHelper.processObservable(this.itemRepository.SearchByTerm('search/' +
+        //     model.term + '?sort=' + model.sort + '&page=' + model.page + '&size=' + model.size),
+        this.observableHelper.processObservable(this.itemRepository.SearchByTerm
+            (`search/${model.term}?sort=${model.sort}&page=${model.page}&size=${model.size}&categoryId=${model.categoryId}`),
             result.success, result.error, result.complete);
     }
 

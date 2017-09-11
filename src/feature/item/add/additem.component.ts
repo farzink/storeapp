@@ -51,8 +51,8 @@ export class AddItemComponent implements OnInit {
         // this.isLoading = true;
         const tempCategory: any = document.getElementsByClassName('categorySelect')[0];
         const tempManufacturer: any = document.getElementsByClassName('manufactureType')[0];
-        this.selectedCategory = tempCategory.selectedIndex;
-        const selectedManufacturingType = tempManufacturer.selectedIndex;
+        this.selectedCategory = tempCategory.value;
+        const selectedManufacturingType = tempManufacturer.value;
         this.itemForm.patchValue({ itemCategoryId: this.selectedCategory });
         this.itemForm.patchValue({ manufacturingType: this.selectedCategory });
         // console.log(this.itemForm.value);

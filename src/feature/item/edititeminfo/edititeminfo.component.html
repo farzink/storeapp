@@ -24,14 +24,16 @@
         <div class="col-sm-12">
           <div class="tabCommon tab-style3">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#menu7">Edit</a></li>
-              <li><a data-toggle="tab" href="#menu8">Image</a></li>
-              <li><a data-toggle="tab" href="#menu9">Discounts</a></li>
+              <li class="active"><a data-toggle="tab" href="#itemInfo">Basic Info</a></li>
+              <li><a data-toggle="tab" href="#ShippingInfo">Shipping Info</a></li>
+              <li><a data-toggle="tab" href="#SizeInfo">Size</a></li>
+              <li><a data-toggle="tab" href="#Image">Image</a></li>
+              <!-- <li><a data-toggle="tab" href="#menu9">Discounts</a></li> -->
             </ul>
             <div class="tab-bottom">
             </div>
             <div class="tab-content">
-              <div id="menu7" class="tab-pane fade in active">
+              <div id="itemInfo" class="tab-pane fade in active">
                 <div class="tab-contentInner">
                   <wait-component [isActive]="isLoadingInfo" [message]="'Please Wait ...'"></wait-component>
                   <div id="contact-form-1">
@@ -111,73 +113,39 @@
                             <label for="">Material</label>
                             <input formControlName="material" class="form-control" type="text" placeholder="Item Material" />
                           </div>
-                          <div class="form-group">
-                            <label for="">Brand</label>
-                            <input formControlName="brand" class="form-control" type="text" placeholder="Item Material" />
-                          </div>
-                          <div class="form-group">
-                              <label for="">Location</label>
-                              <input formControlName="location" class="form-control" type="text" placeholder="Location" />
-                            </div>
                         </div>
                         <div class="col-sm-6">
                           <!-- right column-->
                           <div class="form-group">
-                            <label for="">Height</label>
-                            <span *ngIf="height.invalid && (height.dirty || height.touched)" class="form-error">                
-                                  <span *ngIf="height.errors.pattern">
-                                        height must be a number and must be higher than 0
-                                  </span>
-                            </span>
-                            <input formControlName="height" class="form-control" type="text" placeholder="height of the Item in inches" />
-                          </div>
+                              <label for="">Category</label>
+                              <div class="dropGeneral grayBg">
+                                <select id="categorySelect" class="select-drop categorySelect" style="display: none;">                      
+                                </select>
+                              </div>
+                            </div>
                           <div class="form-group">
-                            <label for="">Width</label>
-                            <span *ngIf="width.invalid && (width.dirty || width.touched)" class="form-error">                
-                                    <span *ngIf="width.errors.pattern">
-                                          width must be a number and must be higher than 0
-                                    </span>
-                            </span>
-                            <input formControlName="width" class="form-control" type="text" placeholder="width of the Item in inches" />
-                          </div>
+                            <label for="">Brand</label>
+                            <input formControlName="brand" class="form-control" type="text" placeholder="Item Material" />
+                          </div>                          
                           <div class="form-group">
                             <label for="">Features</label>
                             <input formControlName="feature" class="form-control" type="text" placeholder="Item Features" />
                           </div>
                           <div class="form-group">
-                            <label for="">Shipping Detail</label>
-                            <input formControlName="detail" class="form-control" type="text" placeholder="Shpping Detail" />
+                            <label for="">Detail</label>
+                            <input formControlName="detail" class="form-control" type="text" placeholder="Detail" />
                           </div>
                           <div class="form-group">
-                            <label for="">Shipping Processing Time</label>
-                            <input formControlName="processingTime" class="form-control" type="text" placeholder="Shipping Processing Time" />
-                          </div>
-                          <div class="form-group">
-                            <label for="">Shipping Cost</label>
-                            <span *ngIf="cost.invalid && (cost.dirty || cost.touched)" class="form-error">                  
-                                <span *ngIf="cost.errors.pattern">
-                                        cost must be a number and must be higher than 0
-                                    </span>
-                            </span>
-                            <input formControlName="cost" class="form-control" type="text" placeholder="Shipping Cost" />
-                          </div>
-                          <div class="form-group">
-                            <label for="">Shipping Carrier</label>
-                            <input formControlName="carrier" class="form-control" type="text" placeholder="Shipping Carrier" />
-                          </div>
-                          <div class="form-group">
-                            <div class="col-xs-12 checkboxArea">
-                              <input id="checkbox1" type="checkbox" name="checkbox" formControlName="hasFreeShipping">
-                              <label for="checkbox1"><span></span>Has Free Shipping </label>
-                              <input id="checkbox2" type="checkbox" name="checkbox" formControlName="hasLocalPickup">
-                              <label for="checkbox2"><span></span>Has Local Pickup </label>
+                              <div class="checkboxArea" style="margin-bottom: 30px;">
+                                <input id="checkbox3" type="checkbox" name="checkbox" formControlName="isActive">
+                                <label for="checkbox3"><span></span>Is Active </label>
+                              </div>                              
                             </div>
-                          </div>
                           <div class="form-group">
                             <label for="">Description</label>
                             <textarea formControlName="description" class="form-control" type="text" placeholder="Description" rows="5" required></textarea>
                           </div>
-                          <button [disabled]="!itemForm.valid" type="button" (click)="add($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+                          <button [disabled]="!itemForm.valid" type="button" (click)="update($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
                           <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
                           <div class="clearfix"></div>
                         </div>
@@ -186,7 +154,53 @@
                   </div>
                 </div>
               </div>
-              <div id="menu8" class="tab-pane fade">
+              <div id="ShippingInfo" class="tab-pane fade">
+                <div class="tab-contentInner">
+                  <div id="contact-form-2">
+                    <form id="contactForm" [formGroup]="shippingForm" novalidate autocomplete="off">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="">Shipping Processing Time</label>
+                            <input formControlName="processingTime" class="form-control" type="text" placeholder="Shipping Processing Time" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Cost</label>
+                            <span *ngIf="shippingCost.invalid && (shippingCost.dirty || shippingCost.touched)" class="form-error">                  
+                                    <span *ngIf="shippingCost.errors.pattern">
+                                        Shipping Cost must be a number and must be higher than 0
+                                        </span>
+                            </span>
+                            <input formControlName="shippingCost" class="form-control" type="text" placeholder="Shipping Cost" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Shipping Carrier</label>
+                            <input formControlName="carrier" class="form-control" type="text" placeholder="Shipping Carrier" />
+                          </div>
+                          <div class="form-group">
+                              <label for="">Location</label>
+                              <input formControlName="location" class="form-control" type="text" placeholder="Location" />
+                            </div>
+                          <div class="form-group">
+                            <div class="col-xs-12 col-md-6 checkboxArea" style="margin-bottom: 30px;">
+                              <input id="checkbox1" type="checkbox" name="checkbox" formControlName="hasFreeShipping">
+                              <label for="checkbox1"><span></span>Has Free Shipping </label>
+                            </div>
+                            <div class="col-xs-12 col-md-6 checkboxArea" style="margin-bottom: 30px;">
+                              <input id="checkbox2" type="checkbox" name="checkbox" formControlName="hasLocalPickup">
+                              <label for="checkbox2"><span></span>Has Local Pickup </label>
+                            </div>
+                          </div>
+                          <button [disabled]="!shippingForm.valid" type="button" (click)="updateShipping($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+                          <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div id="Image" class="tab-pane fade">
                 <div class="tab-contentInner">
                   <wait-component [isActive]="isLoadingImages" [message]="'Please Wait ...'"></wait-component>
 
@@ -203,7 +217,49 @@
                   </section>
                 </div>
               </div>
-              <div id="menu9" class="tab-pane fade">
+              <div id="SizeInfo" class="tab-pane fade">
+                <div class="tab-contentInner">
+                  <div id="contact-form-2">
+                    <form id="contactForm" [formGroup]="sizeForm" novalidate autocomplete="off">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="">Height</label>
+                            <span *ngIf="height.invalid && (height.dirty || height.touched)" class="form-error">                
+                                            <span *ngIf="height.errors.pattern">
+                                                  height must be a number and must be higher than 0
+                                            </span>
+                            </span>
+                            <input formControlName="height" class="form-control" type="text" placeholder="height of the Item in inches" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Width</label>
+                            <span *ngIf="width.invalid && (width.dirty || width.touched)" class="form-error">                
+                                              <span *ngIf="width.errors.pattern">
+                                                    width must be a number and must be higher than 0
+                                              </span>
+                            </span>
+                            <input formControlName="width" class="form-control" type="text" placeholder="width of the Item in inches" />
+                          </div>
+                          <div class="form-group">
+                            <label for="">Weight</label>
+                            <span *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="form-error">                
+                                                <span *ngIf="weight.errors.pattern">
+                                                      Weight must be a number and must be higher than 0
+                                                </span>
+                            </span>
+                            <input formControlName="weight" class="form-control" type="text" placeholder="Weight of the Item in lbs" />
+                          </div>
+                          <button [disabled]="!sizeForm.valid" type="button" (click)="updateSize($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+                          <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- <div id="menu9" class="tab-pane fade">
                 <div class="tab-contentInner">
                   <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
                     Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
@@ -214,7 +270,7 @@
                     in some form, by injected humour, or randomised words which don't look even slightly believable. If you
                     are going to use a passage of Lorem </p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="space-25">&nbsp;</div>
@@ -233,7 +289,44 @@
 
 
 
-
+<!-- <div id="contact-form-3">
+  <form id="contactForm" [formGroup]="sizeForm" novalidate autocomplete="off">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Height</label>
+          <span *ngIf="height.invalid && (height.dirty || height.touched)" class="form-error">                
+                      <span *ngIf="height.errors.pattern">
+                            height must be a number and must be higher than 0
+                      </span>
+          </span>
+          <input formControlName="height" class="form-control" type="text" placeholder="height of the Item in inches" />
+        </div>
+        <div class="form-group">
+          <label for="">Width</label>
+          <span *ngIf="width.invalid && (width.dirty || width.touched)" class="form-error">                
+                        <span *ngIf="width.errors.pattern">
+                              width must be a number and must be higher than 0
+                        </span>
+          </span>
+          <input formControlName="width" class="form-control" type="text" placeholder="width of the Item in inches" />
+        </div>
+        <div class="form-group">
+          <label for="">Weight</label>
+          <span *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="form-error">                
+                          <span *ngIf="weight.errors.pattern">
+                                Weight must be a number and must be higher than 0
+                          </span>
+          </span>
+          <input formControlName="weight" class="form-control" type="text" placeholder="Weight of the Item in lbs" />
+        </div>
+        <button [disabled]="!sizeForm.valid" type="button" (click)="add($event)" class="btn btn-md btn-primary-filled btn-form-submit">Save</button>
+        <button type="button" class="btn btn-link btn-block" routerLink="/profile/business/manage">Go Back</button>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </form>
+</div> -->
 
 
 

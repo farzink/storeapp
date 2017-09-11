@@ -40,14 +40,16 @@ export class SearchHeaderComponent implements OnInit {
             satisfy(e) {
                 console.log(e);
                 interested.context.categories = e;
+                $('.categorySelect').empty();
                 for (const i of e) {
                     $('.categorySelect').append(`<option value="${i.id}">${i.name}</option>`);
                 }
-                $('.select-drop').selectbox();
-
+                $('.select-drop').selectbox('detach');
+                $('.select-drop').selectbox('attach');
             }
         };
         this.categoryService.getAllItemCategories(interested);
+
 
         const result = {
             context: this,
@@ -85,8 +87,23 @@ export class SearchHeaderComponent implements OnInit {
         }
     }
 
+    // search() {
+
+
+
+    //     this.router.navigate(['/search'], { queryParams: { q: this.selected } });
+    //     this.categoryService.getAllBusinessCategories({
+    //         satisfy: function (e) {
+    //             console.log(e);
+    //         }
+    //     });
+    //     console.log(this.test);
+    // }
+
     search() {
-        this.router.navigate(['/search'], { queryParams: { q: this.selected } });
+        const temp: any = document.getElementsByClassName('categorySelect')[0];
+        const selectedCategory = temp.value;
+        this.router.navigate(['/search'], { queryParams: { q: this.selected, ci: selectedCategory } });
         this.categoryService.getAllBusinessCategories({
             satisfy: function (e) {
                 console.log(e);

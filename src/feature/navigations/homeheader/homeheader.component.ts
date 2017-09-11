@@ -90,8 +90,9 @@ export class HomeHeaderComponent implements OnInit {
     }
 
     search() {
-        const category = document.getElementsByClassName('sbSelector')[0];
-        this.router.navigate(['/search'], { queryParams: { q: this.selected } });
+        const temp: any = document.getElementsByClassName('categorySelect')[0];
+        const selectedCategory = temp.value;
+        this.router.navigate(['/search'], { queryParams: { q: this.selected, ci: selectedCategory } });
         this.categoryService.getAllBusinessCategories({
             satisfy: function (e) {
                 console.log(e);

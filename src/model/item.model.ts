@@ -29,6 +29,7 @@ export class Item {
     public hasLocalPickup: boolean;
     public carrier: string;
     public width: string;
+    public itemCategoryId: number;
     constructor(data: any) {
         this.id = data.id;
         this.itemId = data.itemId;
@@ -58,5 +59,7 @@ export class Item {
         this.location = data.location;
         this.hasLocalPickup = data.hasLocalPickup;
         this.carrier = data.carrier;
+        this.width = data.width;
+        this.itemCategoryId = data.itemCategoryId;
     }
 }

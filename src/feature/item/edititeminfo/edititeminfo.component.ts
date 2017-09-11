@@ -1,3 +1,4 @@
+import { CategoryService } from './../../../service/category.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,7 +8,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { ImageComponent } from '../../image/image.component';
 import { Image } from '../../../model/image.model';
 import { NotificationsService } from 'angular2-notifications';
-
+declare var $: any;
 
 @Component({
     selector: 'edititeminfo-component',
@@ -18,12 +19,15 @@ export class EditItemInfoComponent implements OnInit {
     // @ViewChild('file') fileElement:ElementRef;
     item: Item;
     itemForm: FormGroup;
+    shippingForm: FormGroup;
+    sizeForm: FormGroup;
     itemId: number;
     images: Array<Image>;
     isLoadingInfo = true;
     isLoadingImages = true;
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
+    categories = [];
     ngOnInit(): void {
         const context = this;
         this.itemId = +this.route.snapshot.parent.url[this.route.snapshot.parent.url.length - 1].path;
@@ -39,26 +43,75 @@ export class EditItemInfoComponent implements OnInit {
             quantity: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
             material: [''],
             brand: [''],
+            feature: [''],
+            detail: [''],
+            itemCategoryId: '',
+            isActive: ['']
+        });
+        this.shippingForm = this.formBuilder.group({
+            id: context.itemId,
+            processingTime: [''],
+            shippingCost: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
+            hasFreeShipping: [''],
+            hasLocalPickup: [''],
+            carrier: [''],
+            location: [''],
+        });
+        this.sizeForm = this.formBuilder.group({
+            id: context.itemId,
             weight: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
             height: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
             width: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
-            feature: [''],
-            detail: [''],
-            processingTime: [''],
-            cost: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
-            hasFreeShipping: [''],
-            location: [''],
-            hasLocalPickup: [''],
-            carrier: [''],
         });
         this.getItem(this.itemId);
+
         this.getImages();
     }
     constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router,
-        private formBuilder: FormBuilder, private notification: NotificationsService) { }
+        private formBuilder: FormBuilder, private notification: NotificationsService, private categoryService: CategoryService) { }
     update(e) {
         e.preventDefault();
-        console.log(this.isLoadingInfo);
+        const tempCategory: any = document.getElementsByClassName('categorySelect')[0];
+        // const tempManufacturer: any = document.getElementsByClassName('manufactureType')[0];
+        const selectedCategory = tempCategory.value;
+        // const selectedManufacturingType = tempManufacturer.value;
+        this.itemForm.patchValue({ itemCategoryId: selectedCategory });
+        this.isLoadingInfo = true;
+        const result = {
+            context: this,
+            success(d) {
+                if (d.statusCode === 202) {
+                    result.context.notification.success(
+                        'Success',
+                        'Item has been updated successfully'
+                    );
+                }
+            }
+        };
+        this.itemService.update(this.itemForm.value, result);
+        result.context.isLoadingInfo = false;
+    }
+
+    updateShipping(e) {
+        e.preventDefault();
+        this.isLoadingInfo = true;
+
+        const result = {
+            context: this,
+            success(d) {
+                if (d.statusCode === 202) {
+                    result.context.notification.success(
+                        'Success',
+                        'Item has been updated successfully'
+                    );
+                }
+            }
+        };
+        this.itemService.updateShippingInfo(this.shippingForm.value, result);
+        result.context.isLoadingInfo = false;
+    }
+    updateSize(e) {
+        e.preventDefault();
         this.isLoadingInfo = true;
         console.log(this.isLoadingInfo);
         const result = {
@@ -67,18 +120,12 @@ export class EditItemInfoComponent implements OnInit {
                 if (d.statusCode === 202) {
                     result.context.notification.success(
                         'Success',
-                        'Item has been updated successfully',
-                        {
-                            showProgressBar: true,
-                            pauseOnHover: true,
-                            clickToClose: true,
-                            timeOut: 3000
-                        }
+                        'Item has been updated successfully'
                     );
                 }
             }
         };
-        this.itemService.update(this.itemForm.value, result);
+        this.itemService.updateSize(this.sizeForm.value, result);
         result.context.isLoadingInfo = false;
     }
     getItem(id) {
@@ -96,18 +143,41 @@ export class EditItemInfoComponent implements OnInit {
                     result.context.itemForm.patchValue({ description: e.item.description });
                     result.context.itemForm.patchValue({ brand: e.item.brand });
                     result.context.itemForm.patchValue({ material: e.item.material });
-                    result.context.itemForm.patchValue({ height: e.item.height });
-                    result.context.itemForm.patchValue({ width: e.item.width });
-                    result.context.itemForm.patchValue({ weight: e.item.weight });
                     result.context.itemForm.patchValue({ feature: e.item.feature });
                     result.context.itemForm.patchValue({ detail: e.item.detail });
-                    result.context.itemForm.patchValue({ processingTime: e.item.processingTime });
-                    result.context.itemForm.patchValue({ cost: e.item.cost });
-                    result.context.itemForm.patchValue({ carrier: e.item.carrier });
-                    result.context.itemForm.patchValue({ hasFreeShipping: e.item.hasFreeShipping });
-                    result.context.itemForm.patchValue({ hasLocalPickup: e.item.hasLocalPickup });
-                    result.context.itemForm.patchValue({ location: e.item.location });
+                    result.context.itemForm.patchValue({ isActive: e.item.isActive });
+
+                    result.context.sizeForm.patchValue({ height: e.item.height });
+                    result.context.sizeForm.patchValue({ width: e.item.width });
+                    result.context.sizeForm.patchValue({ weight: e.item.weight });
+
+                    result.context.shippingForm.patchValue({ processingTime: e.item.processingTime });
+                    result.context.shippingForm.patchValue({ shippingCost: e.item.shippingCost });
+                    result.context.shippingForm.patchValue({ carrier: e.item.carrier });
+                    result.context.shippingForm.patchValue({ hasFreeShipping: e.item.hasFreeShipping });
+                    result.context.shippingForm.patchValue({ hasLocalPickup: e.item.hasLocalPickup });
+                    result.context.shippingForm.patchValue({ location: e.item.location });
                     result.context.isLoadingInfo = false;
+
+                    console.log(result.context.item);
+                    const interested = {
+                        context: this,
+                        satisfy(d) {
+                            result.context.categories = d;
+                            $('.categorySelect').empty();
+                            for (const i of d) {
+                                console.log(i);
+                                if (result.context.item.itemCategoryId === i.id) {
+                                    $('.categorySelect').append(`<option value="${i.id}" selected="true">${i.name}</option>`);
+                                } else {
+                                    $('.categorySelect').append(`<option value="${i.id}">${i.name}</option>`);
+                                }
+                            }
+                            $('.select-drop').selectbox('detach');
+                            $('.select-drop').selectbox('attach');
+                        }
+                    };
+                    result.context.categoryService.getAllItemCategories(interested);
                 }
             }
         };
@@ -147,15 +217,16 @@ export class EditItemInfoComponent implements OnInit {
     get quantity() { return this.itemForm.get('quantity'); }
     get material() { return this.itemForm.get('material'); }
     get brand() { return this.itemForm.get('brand'); }
-    get weight() { return this.itemForm.get('weight'); }
-    get height() { return this.itemForm.get('height'); }
-    get width() { return this.itemForm.get('width'); }
+    get weight() { return this.sizeForm.get('weight'); }
+    get height() { return this.sizeForm.get('height'); }
+    get width() { return this.sizeForm.get('width'); }
     get feature() { return this.itemForm.get('feature'); }
     get detail() { return this.itemForm.get('detail'); }
-    get processingTime() { return this.itemForm.get('processingTime'); }
-    get cost() { return this.itemForm.get('cost'); }
-    get hasFreeShipping() { return this.itemForm.get('hasFreeShipping'); }
-    get location() { return this.itemForm.get('location'); }
-    get hasLocalPickup() { return this.itemForm.get('hasLocalPickup'); }
-    get carrier() { return this.itemForm.get('carrier'); }
+    get processingTime() { return this.shippingForm.get('processingTime'); }
+    get shippingCost() { return this.shippingForm.get('shippingCost'); }
+    get hasFreeShipping() { return this.shippingForm.get('hasFreeShipping'); }
+    get location() { return this.shippingForm.get('location'); }
+    get hasLocalPickup() { return this.shippingForm.get('hasLocalPickup'); }
+    get carrier() { return this.shippingForm.get('carrier'); }
+    get isActive() { return this.itemForm.get('isActive'); }
 }

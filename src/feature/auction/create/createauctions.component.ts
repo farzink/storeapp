@@ -79,12 +79,13 @@ export class CreateAuctionsComponent implements OnInit {
         this.itemIsSelected = true;
         this.auctionForm = this.formBuilder.group({
             itemId: '',
-            initialPrice: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-            minimumIncrement: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+            initialPrice: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
+            minimumIncrement: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
             title: ['', [Validators.required, Validators.minLength(3)]],
             description: ['', [Validators.required]],
             endDate: ['', [Validators.required, this.dateValidator]],
-            endTime: ['', [Validators.required]]
+            endTime: ['', [Validators.required]],
+            coolingOutInterval: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
         });
         this.auctionForm.patchValue({ itemId: this.selectedItem.id });
         console.log(this.auctionForm.value);
@@ -187,4 +188,13 @@ export class CreateAuctionsComponent implements OnInit {
         //     disposable.unsubscribe();
         // }, 10000);
     }
+
+    get title() { return this.auctionForm.get('title'); }
+    get initialPrice() { return this.auctionForm.get('initialPrice'); }
+    get minimumIncrement() { return this.auctionForm.get('minimumIncrement'); }
+    get endDate() { return this.auctionForm.get('endDate'); }
+    get endTime() { return this.auctionForm.get('endTime'); }
+    get description() { return this.auctionForm.get('description'); }
+    get coolingOutInterval() { return this.auctionForm.get('coolingOutInterval'); }
+    
 }

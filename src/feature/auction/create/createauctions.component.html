@@ -1,106 +1,165 @@
 <section class="lightSection clearfix pageHeader">
   <div class="container">
-      <div class="row">
-          <div class="col-xs-6">
-              <div class="page-title">
-                  <h2>Create Auction</h2>
-              </div>
-          </div>
-          <div class="col-xs-6">
-              <ol class="breadcrumb pull-right">
-                  <li>
-                      <a routerLink="/Profile">Profile</a>
-                  </li>
-                  <li class="active">Create</li>
-              </ol>
-          </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2>Create Auction</h2>
+        </div>
       </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <a routerLink="/Profile">Profile</a>
+          </li>
+          <li class="active">Create</li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="mainContent clearfix userProfile">
   <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
   <div class="col-xs-12">
-      <div class="container">
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="innerWrapper">
-                      <div class="row">
-                          <div class="col-sm-12 col-md-6">
-                              <h3>Search <span>Your Item</span></h3>
-                              <div class="">
-                                  <label for=""></label>
-                                  <input #userInput name="itemName" type="text" class="my-input" (input)="filterItems(userInput.value)">
-                              </div>
-                          </div>
-                          <div class="col-sm-12 col-md-6">
-                              <h3>Your <span>Selected Item</span></h3>
-                              <div>
-                                  <h2 *ngIf="selectedItem !== null; else notselected">{{selectedItem?.name}}</h2>
-                                  <ng-template #notselected>
-                                      <h3>Please select an item</h3>
-                                  </ng-template>
-                              </div>
-                          </div>
-                      </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="innerWrapper">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <h3>Search <span>Your Item</span></h3>
+                <div class="" style="margin-bottom: 30px;">
+                  <label for=""></label>
+                  <input #userInput name="itemName" type="text" class="my-input" (input)="filterItems(userInput.value)">
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <h3>Your <span>Selected Item</span></h3>
+                <div>
+                  <h2 *ngIf="selectedItem !== null; else notselected">{{selectedItem?.name}}</h2>
+                  <ng-template #notselected>
+                    <h3>Please select an item</h3>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
 
-                      <ul class="list-inline">
-                          <li *ngFor="let item of filteredItems | slice:0:10; let i = index">
-                              <button href="#" class="btn btn-default btn-lg" (click)="selectItem(item.id)">
+            <ul class="list-inline">
+              <li *ngFor="let item of filteredItems | slice:0:10; let i = index">
+                <button href="#" class="btn btn-default btn-lg" (click)="selectItem(item.id)">
                       <i class="fa fa-gavel fa-4x" aria-hidden="true"></i>
                       {{item.name}}
               </button>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
+              </li>
+            </ul>
           </div>
-          <div class="row" *ngIf="itemIsSelected">
-              <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
-              <div class="col-xs-12">
-                  <div class="innerWrapper">
-                      <h3>Please enter your auction information</h3>
-                      <div class="row">
-                          <form [formGroup]="auctionForm" novalidate>
-                              <div class="col-xs-12 col-md-6">
-                                  <div>
-                                      <input type="text" class="my-input" formControlName="title" id="title" placeholder="Title of the Auction">
-                                  </div>
-                                  <div style="margin-bottom: 30px;">
-                                      <owl-date-time [dateFormat]="'YYYY-MM-DD'" formControlName="endDate" [type]="'calendar'" [placeHolder]="'End Date'" [inputId]="'input'"></owl-date-time>
-                                  </div>
-                                  <div style="margin-bottom: 30px;">
-                                      <owl-date-time [type]="'timer'" formControlName="endTime" [dateFormat]="'hh:mm'" [placeHolder]="'End Time'"></owl-date-time>
-                                  </div>
-                                  <div>
-                                      <input type="text" formControlName="initialPrice" class="my-input" id="initialPrice" placeholder="Initial Price of the item" required>
-                                  </div>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <div>
-                                      <input type="text" formControlName="minimumIncrement" class="my-input" id="minimumIncrement" placeholder="Minimum Increment of the price" required>
-                                  </div>
-                                  <div>
-                                      <input type="text" class="my-input" id="coolingOutInterval" placeholder="bid time interval (default is 60s)" required>
-                                  </div>
-                                  <div class="form-group">
-                                      <textarea id="description" formControlName="description" class="my-input" rows="5" placeholder="Description" required=""></textarea>
-
-                                  </div>
-                              </div>
-                              <div style="margin-bottom: 30px;">
-                                  <button [disabled]="!auctionForm.valid" (click)="confirmAuction()" type="button" id="reg-submit" class="btn btn-success-filled btn-log margin-right"><i class="fa fa-gavel"></i> <span>Create Auction</span></button>
-                              </div>
-                          </form>
-                      </div>
-
-
-
-
-                  </div>
-              </div>
-          </div>
+        </div>
       </div>
+      <div class="row" *ngIf="itemIsSelected">
+        <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
+        <div class="col-xs-12">
+          <div class="innerWrapper">
+            <h3>Please enter your auction information</h3>
+            <div class="row">
+              <form [formGroup]="auctionForm" novalidate>
+                <div class="col-xs-12 col-md-6">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <span *ngIf="title.invalid && (title.dirty || title.touched)" class="form-error">
+                            <span *ngIf="title.errors.required">
+                                title is required.
+                            </span>
+                    <span *ngIf="title.errors.minlength">
+                                title must be at least 3 characters long.
+                            </span>
+                    </span>
+                    <input type="text" class="my-input" formControlName="title" id="title" placeholder="Title of the Auction">
+                  </div>
+                  <div class="form-group">
+                    <label for="">End Date</label>
+                    <span *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="form-error">
+                            <span *ngIf="endDate.errors.required">
+                                End Date is required.
+                            </span>
+                    <!-- <span *ngIf="title.errors.dataValidator">
+                                Wrong Date
+                            </span> -->
+                    </span>
+                    <owl-date-time [dateFormat]="'YYYY-MM-DD'" formControlName="endDate" [type]="'calendar'" [placeHolder]="'End Date'" [inputId]="'input'"></owl-date-time>
+                  </div>
+                  <div class="form-group">
+                    <label for="">End Time</label>
+                    <span *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)" class="form-error">
+                        <span *ngIf="endTime.errors.required">
+                            endTime is required.
+                        </span>
+                    </span>
+                    <owl-date-time [type]="'timer'" formControlName="endTime" [dateFormat]="'hh:mm'" [placeHolder]="'End Time'"></owl-date-time>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Initial Price</label>
+                    <span *ngIf="initialPrice.invalid && (initialPrice.dirty || initialPrice.touched)" class="form-error">
+                                <span *ngIf="initialPrice.errors.required">
+                                    initialPrice is required.
+                                </span>
+                    <span *ngIf="initialPrice.errors.pattern">
+                                    Initial Price must be a number and more than 0
+                                </span>
+                    </span>
+                    <input type="text" formControlName="initialPrice" class="my-input" id="initialPrice" placeholder="Initial Price of the item"
+                      required>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <div class="form-group">
+                    <label for="">Minimum Increment</label>
+                    <span *ngIf="minimumIncrement.invalid && (minimumIncrement.dirty || minimumIncrement.touched)" class="form-error">
+                            <span *ngIf="minimumIncrement.errors.required">
+                                Minimum Increment is required.
+                            </span>
+                    <span *ngIf="minimumIncrement.errors.pattern">
+                            Minimum Increment must be a number and above 0.
+                            </span>
+                    </span>
+                    <input type="text" formControlName="minimumIncrement" class="my-input" id="minimumIncrement" placeholder="Minimum Increment of the price"
+                      required>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Cooling out Interval</label>
+                    <span *ngIf="coolingOutInterval.invalid && (coolingOutInterval.dirty || coolingOutInterval.touched)" class="form-error">
+                                <span *ngIf="coolingOutInterval.errors.required">
+                                        Cooling out Interval is required.
+                                </span>
+                    <span *ngIf="coolingOutInterval.errors.pattern">
+                            Cooling out Interval must be a number and above 0.
+                                </span>
+                    </span>
+                    <input type="text" class="my-input" formControlName="coolingOutInterval" id="coolingOutInterval" placeholder="bid time interval (default is 60s)" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Description</label>
+                    <span *ngIf="description.invalid && (description.dirty || description.touched)" class="form-error">
+                            <span *ngIf="description.errors.required">
+                                    Description is required.
+                            </span>
+                    </span>
+                    <textarea id="description" formControlName="description" class="my-input" rows="5" placeholder="Description" required=""></textarea>
+
+                  </div>
+                </div>
+                <div style="margin-bottom: 30px;">
+                  <button [disabled]="!auctionForm.valid" (click)="confirmAuction()" type="button" id="reg-submit" class="btn btn-success-filled btn-log margin-right"><i class="fa fa-gavel"></i> <span>Create Auction</span></button>
+                </div>
+              </form>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </section>

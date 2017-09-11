@@ -28,6 +28,27 @@ export class ItemRepository implements IRepository<Item> {
                 e.status,
                 e.statusText));
     }
+
+    updateShipping(model: Item): Observable<WebCallResult<Item>> {
+        return this.httpHelper.put(itemPath + '/shippinginfo', model)
+            .map(e => new WebCallResult<Item>(new Item(e.json()),
+                e.status,
+                e.statusText));
+    }
+
+    updateItemStatus(model: Item): Observable<WebCallResult<Item>> {
+        return this.httpHelper.put(itemPath + '/status', model)
+            .map(e => new WebCallResult<Item>(new Item(e.json()),
+                e.status,
+                e.statusText));
+    }
+    updateSize(model: Item): Observable<WebCallResult<Item>> {
+        return this.httpHelper.put(itemPath + '/update/size', model)
+            .map(e => new WebCallResult<Item>(new Item(e.json()),
+                e.status,
+                e.statusText));
+    }
+
     remove(model: Item) {
         throw new Error("Method not implemented.");
     }

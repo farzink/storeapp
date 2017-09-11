@@ -29,7 +29,7 @@ export class SearchResultComponent implements OnInit {
     total = 0;
     numberOfPages: any = [];
     placeholderImage = 'assets/image/placeholder.jpg';
-
+    categoryId = 0;
     // end of pagination
     isLoading = true;
     searchResult: any;
@@ -49,6 +49,7 @@ export class SearchResultComponent implements OnInit {
     search(sort = 0) {
         this.isLoading = true;
         const searchTerm = this.route.snapshot.queryParams.q;
+        this.categoryId = (+this.route.snapshot.queryParams.ci || 0);
         this.size = (+this.route.snapshot.queryParams.size || 12);
         this.selected = searchTerm;
         if (searchTerm === '' || searchTerm === undefined) {
@@ -77,7 +78,8 @@ export class SearchResultComponent implements OnInit {
                     term: searchTerm,
                     sort: sort,
                     page: q,
-                    size: this.size
+                    size: this.size,
+                    categoryId: this.categoryId
                 },
                 result);
         }
@@ -117,7 +119,7 @@ export class SearchResultComponent implements OnInit {
 
     changePerPage(perpage) {
         // this.size = perpage;
-        this.router.navigate(['/search'], { queryParams: { q: this.selected, size: perpage.target.value } });
+        this.router.navigate(['/search'], { queryParams: { q: this.selected, size: perpage.target.value, ci: this.categoryId } });
         // this.search();
     }
 
