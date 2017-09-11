@@ -1,3 +1,4 @@
+import { ItemsInCategoryComponent } from './../feature/item/itemsincategory/itemsincategory.component';
 import { AuctionDetailComponent } from './../feature/auction/detail/auctiondetail.component';
 import { SearchHeaderComponent } from './../feature/navigations/searchheader/searchheader.component';
 import { AuctionRepository } from './../repository/auction.repository';
@@ -95,6 +96,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,7 +144,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     CreateAuctionsComponent,
     AuctionsComponent,
     AuctionDetailComponent,
-    ModalComponent
+    ModalComponent,
+    ItemsInCategoryComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -56,8 +56,14 @@ export class ItemService implements ICoreService<Item> {
     searchItems(model: any, result) {
         // this.observableHelper.processObservable(this.itemRepository.SearchByTerm('search/' +
         //     model.term + '?sort=' + model.sort + '&page=' + model.page + '&size=' + model.size),
-        this.observableHelper.processObservable(this.itemRepository.SearchByTerm
+        this.observableHelper.processObservable(this.itemRepository.searchByTerm
             (`search/${model.term}?sort=${model.sort}&page=${model.page}&size=${model.size}&categoryId=${model.categoryId}`),
+            result.success, result.error, result.complete);
+    }
+
+    getItemsOfCategory(model: any, result) {
+        this.observableHelper.processObservable(this.itemRepository.getItemsOfCategory
+            (`search/category/${model.id}?sort=${model.sort}&page=${model.page}&size=${model.size}`),
             result.success, result.error, result.complete);
     }
 

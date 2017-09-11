@@ -74,7 +74,15 @@ export class ItemRepository implements IRepository<Item> {
                 e.statusText));
     }
 
-    SearchByTerm(path: string) {
+    searchByTerm(path: string) {
+        return this.httpHelper.get(homePath + '/' + path)
+            .map(e => new WebCallResult<Array<Item>>((e.json()),
+                e.status,
+                e.statusText));
+    }
+
+    getItemsOfCategory(path: string) {
+        console.log(path);
         return this.httpHelper.get(homePath + '/' + path)
             .map(e => new WebCallResult<Array<Item>>((e.json()),
                 e.status,

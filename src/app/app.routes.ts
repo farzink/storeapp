@@ -1,3 +1,4 @@
+import { ItemsInCategoryComponent } from './../feature/item/itemsincategory/itemsincategory.component';
 import { AuctionDetailComponent } from './../feature/auction/detail/auctiondetail.component';
 import { SearchHeaderComponent } from './../feature/navigations/searchheader/searchheader.component';
 import { CreateAuctionsComponent } from './../feature/auction/create/createauctions.component';
@@ -86,6 +87,7 @@ export const routes: Routes = [
   {
     path: 'search', children: [
       { path: '', component: SearchResultComponent },
+      { path: 'category/:id', component: ItemsInCategoryComponent },
       { path: '', component: FooterComponent, outlet: 'footer' },
       { path: '', component: SearchHeaderComponent, outlet: 'header' }
     ]

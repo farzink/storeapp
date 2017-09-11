@@ -87,7 +87,7 @@
             </a>
         <ul class="dropdown-menu dropdown-menu-left">
           <li *ngFor="let cat of categories">
-            <a href="javascript:void(0)"><i class="lnr lnr-tablet" aria-hidden="true"></i>{{cat.name}}</a>
+            <a [routerLink]="['search/category', cat.id]"><i class="lnr lnr-tablet" aria-hidden="true"></i>{{cat.name}}</a>
           </li>
 
           <!-- <li><a href="product-grid-left-sidebar.html"><img src="img/home/category/category-img1.jpg" alt="Image"></a></li> -->
