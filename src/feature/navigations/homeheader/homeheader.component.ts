@@ -1,3 +1,4 @@
+import { placeholderImage } from './../../../utility/link';
 import { CategoryService } from './../../../service/category.service';
 import { CartService } from './../../../service/cart.service';
 import { Profile } from './../../../model/profile';
@@ -24,6 +25,7 @@ export class HomeHeaderComponent implements OnInit {
     itemsInCart: any;
     isHome = false;
     categories = [];
+    placeholderImage = placeholderImage;
 
     test: any;
     constructor(public http: Http, private router: Router,

@@ -18,12 +18,12 @@
             <li *ngIf="!isLoggedIn" class="account-login"><span><a routerLink="/authentication/login">Log in</a><small>or</small><a routerLink="authentication/register">Create an account</a></span></li>
             <li *ngIf="isLoggedIn" class="account-login"><span><a routerLink="/profile">welcome {{profile?.email}}</a></span></li>
             <li class="searchBox">
-              <a href="#"><i class="fa fa-search"></i></a>
+              <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
                   <span class="input-group">
-                    <input type="text" class="form-control" placeholder="Search…" aria-describedby="basic-addon2">
-                    <button type="submit" class="input-group-addon">Submit</button>
+                    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Search…" (keypress)="keypressed($event)" aria-describedby="basic-addon2">
+                    <button type="button" (click)="search()" class="input-group-addon">Submit</button>
                   </span>
                 </li>
               </ul>
@@ -35,9 +35,9 @@
                 <li *ngFor="let item of itemsInCart?.orderDetails">
                   <a [routerLink]="['/item', item.id]">
                     <div class="media">
-                      <img class="media-left media-object" src="" alt="cart-Image">
+                      <img class="media-left media-object" style="max-height: 60px; max-width:50px;" [src]="placeholderImage" alt="cart-Image">
                       <div class="media-body">
-                        <h5 class="media-heading">{{item.creationDateTime}} <br><span>2 X $199</span></h5>
+                          <h5 class="media-heading">{{item.name}} <br><span>${{item.price}} x {{item.quantity}}</span></h5>
                       </div>
                     </div>
                   </a>

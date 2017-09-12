@@ -56,6 +56,7 @@
           <li *ngFor="let item of itemsInCart?.orderDetails">
             <a [routerLink]="['/item', item.id]">
               <div class="media">
+                  <img class="media-left media-object" style="max-height: 60px; max-width:50px;" [src]="placeholderImage" alt="cart-Image">
                 <div class="media-body">
                   <h5 class="media-heading">{{item.name}} <br><span>${{item.price}} x {{item.quantity}}</span></h5>
                 </div>

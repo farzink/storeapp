@@ -1,10 +1,11 @@
+import { placeholderImage } from './../../../utility/link';
 import { AuthenticationService } from './../../../service/authentication.service';
 import { ProfileService } from './../../../service/profile.service';
 import { Profile } from './../../../model/profile';
 import { CartService } from './../../../service/cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import { RouterLinkActive, Router } from '@angular/router';
 
 @Component({
     selector: 'header-component',
@@ -15,7 +16,10 @@ export class HeaderComponent implements OnInit {
     isLoggedIn = false;
     profile: Profile;
     itemsInCart: any;
-    constructor(private authService: AuthenticationService, private profileService: ProfileService, private cartService: CartService) {
+    searchTerm: string;
+    placeholderImage = placeholderImage;
+    constructor(private authService: AuthenticationService, private profileService: ProfileService,
+        private cartService: CartService, private router: Router) {
         const context = this;
         this.cartService.getObservableCart().subscribe(c => {
             this.updateCart(c);
@@ -40,6 +44,16 @@ export class HeaderComponent implements OnInit {
 
         if (!this.authService.isTokenExpired()) {
             this.isLoggedIn = true;
+        }
+    }
+
+    search() {
+        this.router.navigate(['/search'], { queryParams: { q: this.searchTerm, ci: 0 } });
+    }
+
+    keypressed(e) {
+        if (e.keyCode === 13 && this.searchTerm !== '') {
+            this.search();
         }
     }
 }

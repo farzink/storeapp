@@ -124,16 +124,22 @@ export class SearchResultComponent implements OnInit {
     }
 
     addToWishlist(id) {
+        this.isLoading = true;
         const result = {
             context: this,
             success(e) {
-                console.log(e);
                 if (e.statusCode === 201) {
                     result.context.notification.success(
                         'Success',
                         'item has been added to your wishlist successfully!'
                     );
                 }
+            },
+            error(e) {
+                result.context.isLoading = false;
+            },
+            complete(e) {
+                result.context.isLoading = false;
             }
         };
         this.profileService.addToWishlist(id, result);
@@ -144,13 +150,17 @@ export class SearchResultComponent implements OnInit {
         const result = {
             context: this,
             success(e) {
-                console.log(e);
-                // result.context.cartService.addToObservableCart(e);
                 result.context.cartService.update();
                 result.context.notification.success(
                     'Success',
                     `${item.name} has been added to your cart!`
                 );
+            },
+            error(e) {
+                result.context.isLoading = false;
+            },
+            complete(e) {
+                result.context.isLoading = false;
             }
         };
 

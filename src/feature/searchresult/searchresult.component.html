@@ -5,7 +5,7 @@
         <wait-component [isActive]="isLoading" [message]="'Please Wait while we are loading your items.'"></wait-component>
         <div class="row filterArea">
           <div class="col-xs-6">
-            <div class="btn-group" dropdown *ngIf="hasNext">
+            <div class="btn-group" dropdown *ngIf="!isLoading && searchResult?.length > 0">
               <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                   Sort <span class="caret"></span>
                 </button>
@@ -18,7 +18,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-xs-6" *ngIf="hasNext">
+          <div class="col-xs-6" *ngIf="!isLoading && searchResult?.length > 0">
             <!-- page size -->
             <div class="form-group pull-right">
               <select [(ngModel)]="size" (change)="changePerPage($event)" class="form-control my-dropdown" id="exampleSelect1">                  
@@ -77,8 +77,8 @@
         </div> -->
         <app-pagination-component [currentIndex]="currentIndex" [hasNext]="hasNext" [hasPrevious]="hasPrevious" [size]="size" [maxNumberOfPageButtons]="maxNumberOfPageButtons"
           [total]="total" [numberOfPages]="numberOfPages" route="'search'" [selected]="selected"></app-pagination-component>
-        <ng-template #nores class="row">
-          <h3 style="text-align: center;">no results were found!</h3>
+        <ng-template #nores class="row">          
+          <h3 *ngIf="!isLoading" style="text-align: center;">no results were found!</h3>
         </ng-template>
       </div>
     </div>
