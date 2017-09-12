@@ -57,7 +57,8 @@
             </div>
           </div>
 
-          <form action="" class="row" method="POST" role="form">
+          <div class="row">
+            <wait-component [isActive]="isLoading" [message]="'Please Wait ...'"></wait-component>
             <div class="col-xs-12">
               <div class="page-header">
                 <h4>order review</h4>
@@ -70,7 +71,8 @@
                 </div>
                 <div class="panel-body">
                   <address>
-                    <strong>Adam Smith</strong><br> 9/4 C Babor Road, Mohammad pur, <br> Shyamoli, Dhaka <br> Bangladesh
+                    <strong>{{checkout?.name}}</strong><br> {{checkout?.billingAddress?.addressLine1}} <br> <span *ngIf="checkout?.billingAddress?.addressLine2">
+                        {{checkout?.billingAddress?.addressLine2}} <br> </span> {{checkout?.billingAddress?.city}}, {{checkout?.billingAddress?.state}}, {{checkout?.billingAddress?.zipCode}} 
                   </address>
                 </div>
               </div>
@@ -82,7 +84,8 @@
                 </div>
                 <div class="panel-body">
                   <address>
-                    <strong>Adam Smith</strong><br> 9/4 C Babor Road, Mohammad pur, <br> Shyamoli, Dhaka <br> Bangladesh
+                    <strong>{{checkout?.name}}</strong><br> {{checkout?.shippingAddress?.addressLine1}} <br> <span *ngIf="checkout?.shippingAddress?.addressLine2">
+                        {{checkout?.shippingAddress?.addressLine2}} <br> </span> {{checkout?.shippingAddress?.city}}, {{checkout?.shippingAddress?.state}}, {{checkout?.shippingAddress?.zipCode}} 
                   </address>
                 </div>
               </div>
@@ -120,8 +123,8 @@
                   <div class="row">
                     <div class="col-sm-4 col-xs-12">
                       <address>
-                        <a href="#">Email: adamsmith@bigbag.com</a> <br>
-                        <span>Phone: +884 5452 6432</span>
+                        <a href="#">Email: {{checkout?.email}}</a> <br>
+                        <span>Phone: {{checkout?.phone}}</span>
                       </address>
                     </div>
                     <div class="col-sm-8 col-xs-12">
@@ -150,45 +153,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="col-xs-2">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <span class="cartImage"><img src="img/products/cart-image.jpg" alt="image"></span>
-                        </td>
-                        <td class="col-xs-4">Italian Winter Hat</td>
-                        <td class="col-xs-2">$ 99.00</td>
-                        <td class="col-xs-2"><input type="text" placeholder="1"></td>
-                        <td class="col-xs-2">$ 99.00</td>
-                      </tr>
-                      <tr>
-                        <td class="col-xs-2">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <span class="cartImage"><img src="img/products/cart-image.jpg" alt="image"></span>
-                        </td>
-                        <td class="col-xs-4">Italian Winter Hat</td>
-                        <td class="col-xs-2">$ 99.00</td>
-                        <td class="col-xs-2"><input type="text" placeholder="1"></td>
-                        <td class="col-xs-2">$ 99.00</td>
-                      </tr>
-                      <tr>
-                        <td class="col-xs-2">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <span class="cartImage"><img src="img/products/cart-image.jpg" alt="image"></span>
-                        </td>
-                        <td class="col-xs-4">Italian Winter Hat</td>
-                        <td class="col-xs-2">$ 99.00</td>
-                        <td class="col-xs-2"><input type="text" placeholder="1"></td>
-                        <td class="col-xs-2">$ 99.00</td>
-                      </tr>
-                    </tbody>
+                        <tr *ngFor="let item of checkout?.orderDetails">
+                          <td class="col-xs-2">
+                            <button type="button" class="close" (click)="removeItemFromCart(item.id)" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <!-- <span class="cartImage"><img src="img/products/cart-image.jpg" alt="image"></span> -->
+                          </td>
+                          <td class="col-xs-4">{{item.name | truncate: 50}}</td>
+                          <td class="col-xs-2">{{item.price | currency}}</td>
+                          <!-- <td class="col-xs-2"><input type="text" placeholder="{{item.quantity}}" (change)="updateCartServerSide(item.itemId, $event)" [(ngModel)]="item.quantity"></td> -->
+                          <td class="col-xs-2">{{item.quantity}}</td>
+                           <td class="col-xs-2">{{item.price * item.quantity | currency}}</td> 
+                          
+                        </tr>
+                      </tbody>
                   </table>
                 </div>
                 <div class="row totalAmountArea">
                   <div class="col-sm-4 col-sm-offset-8 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>Sub Total <span>$ 792.00</span></li>
-                      <li>UK Vat <span>$ 18.00</span></li>
-                      <li>Grand Total <span class="grandTotal">$ 810.00</span></li>
+                        <ul class="list-unstyled">
+                            <li>Sub Total <span>{{total | currency}}</span></li>
+                            <li>Tax <span>$ 18.00</span></li>
+                            <li>Grand Total <span class="grandTotal">$ 810.00</span></li>
+                          </ul>
                     </ul>
                   </div>
                 </div>
@@ -202,7 +189,7 @@
                 </ul>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

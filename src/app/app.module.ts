@@ -1,3 +1,5 @@
+import { OrderSericve } from './../service/order.service';
+import { OrdersComponent } from './../feature/order/orders/orders.component';
 import { ItemsInCategoryComponent } from './../feature/item/itemsincategory/itemsincategory.component';
 import { AuctionDetailComponent } from './../feature/auction/detail/auctiondetail.component';
 import { SearchHeaderComponent } from './../feature/navigations/searchheader/searchheader.component';
@@ -145,7 +147,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     AuctionsComponent,
     AuctionDetailComponent,
     ModalComponent,
-    ItemsInCategoryComponent
+    ItemsInCategoryComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -183,7 +186,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     CategoryRepository,
     CategoryService,
     AuctionRepository,
-    AuctionService
+    AuctionService,
+    OrderSericve
   ],
   entryComponents: [
     ModalComponent

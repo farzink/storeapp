@@ -15,3 +15,4 @@ export const storyPath: String = basePath + 'stories';
 export const orderPath: String = basePath + 'orders';
 export const auctionPath: String = basePath + 'auctions';
 export const placeholderImage: String = 'assets/image/placeholder.jpg';
+export const avatarPlaceholder: String = 'assets/images/avatar-placeholder.png';

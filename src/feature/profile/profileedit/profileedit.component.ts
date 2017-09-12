@@ -1,3 +1,4 @@
+import { avatarPlaceholder } from './../../../utility/link';
 import { Component, OnInit, Injectable, ElementRef, ViewChild } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Profile } from '../../../model/profile';
@@ -19,6 +20,7 @@ export class ProfileEditComponent implements OnInit {
     isLoading = true;
     profileForm: FormGroup;
     profile: Profile;
+    avatarPlaceholder = avatarPlaceholder;
     ngOnInit(): void {
         this.profileForm = this.formBuilder.group({
             firstName: ['', [Validators.required, Validators.minLength(2)]],

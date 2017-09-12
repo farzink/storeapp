@@ -1,3 +1,4 @@
+import { OrdersComponent } from './../feature/order/orders/orders.component';
 import { ItemsInCategoryComponent } from './../feature/item/itemsincategory/itemsincategory.component';
 import { AuctionDetailComponent } from './../feature/auction/detail/auctiondetail.component';
 import { SearchHeaderComponent } from './../feature/navigations/searchheader/searchheader.component';
@@ -163,6 +164,7 @@ export const routes: Routes = [
       { path: 'address', component: AddressInfoComponent, canActivate: [RouteAuth] },
       { path: 'addresses', component: AddressesComponent, canActivate: [RouteAuth] },
       { path: 'addresses/edit/:id', component: EditAddressComponent, canActivate: [RouteAuth] },
+      { path: 'orders', component: OrdersComponent, canActivate: [RouteAuth] },
       { path: '', component: FooterComponent, outlet: 'footer' },
       { path: '', component: HeaderComponent, outlet: 'header' }
     ]

@@ -26,14 +26,12 @@
           <a routerLink="/profile" class="btn btn-default active"><i class="fa fa-th" aria-hidden="true"></i>Account Dashboard</a>
           <a routerLink="/profile/edit" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
           <a routerLink="/profile/addresses" class="btn btn-default"><i class="fa fa-map-marker" aria-hidden="true"></i>My Address</a>
-          <a class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a>
+          <a routerLink="/profile/orders" class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a>
           <a routerLink="/profile/wishlist" class="btn btn-default"><i class="fa fa-gift" aria-hidden="true"></i>Wishlist</a>
           <!-- conditional business buttons -->
           <a routerLink="/profile/activatebusiness" [ngClass]="{'hide': profile?.business.businessStatusType != 0}" class="btn btn-default"><i class="fa fa-money" aria-hidden="true"></i>Activate Business</a>
           <a routerLink="/profile/business/manage" [ngClass]="{'hide': profile?.business.businessStatusType != 2}" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Manage Business</a>
-
           <!-- conditional business buttons -->
-
         </div>
       </div>
     </div>
@@ -67,7 +65,7 @@
           <ul class="list-inline">
             <li><a routerLink="/profile/edit" class="btn btn-default btn-lg"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
             <li><a routerLink="/profile/addresses" class="btn btn-default btn-lg"><i class="fa fa-map-marker" aria-hidden="true"></i>My Address</a></li>
-            <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a></li>
+            <li><a routerLink="/profile/orders" class="btn btn-default btn-lg"><i class="fa fa-list" aria-hidden="true"></i>All Orders</a></li>
             <li *ngIf="profile?.business.businessStatusType == 2; else alternative"><a routerLink="/profile/business/manage" class="btn btn-default btn-lg"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Manage Business</a></li>
             <ng-template #alternative><li><a routerLink="/profile/wishlist" class="btn btn-default btn-lg"><i class="fa fa-gift" aria-hidden="true"></i>Wishlist</a></li></ng-template>
             <li><a routerLink="/profile/address" class="btn btn-default btn-lg"><i class="fa fa-plus-circle" aria-hidden="true"></i>New Address</a></li>

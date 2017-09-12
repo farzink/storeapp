@@ -1,3 +1,4 @@
+import { avatarPlaceholder } from './../../../utility/link';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemService } from '../../../service/item.service';
@@ -15,6 +16,7 @@ export class ItemDetailComponent implements OnInit {
     item: any;
     isLoading = true;
     itemId;
+    avatarPlaceholder = avatarPlaceholder;
     onRatingChangeResult: OnRatingChangeEven;
     ngOnInit(): void {
 

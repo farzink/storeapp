@@ -1,3 +1,4 @@
+import { CheckoutReview } from './../model/checkoutReview.model';
 import { Order } from './../model/order.model';
 import { SingleEntityContainer } from './../model/singleEntityContainer';
 import { WebCallResult } from './../utility/webcall-result';
@@ -59,6 +60,13 @@ export class OrderRepository implements IRepository<Order> {
     updateCheckoutAddress(path: string, model: any) {
         return this.httpHelper.put(`${orderPath}/${path}`, model)
             .map(e => new WebCallResult<Order>(new Order(e.json()),
+                e.status,
+                e.statusText));
+    }
+
+    getCheckoutReview() {
+        return this.httpHelper.get(`${orderPath}/checkout/review`)
+            .map(e => new WebCallResult<CheckoutReview>(new CheckoutReview(e.json()),
                 e.status,
                 e.statusText));
     }

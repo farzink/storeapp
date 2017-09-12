@@ -137,7 +137,7 @@
               <div class="well well-lg clearfix">
                 <ul class="pager">
                   <li class="previous"><a routerLink="/cart">Back to Cart</a></li>
-                  <li class="next"><a (click)="nextStep()" href="javascript:void(0)">Continue</a></li>
+                  <li class="next" [ngClass]="{'hidden': selectedAddress.selectedBillingAddress == 0}"><a (click)="nextStep()" href="javascript:void(0)">Continue</a></li>
                 </ul>
               </div>
             </div>
