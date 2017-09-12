@@ -12,7 +12,7 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
     selector: 'profileedit-component',
     templateUrl: './profileedit.component.html',
-    styleUrls: ['./profileedit.component.css']
+    styleUrls: ['./profileedit.component.scss']
 })
 export class ProfileEditComponent implements OnInit {
     @ViewChild('file') fileElement: ElementRef;
@@ -23,12 +23,13 @@ export class ProfileEditComponent implements OnInit {
         this.profileForm = this.formBuilder.group({
             firstName: ['', [Validators.required, Validators.minLength(2)]],
             lastName: ['', [Validators.required, Validators.minLength(2)]],
+            phone: ['', [Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
         });
         this.getProfileInfo();
         this.isLoading = false;
     }
     constructor(private profileService: ProfileService, private router: Router, private formBuilder: FormBuilder,
-         private notification: NotificationsService) {  }
+        private notification: NotificationsService) { }
     getProfileInfo() {
         const result = {
             context: this,
@@ -37,6 +38,7 @@ export class ProfileEditComponent implements OnInit {
                     result.context.profile = e.item;
                     result.context.profileForm.patchValue({ firstName: e.item.firstName });
                     result.context.profileForm.patchValue({ lastName: e.item.lastName });
+                    result.context.profileForm.patchValue({ phone: e.item.phone });
                 }
             },
             error(e) {

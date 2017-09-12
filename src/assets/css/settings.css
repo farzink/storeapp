@@ -2007,11 +2007,11 @@ img.tp-slider-alternative-image {
 }
 
 .tp-rightarrow.preview1:after {
-  content: '\e825';
+  content: '\2771';
 }
 
 .tp-leftarrow.preview1:after {
-  content: '\e824';
+  content: '\2770';
 }
 
 .tparrows.preview1:hover:after {
@@ -2444,11 +2444,11 @@ img.tp-slider-alternative-image {
 }
 
 .tp-rightarrow.preview3:after {
-  content: '\e825';
+  content: '\2771';
 }
 
 .tp-leftarrow.preview3:after {
-  content: '\e824';
+  content: '\2770';
 }
 
 .tparrows.preview3 .tp-arr-iwrapper {
@@ -2632,11 +2632,11 @@ img.tp-slider-alternative-image {
 }
 
 .tp-rightarrow.preview4:after {
-  content: '\e825';
+  content: '\2771';
 }
 
 .tp-leftarrow.preview4:after {
-  content: '\e824';
+  content: '\2770';
 }
 
 .tparrows.preview4 .tp-arr-allwrapper {
@@ -3199,11 +3199,11 @@ img.tp-slider-alternative-image {
 }
 
 .revicon-left-open-big:before {
-  content: '\e824'
+  content: '\2770'
 }
 
 .revicon-right-open-big:before {
-  content: '\e825'
+  content: '\2771'
 }
 
 .revicon-left:before {

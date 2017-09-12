@@ -17,7 +17,7 @@
     right: 0;
     bottom: 0;
     z-index: 1001;
-    background: #fff;
+    background: rgba(0, 0, 0, .5);
 }
 
 .loader,

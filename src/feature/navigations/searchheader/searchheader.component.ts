@@ -35,6 +35,7 @@ export class SearchHeaderComponent implements OnInit {
 
 
     ngOnInit() {
+        $('.select-drop').selectbox();
         const interested = {
             context: this,
             satisfy(e) {
@@ -50,7 +51,6 @@ export class SearchHeaderComponent implements OnInit {
         };
         this.categoryService.getAllItemCategories(interested);
 
-
         const result = {
             context: this,
             success(e) {
@@ -61,17 +61,6 @@ export class SearchHeaderComponent implements OnInit {
         if (!this.authService.isTokenExpired()) {
             this.isLoggedIn = true;
         }
-
-        // const result2 = {
-        //     context: this,
-        //     success(e) {
-        //         console.log(e);
-        //     },
-        //     error(e) {
-        //         console.log(e);
-        //     }
-        // };
-
     }
 
     observableSource = (keyword: any): Observable<any[]> => {

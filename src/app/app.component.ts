@@ -1,3 +1,4 @@
+import { CategoryService } from './../service/category.service';
 import { AuthenticationService } from './../service/authentication.service';
 import { Component } from '@angular/core';
 
@@ -17,8 +18,11 @@ export class AppComponent {
     clickToClose: true
   };
   isAuthorized: Boolean;
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private categoryService: CategoryService) {
     this.isAuthorized = this.authService.isTokenExpired();
+
+    this.categoryService.getAllBusinessCategories({satisfy: function(e){}});
+    this.categoryService.getAllItemCategories({satisfy: function(e){}});
   }
   title = 'app works!';
 }

@@ -274,9 +274,9 @@ jQuery(document).ready(function () {
 //   s = i.getElementsByTagName(g)[0];
 //   s.parentNode.insertBefore(t, s);
 // })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/46851/script.js');
-jQuery(document).ready(function () {
-   $('.select-drop').selectbox();
-});
+// jQuery(document).ready(function () {
+//    $('.select-drop').selectbox();
+// });
 jQuery(document).ready(function () {
   $('.side-nav li a').click(function () {
     $(this).find('i').toggleClass('fa fa-minus fa fa-plus');

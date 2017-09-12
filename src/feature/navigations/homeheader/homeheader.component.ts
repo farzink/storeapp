@@ -33,7 +33,6 @@ export class HomeHeaderComponent implements OnInit {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 this.jqueryInit();
-                console.log(1);
             }
         });
 
@@ -48,6 +47,7 @@ export class HomeHeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        $('.select-drop').selectbox();
         const interested = {
             context: this,
             satisfy(e) {
@@ -57,8 +57,8 @@ export class HomeHeaderComponent implements OnInit {
                 for (const i of e) {
                     $('.categorySelect').append(`<option value="${i.id}">${i.name}</option>`);
                 }
-                $('.select-drop').selectbox('detach');
-                $('.select-drop').selectbox('attach');
+                 $('.select-drop').selectbox('detach');
+                 $('.select-drop').selectbox('attach');
             }
         };
         this.categoryService.getAllItemCategories(interested);
@@ -73,7 +73,6 @@ export class HomeHeaderComponent implements OnInit {
         if (!this.authService.isTokenExpired()) {
             this.isLoggedIn = true;
         }
-
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
@@ -108,6 +107,7 @@ export class HomeHeaderComponent implements OnInit {
     }
 
     updateCart(e) {
+        console.log(e);
         this.itemsInCart = e;
     }
 

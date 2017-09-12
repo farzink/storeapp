@@ -1504,7 +1504,7 @@ body.bodyColor.container {
 }
 
 .nav-category>.dropdown-menu>li:last-child>a {
-  padding: 13px 20px;
+  // padding: 13px 20px;
 }
 
 .nav-category>.dropdown-menu>li:last-child>a:after {
@@ -1544,7 +1544,7 @@ body.bodyColor.container {
   color: #252525;
   transition: all 0.3s ease-in-out;
   position: relative;
-  padding-left: 50px;
+  padding-left: 25px;
 }
 
 .nav-category .dropdown-menu li a:hover {
@@ -2813,6 +2813,8 @@ body.bodyColor.container {
 .productsContent .productBox .productCaption {
   width: 100%;
   display: block;
+  min-height: 62px;
+  max-height: 62px;
 }
 
 .imageBox .productCaption h5,

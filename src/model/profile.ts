@@ -8,6 +8,7 @@ export class Profile {
     public isActive: Boolean;
     public lastDateTime: string;
     public business: Business;
+    public phone: string;
     constructor(data: any) {
         this.id = data.id;
         this.email = data.email;
@@ -15,7 +16,8 @@ export class Profile {
         this.lastName = data.lastname;
         this.isActive = data.isActive;
         this.business = new Business(data.profileBusiness);
+        this.phone = data.phone;
         //this.lastDateTime= new Date(data.updatedDateTime).toString();
-        this.lastDateTime = "Sat Apr 01 2017";
+        this.lastDateTime = data.lastDateTime;
     }
 }

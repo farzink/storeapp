@@ -32,7 +32,7 @@
       </div>
       <div class="navTop-middle">
         <div class="filterArea hidden-xs hidden-sm">
-          <select name="guiest_id1" id="categorySelect" class="select-drop categorySelect">
+          <select name="guiest_id1" id="categorySelect" class="select-drop categorySelect" style="display: none;">
                 <!-- <option *ngFor="let cat of categories" value="0">{{cat.name}}</option>                 -->                
           </select>
         </div>
@@ -47,8 +47,8 @@
         <a href="javascript:void(0);" class="dropdown-toggle shop-cart" data-toggle="dropdown">
             <i class="fa fa-shopping-cart"></i>
             <span class="hidden-xs">
-              <span class="cart-total">Cart {{itemsInCart?.orderDetails?.length}}</span><br>
-              <span class="cart-price">$0.00</span>
+              <span class="cart-total">Cart ({{itemsInCart?.orderDetails?.length}})</span><br>
+              <span class="cart-price">${{itemsInCart?.total}}</span>
             </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
@@ -109,7 +109,7 @@
               <li><a routerLink="/profile/addresses">Address</a></li>
             </ul>
           </li>
-          <li class="dropdown megaDropMenu">
+          <!-- <li class="dropdown megaDropMenu">
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true"
               aria-expanded="false">Business</a>
             <ul class="dropdown-menu row">
@@ -132,7 +132,7 @@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="dropdown">
             <a routerLink="/auctions" class="dropdown-toggle" data-toggle="dropdown" role="button">Auctions</a>
           </li>

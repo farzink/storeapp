@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { IRepository } from './irepository';
 import { HttpHelper } from '../service/http.helper';
 import { profilePath } from '../utility/link';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { WebCallResult } from '../utility/webcall-result';
 import { Business } from '../model/Business.model';
 import { Address } from '../model/address.model';
