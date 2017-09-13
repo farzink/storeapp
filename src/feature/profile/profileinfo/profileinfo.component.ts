@@ -32,6 +32,5 @@ export class ProfileInfoComponent implements OnInit {
     }
     makeProfileFree() {
         this.isProfileBusy = false;
-        console.log(this.isProfileBusy);
     }
 }

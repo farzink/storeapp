@@ -41,7 +41,6 @@ export class SearchHeaderComponent implements OnInit {
         const interested = {
             context: this,
             satisfy(e) {
-                console.log(e);
                 interested.context.categories = e;
                 $('.categorySelect').empty();
                 for (const i of e) {
@@ -85,10 +84,10 @@ export class SearchHeaderComponent implements OnInit {
     //     this.router.navigate(['/search'], { queryParams: { q: this.selected } });
     //     this.categoryService.getAllBusinessCategories({
     //         satisfy: function (e) {
-    //             console.log(e);
+
     //         }
     //     });
-    //     console.log(this.test);
+
     // }
 
     search() {
@@ -97,10 +96,8 @@ export class SearchHeaderComponent implements OnInit {
         this.router.navigate(['/search'], { queryParams: { q: this.selected, ci: selectedCategory } });
         this.categoryService.getAllBusinessCategories({
             satisfy: function (e) {
-                console.log(e);
             }
         });
-        console.log(this.test);
     }
 
     keypressed(e) {

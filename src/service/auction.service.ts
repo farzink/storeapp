@@ -13,7 +13,6 @@ export class AuctionService implements ICoreService<Auction> {
     }
     update(model: any, result) {
         const load = JSON.stringify(model);
-        console.log(load);
         this.observableHelper.processObservable(this.auctionRepository.update(model),
             result.success, result.error, result.complete);
     }

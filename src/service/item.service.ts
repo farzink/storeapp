@@ -44,7 +44,6 @@ export class ItemService implements ICoreService<Item> {
             result.success, result.error, result.complete);
     }
     removeImage(model: Image, result) {
-        console.log(model);
         this.observableHelper.processObservable(this.itemRepository.removeEntity(model, model.itemId + '/images/' + model.id),
             result.success, result.error, result.complete);
     }

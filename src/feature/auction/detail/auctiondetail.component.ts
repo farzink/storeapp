@@ -70,7 +70,6 @@ export class AuctionDetailComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e.item);
                     result.context.auction = e.item;
                 }
                 result.context.isLoading = false;
@@ -83,7 +82,7 @@ export class AuctionDetailComponent implements OnInit {
     }
 
     handle(e) {
-        console.log(e.message);
+
     }
 
     ngOnInit() {

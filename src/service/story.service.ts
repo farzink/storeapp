@@ -14,7 +14,6 @@ export class StoryService implements ICoreService<Story> {
     }
     update(model: any, result) {
         const load = JSON.stringify(model);
-        console.log(load);
         this.observableHelper.processObservable(this.storyRepository.update(model),
             result.success, result.error, result.complete);
     }

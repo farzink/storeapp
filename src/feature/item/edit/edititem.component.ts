@@ -37,11 +37,10 @@ export class EditItemComponent implements OnInit {
     }
     add(e) {
         e.preventDefault();
-        var result = {
+        const result = {
             context: this,
             success(e) {
-                if (e.statusCode == 201) {
-                    console.log(e);
+                if (e.statusCode === 201) {
                     result.context.router.navigate(['/home/business/item/edit/1', { queryParams: { id: e.item.id } }]);
                 }
             }
@@ -49,11 +48,10 @@ export class EditItemComponent implements OnInit {
         this.itemService.add(this.itemForm.value, result);
     }
     getItem(id) {
-        var result = {
+        const result = {
             context: this,
             success(e) {
-                if (e.statusCode == 200) {
-                    console.log(e);
+                if (e.statusCode === 200) {
                     result.context.item = e.item;
                 }
             }

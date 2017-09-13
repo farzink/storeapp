@@ -65,6 +65,6 @@ export class AuthenticationService {
 //         },
 //         error => {
 //           alert(error.text());
-//           console.log(error.text());
+
 //         }
 //       );

@@ -55,11 +55,10 @@ export class AddItemComponent implements OnInit {
         const selectedManufacturingType = tempManufacturer.value;
         this.itemForm.patchValue({ itemCategoryId: this.selectedCategory });
         this.itemForm.patchValue({ manufacturingType: this.selectedCategory });
-        // console.log(this.itemForm.value);
+
         const result = {
             context: this,
             success(e) {
-                console.log(e);
                 if (e.statusCode === 201) {
                     result.context.notification.success(
                         'Success',

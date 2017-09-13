@@ -20,7 +20,6 @@ export class HomeComponent {
             'http://localhost:54434/api/home/suggestion/' + keyword;
         if (keyword) {
             return this.http.get(url).map(res => {
-                console.log(res.json());
                 const json = res.json();
                 return json.results;
             });

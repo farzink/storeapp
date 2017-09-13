@@ -10,7 +10,7 @@
         <ol class="breadcrumb pull-right">
           <li>
             <a routerLink="/profile/business/manage">Manage Business</a>
-          </li>          
+          </li>
           <li class="active">Items</li>
         </ol>
       </div>
@@ -21,34 +21,15 @@
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row filterArea">
-      <div class="col-xs-6">
-        <select name="guiest_id1" id="guiest_id1" class="select-drop" sb="49082453" style="display: none;">
-                <option value="0">Default sorting</option>
-                <option value="1">Sort by popularity</option>
-                <option value="2">Sort by rating</option>
-                <option value="3">Sort by newness</option>
-                <option value="3">Sort by price</option>
-              </select>
-        <div id="sbHolder_49082453" class="sbHolder"><a id="sbToggle_49082453" href="#" class="sbToggle"></a><a id="sbSelector_49082453" href="#" class="sbSelector">Default sorting</a>
-          <ul id="sbOptions_49082453" class="sbOptions" style="display: none;">
-            <li><a href="#0" rel="0">Default sorting</a></li>
-            <li><a href="#1" rel="1">Sort by popularity</a></li>
-            <li><a href="#2" rel="2">Sort by rating</a></li>
-            <li><a href="#3" rel="3">Sort by newness</a></li>
-            <li><a href="#3" rel="3">Sort by price</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <!-- <div class="btn-group pull-right" role="group">
-          <button type="button" class="btn btn-default active"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
-          <button type="button" class="btn btn-default"><i class="fa fa-th-list" aria-hidden="true"></i><span>List</span></button>
-        </div> -->
-      </div>
-    </div>
+      <div class="col-xs-6 col-md-offset-3">
+        <span class="input-span">Search Your Items</span>
+          <input #userInput name="itemName" type="text" class="my-input" (input)="filterItems(userInput.value)">
+        
+      </div>     
+    </div>   
     <div class="row">
       <wait-component [isActive]="isLoading" [message]="'Please Wait while we are loading your items.'"></wait-component>
-      <div class="col-sm-12 col-xs-12" *ngFor="let item of items">
+      <div class="col-sm-12 col-xs-12" *ngFor="let item of filteredItems | slice:0:maxNumberOfItemsToDisplay; let i = inedx">
         <div class="row productListSingle">
           <div class="col-xs-12">
             <div class="media">
@@ -63,10 +44,10 @@
                 </div>
               </ng-template>
               <div class="media-body">
-                <h4 class="media-heading"><a href="single-product.html">{{item?.title}}</a></h4>
+                <h4 class="media-heading"><a [routerLink]="['/item', item.id]">{{item?.name}}</a></h4>
                 <p>{{item?.description}}.</p>
                 <p>{{item?.manufacturer}}</p>
-                <p>{{item?.name}}</p>
+                <p>{{item?.title}}</p>
                 <h3>${{item?.price}}</h3>
                 <div class="btn-group" role="group">
                   <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target=".login-modal"><i class="fa fa-heart" aria-hidden="true"></i></button> -->

@@ -13,7 +13,9 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class ItemsComponent implements OnInit {
     items: Array<Item>;
+    filteredItems: Array<Item>;
     isLoading = true;
+    maxNumberOfItemsToDisplay = 25;
     placeholderImage = 'assets/image/placeholder.jpg';
     ngOnInit(): void {
         this.getItems();
@@ -25,16 +27,34 @@ export class ItemsComponent implements OnInit {
         this.notification.success('Success', 'Item is deactivated');
     }
     getItems() {
+        this.isLoading = true;
         const result = {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e);
                     result.context.items = e.item;
+                    result.context.assignCopy();
                 }
+                result.context.isLoading = false;
+            },
+            error(e) {
+                this.notification.error('Error', 'Could not load your items. please try again later');
+            },
+            complete(e) {
                 result.context.isLoading = false;
             }
         };
         this.itemService.getItems(result);
+    }
+
+    assignCopy() {
+        this.filteredItems = Object.assign([], this.items);
+    }
+
+    filterItems(value) {
+        if (!value) { this.assignCopy(); }
+        this.filteredItems = Object.assign([], this.items).filter(
+            item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+        );
     }
 }

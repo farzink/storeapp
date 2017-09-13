@@ -56,7 +56,7 @@ export class EditAddressComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    // console.log(e);
+
                 }
                 result.context.setValues(e.item);
             }
@@ -86,7 +86,7 @@ export class EditAddressComponent implements OnInit {
  // change(e){
     //     this.addressForm.controls['addressType'].patchValue({selected: 2});
     //     this.dt.nativeElement.value=2;
-    //     //console.log(this.el.nativeElement);
+    //     
     // }
 
 // getAddressTypes() {

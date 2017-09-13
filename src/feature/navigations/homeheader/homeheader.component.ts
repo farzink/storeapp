@@ -53,14 +53,13 @@ export class HomeHeaderComponent implements OnInit {
         const interested = {
             context: this,
             satisfy(e) {
-                console.log(e);
                 interested.context.categories = e;
                 $('.categorySelect').empty();
                 for (const i of e) {
                     $('.categorySelect').append(`<option value="${i.id}">${i.name}</option>`);
                 }
-                 $('.select-drop').selectbox('detach');
-                 $('.select-drop').selectbox('attach');
+                $('.select-drop').selectbox('detach');
+                $('.select-drop').selectbox('attach');
             }
         };
         this.categoryService.getAllItemCategories(interested);
@@ -96,10 +95,8 @@ export class HomeHeaderComponent implements OnInit {
         this.router.navigate(['/search'], { queryParams: { q: this.selected, ci: selectedCategory } });
         this.categoryService.getAllBusinessCategories({
             satisfy: function (e) {
-                console.log(e);
             }
         });
-        console.log(this.test);
     }
 
     keypressed(e) {
@@ -109,7 +106,7 @@ export class HomeHeaderComponent implements OnInit {
     }
 
     updateCart(e) {
-        console.log(e);
+
         this.itemsInCart = e;
     }
 
@@ -163,8 +160,7 @@ export class HomeHeaderComponent implements OnInit {
         //     nav_top: navigation.css('margin-top')
         // };
 
-        // if (main_area.hasClass('bb-fixed-header') && ($(this).scrollTop() == 0 || $(this).width() < 750)) {
-        //     // console.log('this opens the nav');
+        // if (main_area.hasClass('bb-fixed-header') && ($(this).scrollTop() == 0 || $(this).width() < 750)) {        
         //     main_area.removeClass('bb-fixed-header').appendTo(header_area);
         //     navigation.animate({
         //         'margin-top': original.nav_top

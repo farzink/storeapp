@@ -98,7 +98,6 @@ export class ItemsInCategoryComponent implements OnInit {
         const result = {
             context: this,
             success(e) {
-                console.log(e);
                 if (e.statusCode === 201) {
                     result.context.notification.success(
                         'Success',
@@ -111,11 +110,9 @@ export class ItemsInCategoryComponent implements OnInit {
     }
 
     addToCart(item) {
-        console.log(item);
         const result = {
             context: this,
             success(e) {
-                console.log(e);
                 // result.context.cartService.addToObservableCart(e);
                 result.context.cartService.update();
                 result.context.notification.success(

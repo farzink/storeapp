@@ -59,6 +59,6 @@ export class HttpHelper {
 //         },
 //         error => {
 //           alert(error.text());
-//           console.log(error.text());
+
 //         }
 //       );

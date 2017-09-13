@@ -28,7 +28,6 @@ export class CheckoutReviewComponent implements OnInit {
         const result = {
             context: this,
             success(e) {
-                console.log(e.item);
                 result.context.checkout = e.item;
                 result.context.isLoading = false;
 

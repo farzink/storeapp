@@ -13,7 +13,6 @@ export class AddressService implements ICoreService<Address>{
     }
     update(model: any, result) {
         let load = JSON.stringify(model);
-        console.log(load);
         this.observableHelper.processObservable(this.addressRepository.update(model),
             result.success, result.error, result.complete);
     }
@@ -23,7 +22,7 @@ export class AddressService implements ICoreService<Address>{
     }
     delete(model: any, result) {
         this.observableHelper.processObservable(this.addressRepository.remove(model),
-        result.success, result.error, result.complete);
+            result.success, result.error, result.complete);
     }
     getAll(result) {
         this.observableHelper.processObservable(this.addressRepository.getAll(),

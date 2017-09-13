@@ -30,7 +30,6 @@ export class CountdownComponent {
         // const test = Date.parse('9-7-2017 19:33:35');
         const diff = Date.parse(this.endDate) - now;
         let res = Math.ceil(diff / 1000);
-        // console.log(res, 'res');
 
         if (res >= this.daySeconds) {
             this.day = Math.floor(res / this.daySeconds);
@@ -64,8 +63,6 @@ export class CountdownComponent {
         const minutes = Math.floor((t / 1000 / 60) % 60);
         const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
         const days = Math.floor(t / (1000 * 60 * 60 * 24));
-
-        // console.log(t, '=> t, ', seconds, '=> seconds, ', minutes, '=> minutes, ', hours, '=> hours, ', days);
     }
 }
 

@@ -42,7 +42,7 @@ export class ArticlesComponent implements OnInit {
             success(e) {
                 result.context.articles = e.item.items;
                 result.context.paginate(e.item);
-                console.log(e);
+                
             },
             error(e) {
                 result.context.notification.error(

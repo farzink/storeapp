@@ -115,7 +115,6 @@ export class EditItemInfoComponent implements OnInit {
     updateSize(e) {
         e.preventDefault();
         this.isLoadingSize = true;
-        console.log(this.isLoadingInfo);
         const result = {
             context: this,
             success(d) {
@@ -159,15 +158,13 @@ export class EditItemInfoComponent implements OnInit {
                     result.context.shippingForm.patchValue({ hasFreeShipping: e.item.hasFreeShipping });
                     result.context.shippingForm.patchValue({ hasLocalPickup: e.item.hasLocalPickup });
                     result.context.shippingForm.patchValue({ location: e.item.location });
-                    result.context.isLoadingInfo = false;                    
-                    console.log(result.context.item);
+                    result.context.isLoadingInfo = false;
                     const interested = {
                         context: this,
                         satisfy(d) {
                             result.context.categories = d;
                             $('.categorySelect').empty();
                             for (const i of d) {
-                                console.log(i);
                                 if (result.context.item.itemCategoryId === i.id) {
                                     $('.categorySelect').append(`<option value="${i.id}" selected="true">${i.name}</option>`);
                                 } else {

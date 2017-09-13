@@ -82,7 +82,6 @@ export class ItemRepository implements IRepository<Item> {
     }
 
     getItemsOfCategory(path: string) {
-        console.log(path);
         return this.httpHelper.get(homePath + '/' + path)
             .map(e => new WebCallResult<Array<Item>>((e.json()),
                 e.status,

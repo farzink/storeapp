@@ -52,7 +52,6 @@ export class ProfileRepository implements IRepository<Profile> {
                 e.statusText));
     }
     updateBusinessAddress(model: Profile): Observable<WebCallResult<any>> {
-        console.log(profilePath + '/business/address');
         return this.httpHelper.put(profilePath + '/business/address', model)
             .map(e => new WebCallResult<any>(e.json(),
                 e.status,
@@ -97,9 +96,9 @@ export class ProfileRepository implements IRepository<Profile> {
 
     removeFromWishlist(itemId): Observable<WebCallResult<Profile>> {
         return this.httpHelper.delete(profilePath + '/wishlist/' + itemId)
-        .map(e => new WebCallResult<Profile>(new Profile(e.json()),
-            e.status,
-            e.statusText
-        ));
+            .map(e => new WebCallResult<Profile>(new Profile(e.json()),
+                e.status,
+                e.statusText
+            ));
     }
 }

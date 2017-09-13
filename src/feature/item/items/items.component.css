@@ -1,0 +1,23 @@
+.my-input {
+    border-radius: 0;
+    background-color: #f0f0f0;
+    border: none;
+    height: 50px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border-radius: 0;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    min-height: 50px;
+    min-width: 350px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .input-span {
+      font-size: 18px;
+      font-weight: 700;
+  }

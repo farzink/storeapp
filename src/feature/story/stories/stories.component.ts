@@ -41,7 +41,6 @@ export class StoriesComponent implements OnInit {
             success(e) {
                 result.context.stories = e.item.items;
                 result.context.paginate(e.item);
-                console.log(e);
             },
             error(e) {
                 result.context.notification.error(

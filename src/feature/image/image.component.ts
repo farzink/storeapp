@@ -29,7 +29,6 @@ export class ImageComponent implements OnInit {
     @Input() ref: any;
     ngOnInit(): void {
         if (this.image.id === -1) {
-            console.log('iddnise');
             this.defaultImage = this.image.path + '/' + this.image.name;
             this.imageElement.nativeElement.src = this.defaultImage;
             this.choosable = true;

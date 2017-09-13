@@ -57,7 +57,6 @@ export class BusinessAddressEditComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e);
                     result.context.addressForm.patchValue({ addressLine1: e.item.addressLine1 });
                     result.context.addressForm.patchValue({ addressLine2: e.item.addressLine2 });
                     result.context.addressForm.patchValue({ city: e.item.city });

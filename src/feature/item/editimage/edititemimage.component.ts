@@ -12,13 +12,13 @@ import { Image } from '../../../model/image.model';
     templateUrl: './edititemimage.component.html',
     styleUrls: ['./edititemimage.component.css']
 })
-export class EditItemImageComponent implements OnInit { 
+export class EditItemImageComponent implements OnInit {
     images: Array<Image>;
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
     item: Item;
     itemForm: FormGroup;
-    defaultImage: string = "http://musicatthemonument.com/wp-content/uploads/2014/06/image-placeholder15.jpg";
+    defaultImage: string = 'http://musicatthemonument.com/wp-content/uploads/2014/06/image-placeholder15.jpg';
     itemId: number;
     ngOnInit(): void {
         this.images = new Array<Image>();
@@ -40,10 +40,10 @@ export class EditItemImageComponent implements OnInit {
         //this.getItem(+this.route.snapshot.params['id']);
         this.getImages();
     }
-    constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder)
-    { }
+    constructor(private itemService: ItemService, private route: ActivatedRoute, 
+        private router: Router, private formBuilder: FormBuilder) { }
     getImages() {
-        var result = {
+        const result = {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
@@ -56,11 +56,10 @@ export class EditItemImageComponent implements OnInit {
         this.itemService.getImages(this.itemId, result);
     }
     getItem(id) {
-        var result = {
+        const result = {
             context: this,
             success(e) {
-                if (e.statusCode == 200) {
-                    console.log(e);
+                if (e.statusCode === 200) {
                     result.context.item = e.item;
                 }
             }

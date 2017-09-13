@@ -36,7 +36,6 @@ export class StoryComponent implements OnInit {
             context: this,
             success(e) {
                 result.context.story = e.item;
-                console.log(e.item);
             },
             error(e) {
                 result.context.notification.error(

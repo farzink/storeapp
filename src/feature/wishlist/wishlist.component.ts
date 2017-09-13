@@ -19,6 +19,7 @@ export class WhishlistComponent implements OnInit {
     wishlist: Array<Item>;
     hasNext = true;
     hasPrevious = true;
+    placeholderImage = 'assets/image/placeholder.jpg';
     ngOnInit(): void {
         this.getWishlist();
     }
@@ -31,7 +32,6 @@ export class WhishlistComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e.item.results.items);
                     result.context.wishlist = e.item.results.items;
                 }
             },
@@ -83,7 +83,6 @@ export class WhishlistComponent implements OnInit {
         const result = {
             context: this,
             success(e) {
-                console.log(e);
                 result.context.cartService.addToObservableCart(e);
                 result.context.notification.success(
                     'Success',

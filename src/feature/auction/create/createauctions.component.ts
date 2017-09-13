@@ -74,7 +74,7 @@ export class CreateAuctionsComponent implements OnInit {
 
     selectItem(itemId) {
         this.selectedItem = this.items.find(i => i.id === itemId);
-        console.log(this.selectedItem);
+
         // this.toSend.itemId = this.selectedItem.id;
         this.itemIsSelected = true;
         this.auctionForm = this.formBuilder.group({
@@ -88,7 +88,7 @@ export class CreateAuctionsComponent implements OnInit {
             coolingOutInterval: ['', [Validators.required, Validators.pattern(/^(\d*\.\d{1,2}|\d+)$/)]],
         });
         this.auctionForm.patchValue({ itemId: this.selectedItem.id });
-        console.log(this.auctionForm.value);
+
     }
 
     confirmAuction() {
@@ -110,7 +110,7 @@ export class CreateAuctionsComponent implements OnInit {
                 }
             },
             error(e) {
-                console.log(e);
+
                 result.context.notification.alert(
                     'Error',
                     `${e._body}`,
@@ -124,7 +124,7 @@ export class CreateAuctionsComponent implements OnInit {
 
 
     showConfirm() {
-        // console.log(this.toSend);
+
         const disposable = this.dialogService.addDialog(ModalComponent, {
             title: 'Confirm Auction?',
             message: `
@@ -176,7 +176,7 @@ export class CreateAuctionsComponent implements OnInit {
                 // We get dialog result
                 if (isConfirmed) {
                     // this.toSend.endDate.setTime(this.endTime);
-                    // console.log(this.endTime);
+
                     this.createAuction();
                 } else {
                     alert('declined');
@@ -196,5 +196,5 @@ export class CreateAuctionsComponent implements OnInit {
     get endTime() { return this.auctionForm.get('endTime'); }
     get description() { return this.auctionForm.get('description'); }
     get coolingOutInterval() { return this.auctionForm.get('coolingOutInterval'); }
-    
+
 }

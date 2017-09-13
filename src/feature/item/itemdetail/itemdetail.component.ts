@@ -33,7 +33,6 @@ export class ItemDetailComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e.item);
                     result.context.item = e.item;
                 }
                 result.context.isLoading = false;

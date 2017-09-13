@@ -16,7 +16,6 @@ export class CategoryService {
 
     getAllBusinessCategories(interested) {
         if (this.businessCategory.length > 0) {
-            console.log('upper');
             interested.satisfy(this.businessCategory);
         } else {
             const result = {
@@ -24,8 +23,6 @@ export class CategoryService {
                 success(e) {
                     interested.satisfy(e.item);
                     result.context.businessCategory = e.item;
-                    // console.log(result.context.businessCategory);
-
                 }
             };
             this.updateBusinessCategoryArray(result);
@@ -47,8 +44,6 @@ export class CategoryService {
                 success(e) {
                     interested.satisfy(e.item);
                     result.context.itemCategory = e.item;
-                    // console.log(result.context.businessCategory);
-
                 }
             };
             this.updateItemCategoryArray(result);

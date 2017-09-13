@@ -10,10 +10,10 @@ import { Item } from '../../../model/item.model';
     templateUrl: './edititemdiscount.component.html',
     styleUrls: ['./edititemdiscount.component.css']
 })
-export class EditItemDiscountComponent implements OnInit {     
+export class EditItemDiscountComponent implements OnInit {
     //@ViewChild('file') fileElement:ElementRef;
     item: Item;
-    itemForm: FormGroup;  
+    itemForm: FormGroup;
     ngOnInit(): void {
         // var id=-1;
         // this.route
@@ -21,44 +21,41 @@ export class EditItemDiscountComponent implements OnInit {
         //     .subscribe(p => {
         //         id=+p['id'];                
         //     });
-        this.itemForm=this.formBuilder.group({
+        this.itemForm = this.formBuilder.group({
             title: '',
             name: '',
             price: '',
             manufacturer: '',
             manufacturingType: ''
-        });        
-        this.getItem(+this.route.snapshot.params['id']);   
+        });
+        this.getItem(+this.route.snapshot.params['id']);
     }
-    constructor(private itemService:ItemService,private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder)
-    {}
-    add(e){
-        e.preventDefault();        
-        var result = {
+    constructor(private itemService: ItemService, private route: ActivatedRoute,
+        private router: Router, private formBuilder: FormBuilder) { }
+    add(e) {
+        e.preventDefault();
+        const result = {
             context: this,
             success(e) {
-                if (e.statusCode == 201)
-                {
-                console.log(e);
-                    result.context.router.navigate(['/home/business/item/edit/1', { queryParams: { id: e.item.id}}]);
+                if (e.statusCode === 201) {
+                    result.context.router.navigate(['/home/business/item/edit/1', { queryParams: { id: e.item.id } }]);
                 }
             }
-        };              
+        };
         this.itemService.add(this.itemForm.value, result);
     }
-    getItem(id){
-        var result = {
+    getItem(id) {
+        const result = {
             context: this,
             success(e) {
-                if (e.statusCode == 200){                 
-                    console.log(e);                 
+                if (e.statusCode === 200) {
                     result.context.item = e.item;
                 }
             }
         };
         //this.itemService.getById(id, result);          
     }
-    navigate(){
+    navigate() {
         this.router.navigateByUrl('/(image)');
     }
 }

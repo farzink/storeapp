@@ -53,7 +53,6 @@ export class SearchResultComponent implements OnInit {
         this.size = (+this.route.snapshot.queryParams.size || 12);
         this.selected = searchTerm;
         if (searchTerm === '' || searchTerm === undefined) {
-            console.log('later');
             this.isLoading = false;
         } else {
             const result = {
@@ -146,7 +145,6 @@ export class SearchResultComponent implements OnInit {
     }
 
     addToCart(item) {
-        console.log(item);
         const result = {
             context: this,
             success(e) {

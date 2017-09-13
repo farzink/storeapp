@@ -77,7 +77,6 @@ export class LoginComponent implements OnInit {
 
     getProfile() {
         this.observableHelper.processObservable(this.httpHelper.get(profilePath), function (data) {
-            console.log(data.json());
         }, null, null);
     }
 
