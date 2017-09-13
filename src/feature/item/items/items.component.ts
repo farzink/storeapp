@@ -15,7 +15,7 @@ export class ItemsComponent implements OnInit {
     items: Array<Item>;
     filteredItems: Array<Item>;
     isLoading = true;
-    maxNumberOfItemsToDisplay = 25;
+    maxNumberOfItemsToDisplay = 50;
     placeholderImage = 'assets/image/placeholder.jpg';
     ngOnInit(): void {
         this.getItems();

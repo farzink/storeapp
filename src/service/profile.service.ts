@@ -47,7 +47,7 @@ export class ProfileService implements ICoreService<Profile> {
 
 
     activate(model: any, file: File, result) {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('businessVerificationDocumentName', file);
         formData.append('businessName', model.businessName);
         formData.append('taxIdentification', model.taxIdentification);

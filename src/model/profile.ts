@@ -17,7 +17,7 @@ export class Profile {
         this.isActive = data.isActive;
         this.business = new Business(data.profileBusiness);
         this.phone = data.phone;
-        //this.lastDateTime= new Date(data.updatedDateTime).toString();
+        // this.lastDateTime= new Date(data.updatedDateTime).toString();
         this.lastDateTime = data.lastDateTime;
     }
 }

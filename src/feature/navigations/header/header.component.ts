@@ -20,11 +20,14 @@ export class HeaderComponent implements OnInit {
     placeholderImage = placeholderImage;
     constructor(private authService: AuthenticationService, private profileService: ProfileService,
         private cartService: CartService, private router: Router) {
-        const context = this;
-        this.cartService.getObservableCart().subscribe(c => {
-            this.updateCart(c);
-        });
-        this.cartService.update();
+
+        if (!this.authService.isTokenExpired()) {
+            this.isLoggedIn = true;
+            this.cartService.getObservableCart().subscribe(c => {
+                this.updateCart(c);
+            });
+            this.cartService.update();
+        }
     }
 
 
@@ -34,15 +37,14 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const result = {
-            context: this,
-            success(e) {
-                result.context.profile = e;
-            }
-        };
-        this.profileService.getUserData(result);
-
         if (!this.authService.isTokenExpired()) {
+            const result = {
+                context: this,
+                success(e) {
+                    result.context.profile = e;
+                }
+            };
+            this.profileService.getUserData(result);
             this.isLoggedIn = true;
         }
     }

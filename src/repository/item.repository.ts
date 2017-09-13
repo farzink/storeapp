@@ -1,9 +1,9 @@
-import { homePath } from './../utility/link';
+import { ItemRating } from './../model/itemRating.model';
+import { homePath, itemPath } from './../utility/link';
 import { Profile } from '../model/profile';
 import { Injectable } from '@angular/core';
 import { IRepository } from './irepository';
 import { HttpHelper } from '../service/http.helper';
-import { itemPath } from '../utility/link';
 import { Observable } from 'rxjs/Observable';
 import { WebCallResult } from '../utility/webcall-result';
 import { Item } from '../model/item.model';
@@ -84,6 +84,13 @@ export class ItemRepository implements IRepository<Item> {
     getItemsOfCategory(path: string) {
         return this.httpHelper.get(homePath + '/' + path)
             .map(e => new WebCallResult<Array<Item>>((e.json()),
+                e.status,
+                e.statusText));
+    }
+
+    getItemRating(itemId: number): Observable<WebCallResult<ItemRating>> {
+        return this.httpHelper.get(`${homePath}/rates/${itemId}`)
+            .map(e => new WebCallResult<ItemRating>(new ItemRating(e.json()),
                 e.status,
                 e.statusText));
     }

@@ -75,6 +75,11 @@ export class ItemService implements ICoreService<Item> {
             result.success, result.error, result.complete);
     }
 
+    getItemRating(itemId: number, result: any) {
+        this.observableHelper.processObservable(this.itemRepository.getItemRating(itemId),
+            result.success, result.error, result.complete);
+    }
+
     // add(model: any, result) {
     //     throw new Error('Method not implemented.');
     // }

@@ -37,13 +37,10 @@ export class HomeHeaderComponent implements OnInit {
                 this.jqueryInit();
             }
         });
-
-        this.cartService.getObservableCart().subscribe(c => {
-            if (!authenticationService.isTokenExpired()) {
+        if (!authService.isTokenExpired()) {
+            this.cartService.getObservableCart().subscribe(c => {
                 this.updateCart(c);
-            }
-        });
-        if (!authenticationService.isTokenExpired()) {
+            });
             this.cartService.update();
         }
     }
@@ -64,14 +61,14 @@ export class HomeHeaderComponent implements OnInit {
         };
         this.categoryService.getAllItemCategories(interested);
 
-        const result = {
-            context: this,
-            success(e) {
-                result.context.profile = e;
-            }
-        };
-        this.profileService.getUserData(result);
         if (!this.authService.isTokenExpired()) {
+            const result = {
+                context: this,
+                success(e) {
+                    result.context.profile = e;
+                }
+            };
+            this.profileService.getUserData(result);
             this.isLoggedIn = true;
         }
     }

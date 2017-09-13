@@ -50,7 +50,7 @@
             <ul class="list-inline">
               <li><a href="index.html"><i class="fa fa-reply" aria-hidden="true"></i>Continue Shopping</a></li>
               <li>
-                <star-rating-comp (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [rating]="3"></star-rating-comp>
+                <star-rating-comp (onRatingChange)="onRatingChange($event)" [showHalfStars]="true" [starType]="'svg'" [readOnly]="true" [rating]="rating.rating"></star-rating-comp>
               </li>
             </ul>
             <h2>{{item?.title}}</h2>
@@ -72,8 +72,8 @@
                   <option value="3">3</option>
                 </select>
               </span>
-            <div class="btn-area">
-              <a href="cart-page.html" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <div (click)="addToCart(item)" class="btn-area">
+              <a href="javascript:void(0)" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>              
             </div>
             <div class="tabArea">
               <ul class="nav nav-tabs">
@@ -260,19 +260,19 @@
         </div>
       </div>
     </div> -->
-    <div class="row">
+    <div class="row" *ngIf="isLoggedIn">
       <div class="col-xs-12">
         <form action="" method="POST" role="form" class="commentsForm">
           <h3>Leave a Review</h3>
           <div class="row">
             <div class="col-sm-6 col-xs-12">
               <div class="form-group">
-                <input type="text" class="form-control" id="" placeholder="Name">
+                <input type="text" readonly class="form-control" id="" placeholder="{{currentUser.firstName}}">
               </div>
             </div>
             <div class="col-sm-6 col-xs-12">
               <div class="form-group">
-                <input type="email" class="form-control" id="" placeholder="Email">
+                <input type="email" readonly class="form-control" id="" placeholder="{{currentUser.email}}">
               </div>
             </div>
             <div class="col-xs-12">

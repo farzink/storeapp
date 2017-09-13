@@ -17,7 +17,7 @@
           <ul class="list-inline pull-right top-right">
             <li *ngIf="!isLoggedIn" class="account-login"><span><a routerLink="/authentication/login">Log in</a><small>or</small><a routerLink="authentication/register">Create an account</a></span></li>
             <li *ngIf="isLoggedIn" class="account-login"><span><a routerLink="/profile">welcome {{profile?.email}}</a></span></li>
-            <li *ngIf="isLoggedIn" (click)="logout()" class="account-login"><span><a routerLink="/">log out</a></span></li>
+            <li *ngIf="isLoggedIn" (click)="logout()" class="account-login"><span><a routerLink="/">Log out</a></span></li>
           </ul>
         </div>
       </div>

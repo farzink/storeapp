@@ -29,10 +29,12 @@ export class SearchHeaderComponent implements OnInit {
         private authService: AuthenticationService, private profileService: ProfileService,
         private cartService: CartService, private categoryService: CategoryService) {
         const context = this;
-        this.cartService.getObservableCart().subscribe(c => {
-            this.updateCart(c);
-        });
-        this.cartService.update();
+        if (!this.authService.isTokenExpired()) {
+            this.cartService.getObservableCart().subscribe(c => {
+                this.updateCart(c);
+            });
+            this.cartService.update();
+        }
     }
 
 
@@ -52,14 +54,15 @@ export class SearchHeaderComponent implements OnInit {
         };
         this.categoryService.getAllItemCategories(interested);
 
-        const result = {
-            context: this,
-            success(e) {
-                result.context.profile = e;
-            }
-        };
-        this.profileService.getUserData(result);
+
         if (!this.authService.isTokenExpired()) {
+            const result = {
+                context: this,
+                success(e) {
+                    result.context.profile = e;
+                }
+            };
+            this.profileService.getUserData(result);
             this.isLoggedIn = true;
         }
     }

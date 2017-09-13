@@ -1,3 +1,8 @@
+import { CartService } from './../../../service/cart.service';
+import { AuthenticationService } from './../../../service/authentication.service';
+import { Profile } from './../../../model/profile';
+import { ProfileService } from './../../../service/profile.service';
+import { ItemRating } from './../../../model/itemRating.model';
 import { avatarPlaceholder } from './../../../utility/link';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -17,17 +22,66 @@ export class ItemDetailComponent implements OnInit {
     isLoading = true;
     itemId;
     avatarPlaceholder = avatarPlaceholder;
+    rating: ItemRating = { rating: 0, reviewers: 0 };
+    currentUser: Profile;
+    isLoggedIn = false;
     onRatingChangeResult: OnRatingChangeEven;
     ngOnInit(): void {
 
     }
-    constructor(private itemService: ItemService, private route: ActivatedRoute,
-        private notification: NotificationsService) {
+    constructor(private itemService: ItemService, private route: ActivatedRoute, private cartService: CartService,
+        private notification: NotificationsService, private profileService: ProfileService,
+        private authenticationService: AuthenticationService) {
         this.route.params.subscribe(val => {
             this.itemId = (+this.route.snapshot.params['id'] || 0);
             this.getItems();
+            this.getItemRating();
+            if (!this.authenticationService.isTokenExpired()) {
+                console.log('loggedd in');
+                this.isLoggedIn = true;
+                this.getCurrentUser();
+            } else {
+                console.log('not loggedd in');
+                this.isLoggedIn = false;
+                this.currentUser = null;
+            }
+
         });
     }
+
+    getCurrentUser() {
+        const result = {
+            context: this,
+            success(e) {
+                console.log(e);
+                result.context.currentUser = e;
+                result.context.isLoading = false;
+                console.log(result.context.currentUser);
+            },
+            error(e) {
+                console.log(e, 'error');
+            }
+        };
+        this.profileService.getUserData(result);
+
+    }
+
+    getItemRating() {
+        const result = {
+            context: this,
+            success(e) {
+                if (e.statusCode === 200) {
+                    result.context.rating = e.item;
+                }
+                result.context.isLoading = false;
+            },
+            error(e) {
+                console.log(e, 'error');
+            }
+        };
+        this.itemService.getItemRating(result.context.itemId, result);
+    }
+
     getItems() {
         const result = {
             context: this,
@@ -44,8 +98,34 @@ export class ItemDetailComponent implements OnInit {
         this.itemService.getItemDetail(result.context.itemId, result);
     }
 
+    addToCart(item) {
+        const result = {
+            context: this,
+            success(e) {
+                result.context.cartService.update();
+                result.context.notification.success(
+                    'Success',
+                    `${item.name} has been added to your cart!`
+                );
+            },
+            error(e) {
+                result.context.isLoading = false;
+            },
+            complete(e) {
+                result.context.isLoading = false;
+            }
+        };
+
+        this.cartService.addToCart({
+            itemId: item.id,
+            quantity: 1
+        }, result);
+    }
+
     onRatingChange = ($event: OnRatingChangeEven) => {
         console.log('onRatingUpdated $event: ', $event);
         this.onRatingChangeResult = $event;
-    };
+    }
+
+
 }
