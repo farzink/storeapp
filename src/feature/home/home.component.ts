@@ -1,3 +1,4 @@
+import { basePath } from './../../utility/link';
 import { Http } from '@angular/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -16,8 +17,7 @@ export class HomeComponent {
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
-        let url: string =
-            'http://localhost:54434/api/home/suggestion/' + keyword;
+        const url = `${basePath}home/suggestion/${keyword}`;
         if (keyword) {
             return this.http.get(url).map(res => {
                 const json = res.json();

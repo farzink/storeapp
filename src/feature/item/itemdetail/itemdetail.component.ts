@@ -37,11 +37,9 @@ export class ItemDetailComponent implements OnInit {
             this.getItems();
             this.getItemRating();
             if (!this.authenticationService.isTokenExpired()) {
-                console.log('loggedd in');
                 this.isLoggedIn = true;
                 this.getCurrentUser();
             } else {
-                console.log('not loggedd in');
                 this.isLoggedIn = false;
                 this.currentUser = null;
             }
@@ -115,7 +113,7 @@ export class ItemDetailComponent implements OnInit {
 
         this.cartService.addToCart({
             itemId: item.id,
-            quantity: 1
+            quantity: 0
         }, result);
     }
 

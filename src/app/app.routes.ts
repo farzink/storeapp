@@ -97,7 +97,7 @@ export const routes: Routes = [
     path: 'auctions', children: [
       { path: '', component: AuctionsComponent },
       { path: 'create', component: CreateAuctionsComponent, canActivate: [RouteAuth] },
-      { path: ':id', component: AuctionDetailComponent, canActivate: [RouteAuth] },
+      { path: ':id', component: AuctionDetailComponent },
       { path: '', component: FooterComponent, outlet: 'footer' },
       { path: '', component: HeaderComponent, outlet: 'header' }
     ]

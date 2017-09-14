@@ -1,4 +1,4 @@
-import { placeholderImage } from './../../../utility/link';
+import { placeholderImage, basePath } from './../../../utility/link';
 import { CategoryService } from './../../../service/category.service';
 import { CartService } from './../../../service/cart.service';
 import { Profile } from './../../../model/profile';
@@ -74,8 +74,8 @@ export class HomeHeaderComponent implements OnInit {
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
-        const url: string =
-            'http://localhost:54434/api/home/suggestion/' + keyword;
+        const url = `${basePath}home/suggestion/${keyword}`;
+            // 'http://localhost:54434/api/home/suggestion/' + keyword;
         if (keyword) {
             return this.http.get(url).map(res => {
                 const json = res.json();

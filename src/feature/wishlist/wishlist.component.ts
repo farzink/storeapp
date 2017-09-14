@@ -83,15 +83,24 @@ export class WhishlistComponent implements OnInit {
         const result = {
             context: this,
             success(e) {
-                result.context.cartService.addToObservableCart(e);
+                result.context.cartService.update();
                 result.context.notification.success(
                     'Success',
                     `${item.name} has been added to your cart!`
                 );
+            },
+            error(e) {
+                result.context.isLoading = false;
+            },
+            complete(e) {
+                result.context.isLoading = false;
             }
         };
-        item.quantity = 1;
-        this.cartService.addToCart(item, result);
+
+        this.cartService.addToCart({
+            itemId: item.id,
+            quantity: 0
+        }, result);
     }
 }
 

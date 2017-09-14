@@ -1,4 +1,7 @@
 *.ini
 *.db
+*.zip
+*.rar
 
 /node_modules
+/dist

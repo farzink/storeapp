@@ -32,6 +32,7 @@ export class ItemsComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
+                    console.log(e);
                     result.context.items = e.item;
                     result.context.assignCopy();
                 }
@@ -54,7 +55,7 @@ export class ItemsComponent implements OnInit {
     filterItems(value) {
         if (!value) { this.assignCopy(); }
         this.filteredItems = Object.assign([], this.items).filter(
-            item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+            item => item.name.toLowerCase().indexOf(value.toLowerCase()) || item.title.toLowerCase().indexOf(value.toLowerCase()) > -1
         );
     }
 }

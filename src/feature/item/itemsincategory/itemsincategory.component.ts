@@ -124,7 +124,7 @@ export class ItemsInCategoryComponent implements OnInit {
 
         this.cartService.addToCart({
             itemId: item.id,
-            quantity: 1
+            quantity: 0
         }, result);
     }
 

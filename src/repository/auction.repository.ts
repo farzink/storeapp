@@ -57,7 +57,7 @@ export class AuctionRepository implements IRepository<Auction> {
     }
 
     getAllAuctions(path: string) {
-        return this.httpHelper.get(auctionPath + '/' + path)
+        return this.httpHelper.get(homePath + '/' + path)
             .map(e => new WebCallResult<Array<Auction>>((e.json()),
                 e.status,
                 e.statusText));

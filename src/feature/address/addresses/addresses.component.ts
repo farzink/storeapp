@@ -1,3 +1,5 @@
+import { ProfileService } from './../../../service/profile.service';
+import { Profile } from './../../../model/profile';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -13,11 +15,14 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class AddressesComponent implements OnInit {
     addresses: any;
+    profile: Profile;
+    isProfileBusy = true;
     isLoading = true;
     ngOnInit(): void {
         this.getAddresses();
     }
-    constructor(private router: Router, private addressService: AddressService, private notification: NotificationsService) {
+    constructor(private router: Router, private addressService: AddressService, private notification: NotificationsService,
+        private profileService: ProfileService) {
     }
     getAddresses() {
         const result = {
@@ -31,6 +36,19 @@ export class AddressesComponent implements OnInit {
             }
         };
         this.addressService.getAll(result);
+    }
+
+    getProfile() {
+        const result = {
+            context: this,
+            success(e) {
+                if (e.statusCode === 200) {
+                    result.context.profile = e.item;
+                    result.context.isProfileBusy = false;
+                }
+            }
+        };
+        this.profileService.get(result);
     }
 
     delete(e) {

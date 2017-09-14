@@ -1,3 +1,4 @@
+import { basePath } from './../../utility/link';
 import { CartService } from './../../service/cart.service';
 import { NotificationsService } from 'angular2-notifications';
 import { ProfileService } from './../../service/profile.service';
@@ -117,9 +118,8 @@ export class SearchResultComponent implements OnInit {
     }
 
     changePerPage(perpage) {
-        // this.size = perpage;
         this.router.navigate(['/search'], { queryParams: { q: this.selected, size: perpage.target.value, ci: this.categoryId } });
-        // this.search();
+
     }
 
     addToWishlist(item) {
@@ -188,13 +188,12 @@ export class SearchResultComponent implements OnInit {
 
         this.cartService.addToCart({
             itemId: item.id,
-            quantity: 1
+            quantity: 0
         }, result);
     }
 
     observableSource = (keyword: any): Observable<any[]> => {
-        const url: string =
-            'http://localhost:54434/api/home/suggestion/' + keyword;
+        const url = `${basePath}home/suggestion/${keyword}`;
         if (keyword) {
             return this.http.get(url).map(res => {
                 const json = res.json();

@@ -15,17 +15,18 @@ import { NotificationsService } from 'angular2-notifications';
 export class CartComponent implements OnInit {
     isLoading = true;
     itemsInCart: any;
+    isLoggedIn = false;
     total = 0;
     ngOnInit(): void { }
     constructor(private router: Router, private notification: NotificationsService,
         private cartService: CartService, private authenticationService: AuthenticationService) {
-        const context = this;
+        this.isLoggedIn = !authenticationService.isTokenExpired();
         this.cartService.getObservableCart().subscribe(c => {
-            if (!authenticationService.isTokenExpired()) {
+            if (this.isLoggedIn) {
                 this.updateCart(c);
             }
         });
-        if (!authenticationService.isTokenExpired()) {
+        if (this.isLoggedIn) {
             this.cartService.update();
         }
     }
