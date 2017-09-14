@@ -55,8 +55,6 @@ export class ItemDetailComponent implements OnInit {
             success(e) {
                 console.log(e);
                 result.context.currentUser = e;
-                result.context.isLoading = false;
-                console.log(result.context.currentUser);
             },
             error(e) {
                 console.log(e, 'error');
@@ -73,7 +71,6 @@ export class ItemDetailComponent implements OnInit {
                 if (e.statusCode === 200) {
                     result.context.rating = e.item;
                 }
-                result.context.isLoading = false;
             },
             error(e) {
                 console.log(e, 'error');

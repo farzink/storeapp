@@ -39,7 +39,7 @@
                 <img [src]="res.defaultImage || placeholderImage" alt="products-img" style="min-height: 300px; max-height: 300px;">
                 <div class="productMasking">
                   <ul class="list-inline btn-group" role="group">
-                    <li *ngIf="!res.isWishListedPourMoi" (click)="addToWishlist(res.id)"><a class="btn btn-default"><i class="fa fa-heart"></i></a></li>
+                    <li *ngIf="!res.isWishListedPourMoi" (click)="addToWishlist(res)"><a class="btn btn-default"><i class="fa fa-heart"></i></a></li>
                     <li (click)="addToCart(res)"><a class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
                     <li><a class="btn btn-default" [routerLink]="['/item', res.id]"><i class="fa fa-eye"></i></a></li>
                   </ul>

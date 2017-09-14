@@ -122,12 +122,13 @@ export class SearchResultComponent implements OnInit {
         // this.search();
     }
 
-    addToWishlist(id) {
+    addToWishlist(item) {
         this.isLoading = true;
         const result = {
             context: this,
             success(e) {
                 if (e.statusCode === 201) {
+                    item.isWishListedPourMoi = true;
                     result.context.notification.success(
                         'Success',
                         'item has been added to your wishlist successfully!'
@@ -141,8 +142,31 @@ export class SearchResultComponent implements OnInit {
                 result.context.isLoading = false;
             }
         };
-        this.profileService.addToWishlist(id, result);
+        this.profileService.addToWishlist(item.id, result);
     }
+
+
+    // addToWishlist(id) {
+    //     this.isLoading = true;
+    //     const result = {
+    //         context: this,
+    //         success(e) {
+    //             if (e.statusCode === 201) {
+    //                 result.context.notification.success(
+    //                     'Success',
+    //                     'item has been added to your wishlist successfully!'
+    //                 );
+    //             }
+    //         },
+    //         error(e) {
+    //             result.context.isLoading = false;
+    //         },
+    //         complete(e) {
+    //             result.context.isLoading = false;
+    //         }
+    //     };
+    //     this.profileService.addToWishlist(id, result);
+    // }
 
     addToCart(item) {
         const result = {
