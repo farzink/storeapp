@@ -10,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class OrdersComponent implements OnInit {
     constructor(private profileService: ProfileService) { }
     profile: Profile;
-    ngOnInit() { }
+    ngOnInit() {
+        this.getProfile();
+     }
 
 
     getProfile() {
@@ -18,6 +20,7 @@ export class OrdersComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
+                    console.log(e);
                     result.context.profile = e.item;
                 }
             }

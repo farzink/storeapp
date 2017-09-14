@@ -20,6 +20,7 @@ export class AddressesComponent implements OnInit {
     isLoading = true;
     ngOnInit(): void {
         this.getAddresses();
+        this.getProfile();
     }
     constructor(private router: Router, private addressService: AddressService, private notification: NotificationsService,
         private profileService: ProfileService) {

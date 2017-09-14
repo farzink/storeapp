@@ -32,7 +32,6 @@ export class ItemsComponent implements OnInit {
             context: this,
             success(e) {
                 if (e.statusCode === 200) {
-                    console.log(e);
                     result.context.items = e.item;
                     result.context.assignCopy();
                 }
