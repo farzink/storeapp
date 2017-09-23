@@ -94,6 +94,7 @@ import { AddressesComponent } from '../feature/address/addresses/addresses.compo
 import { EditAddressComponent } from '../feature/address/editaddress/editaddress.component';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { PageNotFoundComponent } from '../feature/pagenotfound/pagenotfound.component';
 
 
 
@@ -148,7 +149,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     AuctionDetailComponent,
     ModalComponent,
     ItemsInCategoryComponent,
-    OrdersComponent
+    OrdersComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserAnimationsModule,

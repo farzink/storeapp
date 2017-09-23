@@ -38,7 +38,7 @@
               </div>
               <div class="col-md-10 col-md-pull-2 col-sm-9 col-sm-pull-3 col-xs-12">
                 <h3><a [routerLink]="['../articles', article.id]">{{article?.title}}</a> </h3>
-                <p>{{article?.description | truncate : 500}}</p>
+                <p>{{article?.url | truncate : 500}}</p>
               </div>
             </div>
           </div>

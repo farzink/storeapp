@@ -41,7 +41,7 @@ import { ProfileEditComponent } from '../feature/profile/profileedit/profileedit
 import { AddressInfoComponent } from '../feature/address/addressinfo/addressinfo.component';
 import { AddressesComponent } from '../feature/address/addresses/addresses.component';
 import { EditAddressComponent } from '../feature/address/editaddress/editaddress.component';
-
+import { PageNotFoundComponent } from '../feature/pagenotfound/pagenotfound.component';
 
 
 // export const routes: Routes = [
@@ -168,7 +168,8 @@ export const routes: Routes = [
       { path: '', component: FooterComponent, outlet: 'footer' },
       { path: '', component: HeaderComponent, outlet: 'header' }
     ]
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
   //
   // {
   //   path: 'home', children: [
